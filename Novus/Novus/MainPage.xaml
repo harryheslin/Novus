@@ -13,6 +13,9 @@
         <Tab Title="Units">
             <ShellContent ContentTemplate="{DataTemplate local:UnitPage}" />
         </Tab>
+        <Tab Title="Calendar">
+            <ShellContent ContentTemplate="{DataTemplate local:Calendar}" />
+        </Tab>
     </FlyoutItem>
 
 </Shell>

@@ -5,6 +5,7 @@
              HeightRequest="200">
     <Grid BackgroundColor="Black">
         <Label Text="Novus"
-               FontSize="30"/>
+               FontSize="30"
+               TextColor="White"/>
     </Grid>
 </ContentView>

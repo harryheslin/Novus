@@ -9,13 +9,11 @@
         <controls:FlyoutHeader />
     </Shell.FlyoutHeader>
 
-    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        <Tab Title="Units">
-            <ShellContent ContentTemplate="{DataTemplate local:UnitPage}" />
-        </Tab>
-        <Tab Title="Calendar">
-            <ShellContent ContentTemplate="{DataTemplate local:Calendar}" />
-        </Tab>
+    <FlyoutItem Title="Units">
+        <ShellContent ContentTemplate="{DataTemplate local:UnitPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Calendar">
+        <ShellContent ContentTemplate="{DataTemplate local:Calendar}" />
     </FlyoutItem>
 
 </Shell>

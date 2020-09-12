@@ -15,7 +15,19 @@
                 <Label Grid.Column="6">6</Label>
                 <Label Grid.Column="7">7</Label>
                 <Label Grid.Row="1" Grid.Column="1">8</Label>
+                <Label Grid.Row="1" Grid.Column="2">9</Label>
+                <Label Grid.Row="1" Grid.Column="3">10</Label>
+                <Label Grid.Row="1" Grid.Column="4">11</Label>
+                <Label Grid.Row="1" Grid.Column="5">12</Label>
+                <Label Grid.Row="1" Grid.Column="6">13</Label>
+                <Label Grid.Row="1" Grid.Column="7">14</Label>
                 <Label Grid.Row="2" Grid.Column="1">15</Label>
+                <Label Grid.Row="2" Grid.Column="2">16</Label>
+                <Label Grid.Row="2" Grid.Column="3">17</Label>
+                <Label Grid.Row="2" Grid.Column="4">18</Label>
+                <Label Grid.Row="2" Grid.Column="5">19</Label>
+                <Label Grid.Row="2" Grid.Column="6">20</Label>
+                <Label Grid.Row="2" Grid.Column="7">21</Label>
                 <Label Grid.Row="3" Grid.Column="1">22</Label>
                 <Label Grid.Row="4" Grid.Column="1">29</Label>
             </Grid>

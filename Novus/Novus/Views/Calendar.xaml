@@ -1,47 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Novus.Views.Calendar">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Calendar Page!"
+        <StackLayout
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+            <Label Text="Yeet Page!"
                    HorizontalTextAlignment="Center"/>
-            <Grid Margin="20,35,20,20">
-                <Label Grid.Column="1">1</Label>
-                <Label Grid.Column="2">2</Label>
-                <Label Grid.Column="3">3</Label>
-                <Label Grid.Column="4">4</Label>
-                <Label Grid.Column="5">5</Label>
-                <Label Grid.Column="6">6</Label>
-                <Label Grid.Column="7">7</Label>
-                <Label Grid.Row="1" Grid.Column="1">8</Label>
-                <Label Grid.Row="1" Grid.Column="2">9</Label>
-                <Label Grid.Row="1" Grid.Column="3">10</Label>
-                <Label Grid.Row="1" Grid.Column="4">11</Label>
-                <Label Grid.Row="1" Grid.Column="5">12</Label>
-                <Label Grid.Row="1" Grid.Column="6">13</Label>
-                <Label Grid.Row="1" Grid.Column="7">14</Label>
-                <Label Grid.Row="2" Grid.Column="1">15</Label>
-                <Label Grid.Row="2" Grid.Column="2">16</Label>
-                <Label Grid.Row="2" Grid.Column="3">17</Label>
-                <Label Grid.Row="2" Grid.Column="4">18</Label>
-                <Label Grid.Row="2" Grid.Column="5">19</Label>
-                <Label Grid.Row="2" Grid.Column="6">20</Label>
-                <Label Grid.Row="2" Grid.Column="7">21</Label>
-                <Label Grid.Row="3" Grid.Column="1">22</Label>
-                <Label Grid.Row="3" Grid.Column="2">23</Label>
-                <Label Grid.Row="3" Grid.Column="3">24</Label>
-                <Label Grid.Row="3" Grid.Column="4">25</Label>
-                <Label Grid.Row="3" Grid.Column="5">26</Label>
-                <Label Grid.Row="3" Grid.Column="6">27</Label>
-                <Label Grid.Row="3" Grid.Column="7">28</Label>
-                <Label Grid.Row="4" Grid.Column="1">29</Label>
-                <Label Grid.Row="4" Grid.Column="2">30</Label>
-                <Label Grid.Row="4" Grid.Column="3">31</Label>
-                <Label Grid.Row="4" Grid.Column="4"> </Label>
-                <Label Grid.Row="4" Grid.Column="5"> </Label>
-            </Grid>
-            <Button Text="Swtich Calendar"/>
+            <Label Text="{Binding CalendarName}"/>
+            <telerikInput:RadCalendar x:Name="calendar"
+                                      HeightRequest="500"/>
+            <Button Text="Swtich Calendar"
+                    Command="{Binding ChangeCalendar}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

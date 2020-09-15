@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Novus.Views" 
              xmlns:controls="clr-namespace:Novus.Controls"
-             x:Class="Novus.MainPage">
+             x:Class="Novus.MainPage"
+             FlyoutIcon="novusIcon.png"
+             BackgroundColor="#00467F">
 
     <Shell.FlyoutHeader>
         <controls:FlyoutHeader />

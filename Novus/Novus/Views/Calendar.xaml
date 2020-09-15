@@ -1,17 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:telerikConversationalUI="clr-namespace:Telerik.XamarinForms.ConversationalUI;assembly=Telerik.XamarinForms.ConversationalUI"
 xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Novus.Views.Calendar">
     <ContentPage.Content>
         <StackLayout
-            HorizontalOptions="Center"
-            VerticalOptions="Center">
-            <Label Text="Yeet Page!"
-                   HorizontalTextAlignment="Center"/>
+            HorizontalOptions="Center">
             <Label Text="{Binding CalendarName}"/>
             <telerikInput:RadCalendar x:Name="calendar"
-                                      HeightRequest="500"/>
+                                      HeightRequest="600"/>
             <Button Text="Swtich Calendar"
                     Command="{Binding ChangeCalendar}"/>
         </StackLayout>

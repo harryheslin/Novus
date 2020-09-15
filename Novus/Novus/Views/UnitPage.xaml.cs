@@ -16,5 +16,21 @@ namespace Novus.Views
         {
             InitializeComponent();
         }
+        public async void Resources_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new UnitResources());
+        }
+        public async void Assesment_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new UnitAssesment());
+        }
+        public async void Announcements_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new UnitAnnouncements());
+        }
+        public async void Grades_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new UnitGrades());
+        }
     }
 }

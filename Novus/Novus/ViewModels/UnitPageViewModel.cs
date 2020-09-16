@@ -8,28 +8,79 @@ namespace Novus.ViewModels
 {
     class UnitPageViewModel : BaseViewModel
     {
+        public Command ResourcesPageButton { get; }
+        public Command AnnouncementsPageButton { get; }
+        public Command GradesPageButton { get; }
+        public Command AssesmentPageButton { get; }
+
         public UnitPageViewModel()
         {
-            ChangeUnit = new Command(NextUnit);
+            ResourcesPageButton = new Command(GoToResourcesPage);
+            AnnouncementsPageButton = new Command(GoToAnnouncementsPage);
+            GradesPageButton = new Command(GoToGradesPage);
+            AssesmentPageButton = new Command(GoToAssesmentPage);
         }
 
-        string[] units = { "IAB330", "CAB432", "CAB303"};
-        int unitIndex = 0;
-        public string UnitName => units[unitIndex];
+        string unit = Shell.Current.CurrentItem.Title;
 
-       public Command ChangeUnit { get; }
-
-        void NextUnit()
+        public string Unit
         {
-            if (unitIndex < 2)
+            get => unit;
+            set
             {
-                unitIndex++;
+                SetProperty(ref unit, Uri.UnescapeDataString(value));
+                OnPropertyChanged(nameof(Unit));
             }
-            else
+        }
+
+        string colour = UnitColour();
+        public string Colour
+        {
+            get => colour;
+            set
             {
-                unitIndex = 0;
+                SetProperty(ref colour, UnitColour());
+                OnPropertyChanged(nameof(Unit));
             }
-            OnPropertyChanged(nameof(UnitName));
+        }
+
+        
+        static string UnitColour()
+        {
+            string unitNumber = Shell.Current.CurrentState.Location.ToString();
+
+            switch (unitNumber)
+            {
+                case "//unit1":
+                    return "#80EE8B";
+                case "//IMPL_unit2/unit2":
+                    return "#F3B15B";
+                case "//IMPL_unit3/unit3":
+                    return "#A1F1F4";
+                case "//IMPL_unit4/unit4":
+                    return "#EFE379";
+                default:
+                    return "white";
+            }
+        }
+        async void GoToResourcesPage()
+        {
+            await Shell.Current.GoToAsync($"resources?unit={Unit}");
+        }
+
+        async void GoToAnnouncementsPage()
+        {
+            await Shell.Current.GoToAsync($"announcements?unit={Unit}");
+        }
+
+        async void GoToGradesPage()
+        {
+            await Shell.Current.GoToAsync($"grades?unit={Unit}");
+        }
+
+        async void GoToAssesmentPage()
+        {
+            await Shell.Current.GoToAsync($"announcements?unit={Unit}");
         }
     }
 }

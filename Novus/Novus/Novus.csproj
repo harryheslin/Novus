@@ -11,7 +11,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\announcementsIcon.png" />
+    <None Remove="Images\assesmentIcon.png" />
+    <None Remove="Images\gradesIcon.png" />
+    <None Remove="Images\novusIcon.png" />
+    <None Remove="Images\onedriveIcon.png" />
+    <None Remove="Images\resourcesIcon.png" />
+    <None Remove="Images\teamsIcon.png" />
+    <None Remove="Images\trelloIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\announcementsIcon.png" />
+    <EmbeddedResource Include="Images\assesmentIcon.png" />
+    <EmbeddedResource Include="Images\gradesIcon.png" />
+    <EmbeddedResource Include="Images\novusIcon.png" />
+    <EmbeddedResource Include="Images\onedriveIcon.png" />
+    <EmbeddedResource Include="Images\resourcesIcon.png" />
+    <EmbeddedResource Include="Images\teamsIcon.png" />
+    <EmbeddedResource Include="Images\trelloIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
+    <PackageReference Include="Telerik.UI.for.Xamarin.Trial" Version="2020.2.624.1" />
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.1141" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>

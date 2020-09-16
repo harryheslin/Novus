@@ -1,9 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Novus.Views.UnitAnnouncements">
+             x:Class="Novus.Views.UnitAnnouncements"
+             xmlns:viewmodel="clr-namespace:Novus.ViewModels">
+
+    <ContentPage.BindingContext>
+        <viewmodel:UnitResourcesViewModel/>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <StackLayout>
+            <Label Text="{Binding Unit}"/>
             <Label Text="Welcome to Announcements!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />

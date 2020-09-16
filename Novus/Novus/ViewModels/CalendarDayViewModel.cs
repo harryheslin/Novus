@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Novus.ViewModels
 {
-    class CalendarViewModel: BaseViewModel
+    class CalendarDayViewModel : BaseViewModel
     {
     }
 }

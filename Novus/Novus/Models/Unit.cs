@@ -8,7 +8,7 @@ namespace Novus.Models
     {
         public string Code { get; private set; }
         public string Name {get; private set;}
-        public string Information; 
+        //public string Information; 
         public Unit()
         {
 

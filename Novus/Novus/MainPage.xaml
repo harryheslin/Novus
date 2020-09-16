@@ -4,18 +4,26 @@
              xmlns:local="clr-namespace:Novus.Views" 
              xmlns:controls="clr-namespace:Novus.Controls"
              x:Class="Novus.MainPage"
-             FlyoutIcon="novusIcon.png"
              BackgroundColor="#00467F">
 
     <Shell.FlyoutHeader>
         <controls:FlyoutHeader />
     </Shell.FlyoutHeader>
 
-    <FlyoutItem Title="Units">
-        <ShellContent ContentTemplate="{DataTemplate local:UnitPage}" />
+    <FlyoutItem Title="Cloud Computing (CAB432)">
+        <ShellContent  ContentTemplate="{DataTemplate local:UnitPage}" Route="unit1" />
+    </FlyoutItem>
+    <FlyoutItem Title="Mobile Application Development (IAB330)">
+        <ShellContent  ContentTemplate="{DataTemplate local:UnitPage}" Route="unit2" />
+    </FlyoutItem>
+    <FlyoutItem Title="Networks (CAB303)">
+        <ShellContent  ContentTemplate="{DataTemplate local:UnitPage}" Route="unit3" />
+    </FlyoutItem>
+    <FlyoutItem Title="Project Management (IFB295)">
+        <ShellContent  ContentTemplate="{DataTemplate local:UnitPage}" Route="unit4" />
     </FlyoutItem>
     <FlyoutItem Title="Calendar">
-        <ShellContent ContentTemplate="{DataTemplate local:Calendar}" />
+        <ShellContent ContentTemplate="{DataTemplate local:Calendar}" Route="calendar"/>
     </FlyoutItem>
 
 </Shell>

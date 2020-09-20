@@ -35,7 +35,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                                       Margin="10,5,10,20">
                 <telerikInput:RadCalendar.DayViewSettings>
                     <telerikInput:DayViewSettings DayStartTime="00:00:00"
-                                                  DayEndTime="23:00:00"
+                                                  DayEndTime="23:59:59"
                                                   TimelineInterval="1:00"/>
                 </telerikInput:RadCalendar.DayViewSettings>
             </telerikInput:RadCalendar>

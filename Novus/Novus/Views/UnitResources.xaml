@@ -8,13 +8,10 @@
     <ContentPage.BindingContext>
         <viewmodel:UnitResourcesViewModel/>
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding Unit}"/>
-            <Label Text="Welcome to Resources!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding Unit}"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

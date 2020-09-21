@@ -3,17 +3,23 @@
 xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
 xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Novus.Views.CalendarDay">
+             x:Class="Novus.Views.CalendarDay"
+             xmlns:viewmodel="clr-namespace:Novus.ViewModels">
+    <ContentPage.BindingContext>
+        <viewmodel:CalendarDayViewModel/>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <StackLayout>
             <Grid>
-                <Button Text="Month" Grid.Column="0"/>
+                <Button Text="Month" Grid.Column="0"
+                        Command="{Binding MonthViewButton}"/>
                 <Button Text="Week" Grid.Column="1"/>
-                <Button Text="Day" Grid.Column="2"/>
-            </Grid>
-            <Grid>
-                <Button Text="Add new event" Grid.Column="0"/>
-                <Button Text="Settings" Grid.Column="1"/>
+                <Button Text="Add new event" 
+                        Grid.Column="0"
+                        Grid.Row="1"/>
+                <Button Text="Settings" Grid.Column="1"
+                        Grid.Row="1"/>
             </Grid>
             <telerikPrimitives:RadExpander x:Name="expander">
                 <telerikPrimitives:RadExpander.Header>
@@ -29,7 +35,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                     </StackLayout>
                 </telerikPrimitives:RadExpander.Content>
             </telerikPrimitives:RadExpander>
-            
+
             <telerikInput:RadCalendar x:Name="calendar" ViewMode="Day"
                                       VerticalOptions="FillAndExpand"
                                       Margin="10,5,10,20">

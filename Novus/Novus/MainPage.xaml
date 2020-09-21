@@ -25,8 +25,5 @@
     <FlyoutItem Title="Calendar">
         <ShellContent ContentTemplate="{DataTemplate local:Calendar}" Route="calendar"/>
     </FlyoutItem>
-    <FlyoutItem Title="Day">
-        <ShellContent ContentTemplate="{DataTemplate local:CalendarDay}" Route="calendarDay"/>
-    </FlyoutItem>
 
 </Shell>

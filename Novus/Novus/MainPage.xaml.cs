@@ -33,6 +33,7 @@ namespace Novus
             routes.Add("announcements", typeof(UnitAnnouncements));
             routes.Add("grades", typeof(UnitGrades));
             routes.Add("calendarDay", typeof(CalendarDay));
+            routes.Add("calendarWeek",typeof(CalendarWeek));
 
             foreach (var item in routes)
             {

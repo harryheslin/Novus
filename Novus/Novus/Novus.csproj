@@ -40,19 +40,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\RegisterPage.xaml.cs">
-      <DependentUpon>RegisterPage.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Update="Controls\FlyoutHeader.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Calendar.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\RegisterPage.xaml">
+    <EmbeddedResource Update="Views\Register.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SignOn.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SignOnMain.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SignOnPlan.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\UnitAnnouncements.xaml">

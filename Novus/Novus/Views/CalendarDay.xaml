@@ -10,17 +10,27 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout
+            BackgroundColor="#A3A3A3">
             <Grid>
-                <Button Text="Month" Grid.Column="0"
-                        Command="{Binding MonthViewButton}"/>
+                <Button Text="Month" Grid.Column="0"                        
+                        Command="{Binding MonthViewButton}"
+                        BackgroundColor="#525252"
+                        TextColor="White"/>
                 <Button Text="Week" Grid.Column="1"
-                        Command="{Binding WeekViewButton}"/>
-                <Button Text="Add new event" 
-                        Grid.Column="0"
-                        Grid.Row="1"/>
+                        Command="{Binding WeekViewButton}"
+                        BackgroundColor="#525252"
+                        TextColor="White"/>
+                <Button Text="Add new event" Grid.Column="0"
+                        Grid.Row="1"
+                        Command="{Binding EventAddButton}"
+                        BackgroundColor="#525252"
+                        TextColor="White"/>
                 <Button Text="Settings" Grid.Column="1"
-                        Grid.Row="1"/>
+                        Command="{Binding SettingsButton}"
+                        Grid.Row="1"
+                        BackgroundColor="#525252"
+                        TextColor="White"/>
             </Grid>
             <telerikPrimitives:RadExpander x:Name="expander">
                 <telerikPrimitives:RadExpander.Header>
@@ -30,9 +40,15 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                 </telerikPrimitives:RadExpander.Header>
                 <telerikPrimitives:RadExpander.Content>
                     <StackLayout>
-                        <Button Text="All" />
-                        <Button Text="Personal"/>
-                        <Button Text="University"/>
+                        <Button Text="All"
+                                BackgroundColor="#525252"
+                        TextColor="White"/>
+                        <Button Text="Personal"
+                                BackgroundColor="#525252"
+                        TextColor="White"/>
+                        <Button Text="University"
+                                BackgroundColor="#525252"
+                        TextColor="White"/>
                     </StackLayout>
                 </telerikPrimitives:RadExpander.Content>
             </telerikPrimitives:RadExpander>

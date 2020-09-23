@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Novus.Views.Register"
+             xmlns:viewmodel="clr-namespace:Novus.ViewModels">
+
+    <ContentPage.BindingContext>
+        <viewmodel:RegisterViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#A3A3A3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="IN01" Grid.Column="0"
+                       BackgroundColor="#00467F" 
+                       TextColor="White"
+                       VerticalTextAlignment="Center"
+                       HorizontalOptions="Center"
+                       Padding="10,0,10,0"
+                       Margin="10,10,0,0"
+                       HeightRequest="40"/>
+                <Label Text="Bacholar of Information Systems" Grid.Column="1" 
+                       TextColor="White"
+                       FontSize="Medium"
+                       HorizontalOptions="Center"
+                       VerticalOptions="End"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Progress" 
+                       TextColor="White" 
+                       Grid.Row="0" 
+                       Grid.Column="0"
+                       HorizontalOptions="Center"
+                       VerticalOptions="End"/>
+                <BoxView Grid.Row="1" 
+                         Grid.Column="0" 
+                         Color="#00467F"
+                         WidthRequest="200"
+                         HeightRequest="5"/>
+                <Button Text="About" 
+                        Grid.Row="1" Grid.Column="1"
+                        TextColor="White" 
+                        BackgroundColor="#525252"
+                        Padding="0,0,0,0"/>
+            </Grid>
+
+            <ListView ItemsSource="{Binding Enrollment}" 
+                      HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding DisplayName}" 
+                                       HorizontalTextAlignment="Center"
+                                       TextColor="White" 
+                                       BackgroundColor="#525252"/>
+                                <ListView ItemsSource="{Binding Units}" 
+                                          HasUnevenRows="True"
+                                          ItemTapped="ListView_OnItemTapped">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <StackLayout BackgroundColor="White" 
+                                                             Margin="10, 10, 10, 10">
+                                                    <Label Text="{Binding FullName}" 
+                                                            TextColor="#525252" 
+                                                            BackgroundColor="White"
+                                                            HorizontalTextAlignment="Center"                                                 
+                                                            FontSize="Medium"
+                                                            Margin="5,5,5,5"/>
+                                                    <Label Text="{Binding IsVisible}" 
+                                                            TextColor="#525252" 
+                                                            HorizontalTextAlignment="Center"                                                
+                                                            FontSize="Medium"
+                                                            Margin="5,5,5,5"/>
+                                                    <Label Text="{Binding Semester[0]}" 
+                                                            TextColor="#525252" 
+                                                            HorizontalTextAlignment="Center"                                                 
+                                                            FontSize="Medium"
+                                                            Margin="5,5,5,5"/>
+                                                    <Label Text="{Binding Semester[1]}" 
+                                                            TextColor="#525252" 
+                                                            HorizontalTextAlignment="Center"                                                 
+                                                            FontSize="Medium"
+                                                            Margin="5,5,5,5"/>
+                                                    <StackLayout IsVisible="{Binding IsVisible}">
+                                                        <Label Text="MORE INFORMATION"/>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

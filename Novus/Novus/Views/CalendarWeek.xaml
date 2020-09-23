@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Novus.Views.CalendarWeek"
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
              xmlns:viewmodel="clr-namespace:Novus.ViewModels">
 
     <ContentPage.BindingContext>
@@ -10,9 +12,30 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Grid>
+                <Button Text="Month" Grid.Column="0"
+                        Command="{Binding MonthViewButton}"/>
+                <Button Text="Day" Grid.Column="1"
+                        Command="{Binding DayViewButton}"/>
+                <Button Text="Add new event" 
+                        Grid.Column="0"
+                        Grid.Row="1"/>
+                <Button Text="Settings" Grid.Column="1"
+                        Grid.Row="1"/>
+            </Grid>
+
+            <telerikInput:RadCalendar x:Name="calendar" ViewMode="MultiDay"
+                                      VerticalOptions="FillAndExpand"
+                                      Margin="10,5,10,20">
+                <telerikInput:RadCalendar.MultiDayViewSettings>
+                    <telerikInput:MultiDayViewSettings VisibleDays="7"
+                                            DayStartTime="00:00:00"
+                                            DayEndTime="23:59:59"
+                                            TimelineInterval="1:00"
+                                            IsWeekendVisible="True"
+                                            IsCurrentTimeIndicatorVisible="true"/>
+                </telerikInput:RadCalendar.MultiDayViewSettings>
+            </telerikInput:RadCalendar>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Novus.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Page1 : ContentPage
+    public partial class SignOnPlan : ContentPage
     {
-        public Page1()
+        public SignOnPlan()
         {
             InitializeComponent();
         }

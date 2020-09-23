@@ -6,21 +6,20 @@ using System.Text;
 
 namespace Novus.ViewModels
 {
-    class CalendarViewModel : BaseViewModel
+    class CalendarDayViewModel : BaseViewModel
     {
-        public Command DayViewButton { get; }
-
+        public Command MonthViewButton { get; }
         public Command WeekViewButton { get; }
 
-        public CalendarViewModel()
+        public CalendarDayViewModel()
         {
-            DayViewButton = new Command(GoToDayPage);
+            MonthViewButton = new Command(GoToMonthPage);
             WeekViewButton = new Command(GoToWeekPage);
         }
 
-        async void GoToDayPage()
+        async void GoToMonthPage()
         {
-            await Shell.Current.GoToAsync("calendarDay");
+            await Shell.Current.GoToAsync("calendar");
         }
 
         async void GoToWeekPage()

@@ -25,5 +25,16 @@
     <FlyoutItem Title="Calendar">
         <ShellContent ContentTemplate="{DataTemplate local:Calendar}" Route="calendar"/>
     </FlyoutItem>
-
+    <FlyoutItem Title="Register">
+        <ShellContent ContentTemplate="{DataTemplate local:Register}" Route="register"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Sign-On Main">
+        <ShellContent ContentTemplate="{DataTemplate local:SignOnMain}" Route="signOnMain"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Sign-On">
+        <ShellContent ContentTemplate="{DataTemplate local:SignOn}" Route="signOn"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Sign-On Plan">
+        <ShellContent ContentTemplate="{DataTemplate local:SignOnPlan}" Route="signOnPlan"/>
+    </FlyoutItem>
 </Shell>

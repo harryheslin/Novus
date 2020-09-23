@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Novus.Views.SignOnPlan"
+             xmlns:viewmodel="clr-namespace:Novus.ViewModels"
+             xmlns:local="clr-namespace:Novus.Extensions;assembly=Novus">
+
+    <ContentPage.BindingContext>
+        <viewmodel:SignOnPlanViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#A3A3A3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="IN01" 
+                       Grid.Column="0"
+                       Grid.Row="0"
+                       BackgroundColor="#00467F" 
+                       TextColor="White"
+                       VerticalTextAlignment="Center"
+                       HorizontalOptions="Center"
+                       Padding="10,0,10,0"
+                       Margin="10,10,0,0"
+                       HeightRequest="20"/>
+                <Label Text="Bacholar of Information Systems" 
+                       Grid.Column="1" 
+                       Grid.Row="0"
+                       TextColor="White"
+                       FontSize="Medium"
+                       HorizontalOptions="Center"
+                       VerticalOptions="End"/>
+            </Grid>
+            <Grid Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="{local:ImageResource Novus.Images.onedriveIcon.png}" 
+                       HeightRequest="50"
+                       Grid.Column="0" 
+                       Grid.Row="0"
+                       HorizontalOptions="End"
+                       Margin="100,0,0,0"/>
+                <Label Text="Plan"
+                       Grid.Column="1" 
+                       Grid.Row="0"
+                       HorizontalOptions="Start"
+                       HorizontalTextAlignment="Start"
+                       TextColor="White"
+                       FontSize="50"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

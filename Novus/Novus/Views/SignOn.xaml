@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Novus.Views.SignOn"
+             xmlns:viewmodel="clr-namespace:Novus.ViewModels"
+             xmlns:local="clr-namespace:Novus.Extensions;assembly=Novus">
+
+    <ContentPage.BindingContext>
+        <viewmodel:SignOnViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#A3A3A3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="IN01" Grid.Column="0"
+                       BackgroundColor="#00467F" 
+                       TextColor="White"
+                       VerticalTextAlignment="Center"
+                       HorizontalOptions="Center"
+                       Padding="10,0,10,0"
+                       Margin="10,10,0,0"
+                       HeightRequest="40"/>
+                <Label Text="Bacholar of Information Systems" 
+                       Grid.Column="1" 
+                       Margin="0,5,0,0"
+                       TextColor="White"
+                       FontSize="Medium"
+                       HorizontalOptions="Center"
+                       VerticalOptions="End"/>
+            </Grid>
+            <Grid Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Image Source="{local:ImageResource Novus.Images.onedriveIcon.png}" 
+                       HeightRequest="50"
+                       Grid.Column="0" 
+                       Grid.Row="0"
+                       HorizontalOptions="End"
+                       Margin="65,0,0,0"/>
+                <Label Text="Sign-On"
+                       Grid.Column="1" 
+                       Grid.Row="0"
+                       HorizontalOptions="Start"
+                       HorizontalTextAlignment="Start"
+                       TextColor="White"
+                       FontSize="50"/>
+            </Grid>
+            <ListView ItemsSource="{Binding Units}"
+                      HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout BackgroundColor="White" 
+                                         Margin="10, 10, 10, 10">
+                                <Label Text="{Binding FullName}" 
+                                    TextColor="#525252" 
+                                    HorizontalTextAlignment="Center"                                                 
+                                    FontSize="Medium"
+                                    Margin="5,5,5,5"/>
+                                <Label Text="Lectures" 
+                                    TextColor="#525252" 
+                                    HorizontalTextAlignment="Start"                                                 
+                                    FontSize="Medium"
+                                    Margin="5,5,5,5"/>
+                                <ListView ItemsSource="{Binding Lectures}"
+                                          HasUnevenRows="True">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <StackLayout>
+                                                    <Label Text="{Binding DayOfWeek}"
+                                                           TextColor="#525252" 
+                                                           HorizontalTextAlignment="Center"                                                 
+                                                           FontSize="Medium"
+                                                           Margin="5,5,5,5"/>
+                                                    <Label Text="{Binding StartTime}" 
+                                                           TextColor="#525252" 
+                                                           HorizontalTextAlignment="Center"                                                 
+                                                           FontSize="Medium"
+                                                           Margin="5,5,5,5"/>
+                                                    <Label Text="{Binding EndTime}" 
+                                                           TextColor="#525252" 
+                                                           HorizontalTextAlignment="Center"                                                 
+                                                           FontSize="Medium"
+                                                           Margin="5,5,5,5"/>
+                                                    <Label Text="{Binding Mode}" 
+                                                           TextColor="#525252" 
+                                                           HorizontalTextAlignment="Center"                                                 
+                                                           FontSize="Medium"
+                                                           Margin="5,5,5,5"/>
+                                                    <Label Text="{Binding Room}" 
+                                                           TextColor="#525252" 
+                                                           HorizontalTextAlignment="Center"                                                 
+                                                           FontSize="Medium"
+                                                           Margin="5,5,5,5"/>
+                                                    <Label Text="{Binding Type}" 
+                                                           TextColor="#525252" 
+                                                           HorizontalTextAlignment="Center"                                                 
+                                                           FontSize="Medium"
+                                                           Margin="5,5,5,5"/>
+                                                </StackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

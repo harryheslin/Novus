@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Novus.Models
@@ -10,11 +11,13 @@ namespace Novus.Models
         public int[] Semester { get; set; }
         public string Code { get; private set; }
         public string Name {get; private set;}
+
         public Information Information { get; private set; }
         public string FullName { get; private set; }
         public Class[] Lectures { get; set; }
         public Class[] Tutorials { get; set; }
         public Unit(string Code, string Name, Information Information)
+
         {
             this.Code = Code;
             this.Name = Name;

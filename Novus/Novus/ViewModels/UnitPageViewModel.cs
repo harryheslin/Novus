@@ -4,6 +4,10 @@ using System.Text;
 using Xamarin.Forms;
 using Xamarin.Essentials;
 using MvvmHelpers;
+using System.Collections.ObjectModel;
+using Android.Content;
+using System.Threading.Tasks;
+
 namespace Novus.ViewModels
 {
     class UnitPageViewModel : BaseViewModel
@@ -12,6 +16,10 @@ namespace Novus.ViewModels
         public Command AnnouncementsPageButton { get; }
         public Command GradesPageButton { get; }
         public Command AssesmentPageButton { get; }
+        public Command OnedriveButton { get;  }
+        public Command TeamsButton { get; }
+        public Command TrelloButton { get; }
+
 
         public UnitPageViewModel()
         {
@@ -19,6 +27,9 @@ namespace Novus.ViewModels
             AnnouncementsPageButton = new Command(GoToAnnouncementsPage);
             GradesPageButton = new Command(GoToGradesPage);
             AssesmentPageButton = new Command(GoToAssesmentPage);
+            OnedriveButton = new Command(GoToOnedrive);
+            TeamsButton = new Command(GoToTeams);
+            TrelloButton = new Command(GoToTrello);
         }
 
         string unit = Shell.Current.CurrentItem.Title;
@@ -65,22 +76,41 @@ namespace Novus.ViewModels
         }
         async void GoToResourcesPage()
         {
-            await Shell.Current.GoToAsync($"resources?unit={Unit}");
+            await Shell.Current.GoToAsync($"resources?unit={Unit}&colour={Colour}");
         }
 
         async void GoToAnnouncementsPage()
         {
-            await Shell.Current.GoToAsync($"announcements?unit={Unit}");
+            await Shell.Current.GoToAsync($"announcements?unit={Unit}&colour={Colour}");
         }
 
         async void GoToGradesPage()
         {
-            await Shell.Current.GoToAsync($"grades?unit={Unit}");
+            await Shell.Current.GoToAsync($"grades?unit={Unit}&colour={Colour}");
         }
 
         async void GoToAssesmentPage()
         {
-            await Shell.Current.GoToAsync($"announcements?unit={Unit}");
+            await Shell.Current.GoToAsync($"announcements?unit={Unit}&colour={Colour}");
         }
+
+        async void GoToOnedrive()
+        {
+            string OnedriveDownload = "https://play.google.com/store/apps/details?id=com.microsoft.skydrive";
+            await Launcher.OpenAsync(OnedriveDownload);
+        }
+
+        async void GoToTeams()
+        {
+            string TeamsDownload = "https://play.google.com/store/apps/details?id=com.microsoft.teams";
+            await Launcher.OpenAsync(TeamsDownload);
+        }
+
+        async void GoToTrello()
+        {
+            string TrelloDownload = "https://play.google.com/store/apps/details?id=com.trello";
+            await Launcher.OpenAsync(TrelloDownload);
+        }
+
     }
 }

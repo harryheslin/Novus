@@ -1,19 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
 xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Novus.Views.Calendar">
     <ContentPage.Content>
         <StackLayout
-            HorizontalOptions="Center"
-            VerticalOptions="Center">
-            <Label Text="Yeet Page!"
-                   HorizontalTextAlignment="Center"/>
-            <Label Text="{Binding CalendarName}"/>
-            <telerikInput:RadCalendar x:Name="calendar"
-                                      HeightRequest="500"/>
-            <Button Text="Swtich Calendar"
-                    Command="{Binding ChangeCalendar}"/>
+            HorizontalOptions="Center">
+            <Grid>
+                <Button Text="Month" Grid.Column="0"/>
+                <Button Text="Week" Grid.Column="1"/>
+                <Button Text="Day" Grid.Column="2"/>
+            </Grid>
+            <Grid>
+                <Button Text="Add new event" Grid.Column="0"/>
+                <Button Text="Settings" Grid.Column="1"/>
+            </Grid>
+            <telerikPrimitives:RadExpander x:Name="expander">
+                <telerikPrimitives:RadExpander.Header>
+                    <telerikPrimitives:ExpanderHeader>
+                        <Label Text="Calendar" />
+                    </telerikPrimitives:ExpanderHeader>
+                </telerikPrimitives:RadExpander.Header>
+                <telerikPrimitives:RadExpander.Content>
+                    <StackLayout>
+                        <Button Text="All" />
+                        <Button Text="Personal"/>
+                        <Button Text="University"/>
+                    </StackLayout>
+                </telerikPrimitives:RadExpander.Content>
+            </telerikPrimitives:RadExpander>
+            <telerikInput:RadCalendar x:Name="calendar"                                                                            
+                                      Margin="10,5,10,20"
+                                      VerticalOptions="FillAndExpand"/>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

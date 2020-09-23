@@ -1,24 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
-             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Novus.Views.Calendar"
-             xmlns:viewmodel="clr-namespace:Novus.ViewModels"
->
+             x:Class="Novus.Views.CalendarDay"
+             xmlns:viewmodel="clr-namespace:Novus.ViewModels">
     <ContentPage.BindingContext>
-        <viewmodel:CalendarViewModel/>
+        <viewmodel:CalendarDayViewModel/>
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
-        <StackLayout
-            HorizontalOptions="Center">
+        <StackLayout>
             <Grid>
-                <Button Text="Week" Grid.Column="0"
+                <Button Text="Month" Grid.Column="0"
+                        Command="{Binding MonthViewButton}"/>
+                <Button Text="Week" Grid.Column="1"
                         Command="{Binding WeekViewButton}"/>
-                <Button Text="Day" Grid.Column="1"
-                        Command="{Binding DayViewButton}"/>
-                <Button Text="Add new event" Grid.Column="0"
+                <Button Text="Add new event" 
+                        Grid.Column="0"
                         Grid.Row="1"/>
                 <Button Text="Settings" Grid.Column="1"
                         Grid.Row="1"/>
@@ -37,10 +36,16 @@
                     </StackLayout>
                 </telerikPrimitives:RadExpander.Content>
             </telerikPrimitives:RadExpander>
-            <telerikInput:RadCalendar x:Name="calendar"                                                                            
-                                      Margin="10,5,10,20"
-                                      VerticalOptions="FillAndExpand"/>
 
+            <telerikInput:RadCalendar x:Name="calendar" ViewMode="Day"
+                                      VerticalOptions="FillAndExpand"
+                                      Margin="10,5,10,20">
+                <telerikInput:RadCalendar.DayViewSettings>
+                    <telerikInput:DayViewSettings DayStartTime="00:00:00"
+                                                  DayEndTime="23:59:59"
+                                                  TimelineInterval="1:00"/>
+                </telerikInput:RadCalendar.DayViewSettings>
+            </telerikInput:RadCalendar>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

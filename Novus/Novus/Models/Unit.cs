@@ -12,6 +12,7 @@ namespace Novus.Models
         public string Code { get; private set; }
         public string Name {get; private set;}
 
+
         public Information Information { get; private set; }
         public string FullName { get; private set; }
         public Class[] Lectures { get; set; }

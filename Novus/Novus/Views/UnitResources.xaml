@@ -11,7 +11,8 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding Unit}"></Label>
+            <Label Text="{Binding Unit}" TextColor="White" BackgroundColor="{Binding Colour}"></Label>
+            <Label Text="{Binding Announcement}" TextColor="Blue" BackgroundColor="gray"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

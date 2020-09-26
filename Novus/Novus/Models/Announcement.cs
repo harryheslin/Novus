@@ -6,13 +6,13 @@ namespace Novus.Models
 {
     class Announcement
     {
-        public String Unit { get; private set; }
-        public String Title { get; private set; }
-        public String Message { get; private set; }
+        public string Unit { get; private set; }
+        public string Title { get; private set; }
+        public string Message { get; private set; }
         public DateTime Date { get; private set; }
-        public String User { get; private set; }
+        public string User { get; private set; }
 
-        public Announcement(String unit, String title, String message, DateTime date, String user)
+        public Announcement(string unit, string title, string message, DateTime date, string user)
         {
             this.Unit = unit;
             this.Title = title;

@@ -19,6 +19,7 @@ namespace Novus.Models
         public Class[] Lectures { get; set; }
         public Class[] Tutorials { get; set; }
         public Announcement[] StaffAnnouncements { get; set; }
+        public Assesment[] Assesments { get; set; }
 
         public Unit(string Code, string Name, Information Information)
 
@@ -48,7 +49,8 @@ namespace Novus.Models
                 unit.Lectures = (Class.GenerateClassLecture(2));
                 unit.Tutorials = (Class.GenerateClassLecture(4));
                 unit.Semester = new int[] { counter, i };
-                unit.StaffAnnouncements = (Announcement.GenerateAnnouncements("IFB101" + i.ToString(), 1));
+                unit.StaffAnnouncements = (Announcement.GenerateAnnouncements("IFB101" + i.ToString(), 3));
+                unit.Assesments = (Assesment.GenerateAssesments("IFB101" + i.ToString(), 2));
                 Units[i] = unit;
             }
             //Currently not using this - Maybe use on menu?

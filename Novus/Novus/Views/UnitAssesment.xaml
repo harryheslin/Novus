@@ -5,15 +5,33 @@
              xmlns:viewmodel="clr-namespace:Novus.ViewModels">
 
     <ContentPage.BindingContext>
-        <viewmodel:UnitResourcesViewModel/>
+        <viewmodel:UnitAssesmentViewModel/>
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding Unit}"/>
-            <Label Text="Welcome to Assesment Page!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding Unit}" TextColor="Black" BackgroundColor="{Binding Colour}"></Label>
+
+            <ListView 
+                ItemsSource="{Binding Assesments}"
+                      RowHeight="120" VerticalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <Grid BackgroundColor="Gray">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20"/>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" Text="{Binding Title}" FontAttributes="Bold" TextColor="White"/>
+                                <Label Grid.Row="1" TextColor="White" Text="{Binding Percentage}" />
+                                <Label Grid.Row="2" TextColor="White" Text="{Binding ReleaseDate}" />
+                                <Label Grid.Row="3" TextColor="White" Text="{Binding DueDate}" Padding="0,10,0,0"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

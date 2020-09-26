@@ -81,22 +81,22 @@ namespace Novus.ViewModels
         string RouteCode = Shell.Current.CurrentState.Location.ToString();
         async void GoToResourcesPage()
         {
-            await Shell.Current.GoToAsync($"resources?unit={RouteCode}&colour={RouteCode}&announcement={RouteCode}");
+            await Shell.Current.GoToAsync($"resources?unit={RouteCode}");
         }
 
         async void GoToAnnouncementsPage()
         {
-            await Shell.Current.GoToAsync($"announcements?unit={Unit}&colour={Colour}");
+            await Shell.Current.GoToAsync($"announcements?unit={RouteCode}");
         }
 
         async void GoToGradesPage()
         {
-            await Shell.Current.GoToAsync($"grades?unit={Unit}&colour={Colour}");
+            await Shell.Current.GoToAsync($"grades?unit={RouteCode}");
         }
 
         async void GoToAssesmentPage()
         {
-            await Shell.Current.GoToAsync($"announcements?unit={Unit}&colour={Colour}");
+            await Shell.Current.GoToAsync($"assesment?unit={RouteCode}");
         }
 
         async void GoToOnedrive()

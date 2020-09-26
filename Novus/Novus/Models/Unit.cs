@@ -19,6 +19,7 @@ namespace Novus.Models
         public ObservableCollection<Class> Lectures { get; set; }
         public ObservableCollection<Class> Tutorials { get; set; }
         public Unit(string Code, string Name, ObservableCollection<Information> Information, int UnitID)
+
         {
             this.Code = Code;
             this.Name = Name;

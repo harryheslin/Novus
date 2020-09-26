@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions;
 
@@ -15,7 +16,6 @@ namespace Novus.Models
     {
         Physical = 1,
         Virtual = 2
-
     }
 
     class Class
@@ -36,21 +36,21 @@ namespace Novus.Models
             this.Room = room;
         }
 
-        public static Class[] GenerateClassLecture(int returnArrayLength)
+        public static ObservableCollection<Class> GenerateClassLecture(int returnArrayLength)
         {
-            Class[] returnArray = new Class[returnArrayLength];
+            ObservableCollection<Class> returnArray = new ObservableCollection<Class>();
             for(int i = 0; i < returnArrayLength; i++) {
-                returnArray[i] = new Class(ClassType.Lecture, DayOfWeek.Monday, DateTime.Now, DateTime.Now, ClassMode.Virtual, "");
+                returnArray.Add(new Class(ClassType.Lecture, DayOfWeek.Monday, DateTime.Now, DateTime.Now, ClassMode.Virtual, ""));
             }
             return returnArray;
         }
 
-        public static Class[] GenerateClassTutorial( int returnArrayLength)
+        public static ObservableCollection<Class> GenerateClassTutorial( int returnArrayLength)
         {
-            Class[] returnArray = new Class[returnArrayLength];
+            ObservableCollection<Class> returnArray = new ObservableCollection<Class>();
             for (int i = 0; i < returnArrayLength; i++)
             {
-                returnArray[i] = new Class(ClassType.Tutorial, DayOfWeek.Monday, DateTime.Now, DateTime.Now, ClassMode.Virtual, "");
+                returnArray.Add(new Class(ClassType.Tutorial, DayOfWeek.Monday, DateTime.Now, DateTime.Now, ClassMode.Virtual, ""));
             }
             return returnArray;
         }

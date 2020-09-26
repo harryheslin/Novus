@@ -2,6 +2,7 @@
 using Novus.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Novus.ViewModels
@@ -10,11 +11,11 @@ namespace Novus.ViewModels
     {
         public SignOnViewModel()
         {
-            units = Unit.GenerateUnits(0);
+            units = Unit.GenerateUnits();
         }
 
-        Unit[] units;
-        public Unit[] Units
+        ObservableCollection<Unit> units;
+        public ObservableCollection<Unit> Units
         {
             get => units;
             set

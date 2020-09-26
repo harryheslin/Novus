@@ -61,9 +61,7 @@
                        HorizontalTextAlignment="Center"
                        FontSize="Medium"/>
                 </StackLayout>
-                
             </StackLayout>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

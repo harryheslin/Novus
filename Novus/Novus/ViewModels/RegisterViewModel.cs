@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
 using MvvmHelpers;
+using MvvmHelpers.Commands;
 using Novus.Models;
 using Xamarin.Essentials;
 
@@ -14,6 +17,7 @@ namespace Novus.ViewModels
             student = Student.GenerateStudent();
         }
 
+
         Student student;
         public Student Student
         {
@@ -25,15 +29,62 @@ namespace Novus.ViewModels
             }
         }
 
-        public Semester[] Enrollment
+        public ObservableCollection<Semester> Enrollment
         {
             get => student.Enrollment;
         }
-        public void ShowOrHideUnit(Unit unit)
+
+        public void SetIsVisible(int unitID)
         {
-            unit.IsVisible = !unit.IsVisible;
-            Console.WriteLine(String.Format("{0} {1} {2}", unit.Semester[0], unit.Semester[1], unit.IsVisible));
-            Student.Enrollment[unit.Semester[0]].Units[unit.Semester[1]] = unit;
+            bool secondBreak = false;
+            foreach (Semester semester in Student.Enrollment)
+            {
+                if (secondBreak)
+                {
+                    break;
+                }
+                foreach(Unit unit in semester.EnrolledUnits)
+                {
+                    if(unit.UnitID == unitID)
+                    {
+                        unit.IsVisible = !unit.IsVisible;
+                        Student.Enrollment[Student.Enrollment.IndexOf(semester)].EnrolledUnits[semester.EnrolledUnits.IndexOf(unit)] = unit;
+                        secondBreak = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        public void AddUnit(int[] semesterNumber)
+        {
+            foreach(Semester semester in Student.Enrollment)
+            {
+                if(semester.SemesterNumber == semesterNumber)
+                {
+                    semester.EnrollInUnit(Unit.GenerateUnit());
+                    Student.Enrollment[Student.Enrollment.IndexOf(semester)] = semester;
+                    break;
+                }
+            }
+        }
+
+        public void RemoveUnit(int unitID)
+        {
+            bool secondBreak = false;
+            foreach (Semester semester in Student.Enrollment)
+            {
+                foreach (Unit unit in semester.EnrolledUnits)
+                {
+                    if (unit.UnitID == unitID)
+                    {
+                        semester.UnEnrollInUnit(unit);
+                        Student.Enrollment[Student.Enrollment.IndexOf(semester)] = semester;
+                        secondBreak = true;
+                        return;
+                    }
+                }
+            }
         }
     }
 }

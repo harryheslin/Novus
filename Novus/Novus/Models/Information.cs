@@ -6,11 +6,11 @@ namespace Novus.Models
 {
     class Information
     {
-        public string[] Lines { get; private set; }
+        public string Line { get; private set; }
 
-        public Information(string[] Lines)
+        public Information(string Line)
         {
-            this.Lines = Lines;
+            this.Line = Line;
         }
     }
 }

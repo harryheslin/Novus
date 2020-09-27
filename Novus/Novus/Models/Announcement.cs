@@ -24,9 +24,10 @@ namespace Novus.Models
         public static Announcement[] GenerateAnnouncements(string unitCode, int returnArrayLength)
         {
             Announcement[] returnArray = new Announcement[returnArrayLength];
+            string message = "Hello Students, This is a long test announcement to make sure that the list view expands on this assignment, no real information here as this is fake and Harry is just testing stuff, you know how it is sometimes haha, lol :-P";
             for(int i = 0; i< returnArrayLength; i++)
             {
-                returnArray[i] = new Announcement(unitCode, unitCode + " Announcement", "Test Announcement", DateTime.Now, "Srikanth Nair");
+                returnArray[i] = new Announcement(unitCode, unitCode + " Announcement", message, DateTime.Now, "Srikanth Nair");
             }
             return returnArray;
         }

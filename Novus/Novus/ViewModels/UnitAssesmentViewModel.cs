@@ -3,6 +3,7 @@ using Novus.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Novus.ViewModels
@@ -10,10 +11,16 @@ namespace Novus.ViewModels
     [QueryProperty("Unit", "unit")]
     class UnitAssesmentViewModel : BaseViewModel
     {
+        public Command SubmissionPage { get; }
+
         static Student Student = Student.GenerateStudent();
 
         static public Unit currentUnit = Student.Enrollment[0].Units[0];
 
+        public UnitAssesmentViewModel()
+        {
+            SubmissionPage = new Command(GoToSubmissionPage);
+        }
         public string GetUnitNumber(string routeCode)
         {
             switch (routeCode)
@@ -67,6 +74,12 @@ namespace Novus.ViewModels
                 SetProperty(ref assesment, currentUnit.Assesments);
                 OnPropertyChanged();
             }
+        }
+
+        async void GoToSubmissionPage()
+        {
+            string TurnitinPage= "https://www.turnitin.com/";
+            await Launcher.OpenAsync(TurnitinPage);
         }
     }
 }

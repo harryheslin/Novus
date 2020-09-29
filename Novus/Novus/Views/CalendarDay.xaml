@@ -54,8 +54,13 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
             </telerikPrimitives:RadExpander>
 
             <telerikInput:RadCalendar x:Name="calendar" ViewMode="Day"
-                                      VerticalOptions="FillAndExpand"
-                                      Margin="10,5,10,20">
+                                      SchedulingUiEnabled="True"
+                                      AppointmentsSource="{Binding Appointments}"
+                                      Margin="10,5,10,20"
+                                      VerticalOptions="FillAndExpand">
+                <telerikInput:RadCalendar.BindingContext>
+                    <viewmodel:EventAddViewModel/>
+                </telerikInput:RadCalendar.BindingContext>
                 <telerikInput:RadCalendar.DayViewSettings>
                     <telerikInput:DayViewSettings DayStartTime="00:00:00"
                                                   DayEndTime="23:59:59"

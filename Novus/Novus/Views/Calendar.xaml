@@ -54,9 +54,16 @@
                     </StackLayout>
                 </telerikPrimitives:RadExpander.Content>
             </telerikPrimitives:RadExpander>
-            <telerikInput:RadCalendar x:Name="calendar"                                                                            
+            <telerikInput:RadCalendar x:Name="calendar" 
+                                      IsAddAppointmentButtonVisible="True"
+                                      SchedulingUiEnabled="True"
+                                      AppointmentsSource="{Binding Appointments}"
                                       Margin="10,5,10,20"
-                                      VerticalOptions="FillAndExpand"/>
+                                      VerticalOptions="FillAndExpand">
+                <telerikInput:RadCalendar.BindingContext>
+                    <viewmodel:EventAddViewModel/>
+                </telerikInput:RadCalendar.BindingContext>
+            </telerikInput:RadCalendar>
 
         </StackLayout>
     </ContentPage.Content>

@@ -55,7 +55,12 @@
             </telerikPrimitives:RadExpander>
             <telerikInput:RadCalendar x:Name="calendar" ViewMode="MultiDay"
                                       VerticalOptions="FillAndExpand"
-                                      Margin="10,5,10,20">
+                                      Margin="10,5,10,20"
+                                      SchedulingUiEnabled="True"
+                                      AppointmentsSource="{Binding Appointments}">
+                <telerikInput:RadCalendar.BindingContext>
+                    <viewmodel:EventAddViewModel/>
+                </telerikInput:RadCalendar.BindingContext>
                 <telerikInput:RadCalendar.MultiDayViewSettings>
                     <telerikInput:MultiDayViewSettings VisibleDays="7"
                                             DayStartTime="00:00:00"

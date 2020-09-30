@@ -54,7 +54,15 @@ xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.Xa
                                             Grid.Row="3">
                 </telerikInput:RadDatePicker>
             </Grid>
-            
+            <Entry Text="{Binding ColourText}"/>
+            <Picker>
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Red</x:String>
+                        <x:String>Blue</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
             <Button Text="Add"
                     Command="{Binding AddEventButton}"/>
         </StackLayout>

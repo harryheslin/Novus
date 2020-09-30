@@ -20,7 +20,7 @@ namespace Novus.ViewModels
         public Command TeamsButton { get; }
         public Command TrelloButton { get; }
 
-        static Student TestStudent = Student.GenerateStudent();
+        static Student TestStudent = Student.GenerateStudent(4);
 
         public UnitPageViewModel()
         {

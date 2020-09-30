@@ -10,25 +10,25 @@ namespace Novus.ViewModels
     [QueryProperty("Unit", "unit")]
     class UnitAnnouncementsViewModel : BaseViewModel
     {
-        static Student Student = Student.GenerateStudent();
+        static Student Student = Student.GenerateStudent(4);
 
-        static public Unit currentUnit = Student.Enrollment[0].Units[0];
+        static public Unit currentUnit = Student.Enrollment[0].EnrolledUnits[0];
 
         public string GetUnitNumber(string routeCode)
         {
             switch (routeCode)
             {
                 case "/unit1":
-                    currentUnit = Student.Enrollment[0].Units[0];
+                    currentUnit = Student.Enrollment[0].EnrolledUnits[0];
                     return currentUnit.FullName;
                 case "/IMPL_unit2/unit2":
-                    currentUnit = Student.Enrollment[0].Units[1];
+                    currentUnit = Student.Enrollment[0].EnrolledUnits[1];
                     return currentUnit.FullName;
                 case "/IMPL_unit3/unit3":
-                    currentUnit = Student.Enrollment[0].Units[2];
+                    currentUnit = Student.Enrollment[0].EnrolledUnits[2];
                     return currentUnit.FullName;
                 case "/IMPL_unit4/unit4":
-                    currentUnit = Student.Enrollment[0].Units[3];
+                    currentUnit = Student.Enrollment[0].EnrolledUnits[3];
                     return currentUnit.FullName;
                 default:
                     return "Error";

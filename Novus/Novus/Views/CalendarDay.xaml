@@ -1,26 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
-             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Novus.Views.Calendar"
-             xmlns:viewmodel="clr-namespace:Novus.ViewModels"
->
+             x:Class="Novus.Views.CalendarDay"
+             xmlns:viewmodel="clr-namespace:Novus.ViewModels">
     <ContentPage.BindingContext>
-        <viewmodel:CalendarViewModel/>
+        <viewmodel:CalendarDayViewModel/>
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
         <StackLayout
-            HorizontalOptions="Center"
             BackgroundColor="#A3A3A3">
             <Grid Margin="10,10,10,10">
-                <Button Text="Week" Grid.Column="0"
-                        Command="{Binding WeekViewButton}"
+                <Button Text="Month" Grid.Column="0"                        
+                        Command="{Binding MonthViewButton}"
                         BackgroundColor="#525252"
                         TextColor="White"/>
-                <Button Text="Day" Grid.Column="1"
-                        Command="{Binding DayViewButton}"
+                <Button Text="Week" Grid.Column="1"
+                        Command="{Binding WeekViewButton}"
                         BackgroundColor="#525252"
                         TextColor="White"/>
                 <Button Text="Add new event" Grid.Column="0"
@@ -34,17 +32,23 @@
                         BackgroundColor="#525252"
                         TextColor="White"/>
             </Grid>
-            <telerikInput:RadCalendar x:Name="calendar" 
-                                      IsAddAppointmentButtonVisible="True"                                     
+            
+
+            <telerikInput:RadCalendar x:Name="calendar" ViewMode="Day"
                                       SchedulingUiEnabled="True"
                                       AppointmentsSource="{Binding Appointments}"
                                       Margin="10,5,10,20"
-                                      VerticalOptions="FillAndExpand">
+                                      VerticalOptions="FillAndExpand"
+                                      IsAddAppointmentButtonVisible="True">
                 <telerikInput:RadCalendar.BindingContext>
                     <viewmodel:EventAddViewModel/>
                 </telerikInput:RadCalendar.BindingContext>
+                <telerikInput:RadCalendar.DayViewSettings>
+                    <telerikInput:DayViewSettings DayStartTime="00:00:00"
+                                                  DayEndTime="23:59:59"
+                                                  TimelineInterval="1:00"/>
+                </telerikInput:RadCalendar.DayViewSettings>
             </telerikInput:RadCalendar>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,39 +1,34 @@
-﻿using MvvmHelpers;
-using Xamarin.Forms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MvvmHelpers;
+using Xamarin.Forms;
 
 namespace Novus.ViewModels
 {
-    class CalendarViewModel : BaseViewModel
+    class CalendarWeekViewModel : BaseViewModel
     {
+        public Command MonthViewButton { get; }
         public Command DayViewButton { get; }
-
-        public Command WeekViewButton { get; }
-
         public Command EventAddButton { get; }
-
         public Command SettingsButton { get; }
-
-        public CalendarViewModel()
+        public CalendarWeekViewModel()
         {
+            MonthViewButton = new Command(GoToMonthPage);
             DayViewButton = new Command(GoToDayPage);
-            WeekViewButton = new Command(GoToWeekPage);
             EventAddButton = new Command(GoToNew);
             SettingsButton = new Command(GoToSettings);
+        }
+
+        async void GoToMonthPage()
+        {
+            await Shell.Current.GoToAsync("calendar");
         }
 
         async void GoToDayPage()
         {
             await Shell.Current.GoToAsync("calendarDay");
         }
-
-        async void GoToWeekPage()
-        {
-            await Shell.Current.GoToAsync("calendarWeek");
-        }
-
         async void GoToNew()
         {
             await Shell.Current.GoToAsync("eventAdd");

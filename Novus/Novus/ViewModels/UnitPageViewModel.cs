@@ -5,8 +5,8 @@ using Xamarin.Forms;
 using Xamarin.Essentials;
 using MvvmHelpers;
 using System.Collections.ObjectModel;
-using Android.Content;
 using System.Threading.Tasks;
+using Novus.Models;
 
 namespace Novus.ViewModels
 {
@@ -20,6 +20,7 @@ namespace Novus.ViewModels
         public Command TeamsButton { get; }
         public Command TrelloButton { get; }
 
+        static Student TestStudent = Student.GenerateStudent();
 
         public UnitPageViewModel()
         {
@@ -32,31 +33,9 @@ namespace Novus.ViewModels
             TrelloButton = new Command(GoToTrello);
         }
 
-        string unit = Shell.Current.CurrentItem.Title;
-
-        public string Unit
-        {
-            get => unit;
-            set
-            {
-                SetProperty(ref unit, Uri.UnescapeDataString(value));
-                OnPropertyChanged(nameof(Unit));
-            }
-        }
-
-        string colour = UnitColour();
-        public string Colour
-        {
-            get => colour;
-            set
-            {
-                SetProperty(ref colour, UnitColour());
-                OnPropertyChanged(nameof(Unit));
-            }
-        }
-
         
-        static string UnitColour()
+
+        static string GetColour()
         {
             string unitNumber = Shell.Current.CurrentState.Location.ToString();
 
@@ -71,27 +50,52 @@ namespace Novus.ViewModels
                 case "//IMPL_unit4/unit4":
                     return "#EFE379";
                 default:
-                    return "white";
+                    return "White";
             }
         }
+
+        string unit = Shell.Current.CurrentItem.Title.ToString();
+
+        public string Unit
+        {
+            get => unit;
+            set
+            {
+                SetProperty(ref unit, value);
+                OnPropertyChanged(nameof(unit));
+            }
+        }
+
+        string colour = GetColour();
+        public string Colour
+        {
+            get => colour;
+            set
+            {
+                SetProperty(ref colour, GetColour());
+                OnPropertyChanged();
+            }
+        }
+
+        string RouteCode = Shell.Current.CurrentState.Location.ToString();
         async void GoToResourcesPage()
         {
-            await Shell.Current.GoToAsync($"resources?unit={Unit}&colour={Colour}");
+            await Shell.Current.GoToAsync($"resources?unit={RouteCode}");
         }
 
         async void GoToAnnouncementsPage()
         {
-            await Shell.Current.GoToAsync($"announcements?unit={Unit}&colour={Colour}");
+            await Shell.Current.GoToAsync($"announcements?unit={RouteCode}");
         }
 
         async void GoToGradesPage()
         {
-            await Shell.Current.GoToAsync($"grades?unit={Unit}&colour={Colour}");
+            await Shell.Current.GoToAsync($"grades?unit={RouteCode}");
         }
 
         async void GoToAssesmentPage()
         {
-            await Shell.Current.GoToAsync($"announcements?unit={Unit}&colour={Colour}");
+            await Shell.Current.GoToAsync($"assesment?unit={RouteCode}");
         }
 
         async void GoToOnedrive()

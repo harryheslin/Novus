@@ -12,25 +12,31 @@
 
   <ItemGroup>
     <None Remove="Images\announcementsIcon.png" />
+    <None Remove="Images\announcementsIcon2.png" />
     <None Remove="Images\assesmentIcon.png" />
     <None Remove="Images\backArrow.png" />
+    <None Remove="Images\circlePoint.png" />
     <None Remove="Images\gradesIcon.png" />
     <None Remove="Images\novusIcon.png" />
     <None Remove="Images\onedriveIcon.png" />
     <None Remove="Images\resourcesIcon.png" />
     <None Remove="Images\teamsIcon.png" />
+    <None Remove="Images\tick.png" />
     <None Remove="Images\trelloIcon.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Images\announcementsIcon.png" />
+    <EmbeddedResource Include="Images\announcementsIcon2.png" />
     <EmbeddedResource Include="Images\assesmentIcon.png" />
     <EmbeddedResource Include="Images\backArrow.png" />
+    <EmbeddedResource Include="Images\circlePoint.png" />
     <EmbeddedResource Include="Images\gradesIcon.png" />
     <EmbeddedResource Include="Images\novusIcon.png" />
     <EmbeddedResource Include="Images\onedriveIcon.png" />
     <EmbeddedResource Include="Images\resourcesIcon.png" />
     <EmbeddedResource Include="Images\teamsIcon.png" />
+    <EmbeddedResource Include="Images\tick.png" />
     <EmbeddedResource Include="Images\trelloIcon.png" />
   </ItemGroup>
 
@@ -61,6 +67,29 @@
     <EmbeddedResource Update="Views\Calendar.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+
+    <EmbeddedResource Update="Views\CalendarDay.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+
+    <EmbeddedResource Update="Views\CalendarSettings.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CalendarWeek.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\EventAdd.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\newEvent.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Page1.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\RegisterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Register.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -71,6 +100,7 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SignOnPlan.xaml">
+
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\UnitAnnouncements.xaml">

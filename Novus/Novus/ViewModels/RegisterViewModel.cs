@@ -14,7 +14,7 @@ namespace Novus.ViewModels
     {
         public RegisterViewModel()
         {
-            student = Student.GenerateStudent();
+            student = Student.GenerateStudent(3);
         }
 
 
@@ -36,21 +36,15 @@ namespace Novus.ViewModels
 
         public void SetIsVisible(int unitID)
         {
-            bool secondBreak = false;
             foreach (Semester semester in Student.Enrollment)
             {
-                if (secondBreak)
-                {
-                    break;
-                }
                 foreach(Unit unit in semester.EnrolledUnits)
                 {
                     if(unit.UnitID == unitID)
                     {
                         unit.IsVisible = !unit.IsVisible;
                         Student.Enrollment[Student.Enrollment.IndexOf(semester)].EnrolledUnits[semester.EnrolledUnits.IndexOf(unit)] = unit;
-                        secondBreak = true;
-                        break;
+                        return;
                     }
                 }
             }
@@ -64,14 +58,13 @@ namespace Novus.ViewModels
                 {
                     semester.EnrollInUnit(Unit.GenerateUnit());
                     Student.Enrollment[Student.Enrollment.IndexOf(semester)] = semester;
-                    break;
+                    return;
                 }
             }
         }
 
         public void RemoveUnit(int unitID)
         {
-            bool secondBreak = false;
             foreach (Semester semester in Student.Enrollment)
             {
                 foreach (Unit unit in semester.EnrolledUnits)
@@ -80,7 +73,6 @@ namespace Novus.ViewModels
                     {
                         semester.UnEnrollInUnit(unit);
                         Student.Enrollment[Student.Enrollment.IndexOf(semester)] = semester;
-                        secondBreak = true;
                         return;
                     }
                 }

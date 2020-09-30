@@ -34,11 +34,11 @@ namespace Novus.Models
             this.FullName = Code + ' ' + Name;
         }
 
-        public static ObservableCollection<Unit> GenerateUnits()
+        public static ObservableCollection<Unit> GenerateUnits(int number)
         {
 
             ObservableCollection<Unit> Units = new ObservableCollection<Unit>();
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < number; i++)
             {
                 Units.Add(GenerateUnit());
             }
@@ -54,8 +54,8 @@ namespace Novus.Models
             }
 
             Unit unit = new Unit("IFB101", "Test Subject", BlankInformation, GenerateUnitID());
-            unit.Lectures = (Class.GenerateClassLecture(2));
-            unit.Tutorials = (Class.GenerateClassLecture(4));
+            unit.Lectures = (Class.GenerateClassLecture(2, unit.UnitID));
+            unit.Tutorials = (Class.GenerateClassTutorial(4, unit.UnitID));
 
             return unit;
         }

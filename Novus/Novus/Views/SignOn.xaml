@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Novus.Views.SignOn"
              xmlns:viewmodel="clr-namespace:Novus.ViewModels"
@@ -54,70 +55,125 @@
                        TextColor="White"
                        FontSize="50"/>
             </Grid>
-            <ListView ItemsSource="{Binding Units}"
-                      HasUnevenRows="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
+            <ScrollView>
+                <StackLayout BindableLayout.ItemsSource="{Binding Units}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
                             <StackLayout BackgroundColor="White" 
                                          Margin="10, 10, 10, 10">
                                 <Label Text="{Binding FullName}" 
                                     TextColor="#525252" 
                                     HorizontalTextAlignment="Center"                                                 
                                     FontSize="Medium"
-                                    Margin="5,5,5,5"/>
-                                <Label Text="Lectures" 
+                                    Margin="5,5,5,5">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                              Tapped="ExpandUnit" 
+                                                              CommandParameter="{Binding UnitID}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <StackLayout IsVisible="{Binding IsVisible}">
+                                    <Label Text="Lectures" 
                                     TextColor="#525252" 
                                     HorizontalTextAlignment="Start"                                                 
                                     FontSize="Medium"
                                     Margin="5,5,5,5"/>
-                                <ListView ItemsSource="{Binding Lectures}"
-                                          HasUnevenRows="True">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <ViewCell>
-                                                <StackLayout>
+                                    <StackLayout BindableLayout.ItemsSource="{Binding Lectures}">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
                                                     <Label Text="{Binding DayOfWeek}"
                                                            TextColor="#525252" 
                                                            HorizontalTextAlignment="Center"                                                 
                                                            FontSize="Medium"
-                                                           Margin="5,5,5,5"/>
-                                                    <Label Text="{Binding StartTime}" 
+                                                           Grid.Row="0"
+                                                           Grid.Column="0"/>
+                                                    <Label Text="{Binding DisplayTime}"
                                                            TextColor="#525252" 
                                                            HorizontalTextAlignment="Center"                                                 
                                                            FontSize="Medium"
-                                                           Margin="5,5,5,5"/>
-                                                    <Label Text="{Binding EndTime}" 
+                                                           Grid.Row="1"
+                                                           Grid.Column="0"/>
+                                                    <Label Text="{Binding DisplayMode}" 
                                                            TextColor="#525252" 
                                                            HorizontalTextAlignment="Center"                                                 
                                                            FontSize="Medium"
-                                                           Margin="5,5,5,5"/>
-                                                    <Label Text="{Binding Mode}" 
-                                                           TextColor="#525252" 
-                                                           HorizontalTextAlignment="Center"                                                 
-                                                           FontSize="Medium"
-                                                           Margin="5,5,5,5"/>
+                                                           Grid.Row="0"
+                                                           Grid.Column="1"/>
                                                     <Label Text="{Binding Room}" 
                                                            TextColor="#525252" 
                                                            HorizontalTextAlignment="Center"                                                 
                                                            FontSize="Medium"
-                                                           Margin="5,5,5,5"/>
-                                                    <Label Text="{Binding Type}" 
+                                                           Grid.Row="1"
+                                                           Grid.Column="1"/>
+                                                    <CheckBox Grid.Row="0"
+                                                              Grid.Column="2"
+                                                              IsChecked="{Binding Registerd}"
+                                                              CheckedChanged="LectureRegister"
+                                                              AutomationId="{Binding Tag}">
+                                                    </CheckBox>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                    <Label Text="Tutorials" 
+                                           TextColor="#525252" 
+                                           HorizontalTextAlignment="Start"                                                 
+                                           FontSize="Medium"
+                                           Margin="5,5,5,5"/>
+                                    <StackLayout BindableLayout.ItemsSource="{Binding Tutorials}">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="{Binding DayOfWeek}"
                                                            TextColor="#525252" 
                                                            HorizontalTextAlignment="Center"                                                 
                                                            FontSize="Medium"
-                                                           Margin="5,5,5,5"/>
-                                                </StackLayout>
-                                            </ViewCell>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
+                                                           Grid.Row="0"
+                                                           Grid.Column="0"/>
+                                                    <Label Text="{Binding DisplayTime}"
+                                                           TextColor="#525252" 
+                                                           HorizontalTextAlignment="Center"                                                 
+                                                           FontSize="Medium"
+                                                           Grid.Row="1"
+                                                           Grid.Column="0"/>
+                                                    <Label Text="{Binding DisplayMode}" 
+                                                           TextColor="#525252" 
+                                                           HorizontalTextAlignment="Center"                                                 
+                                                           FontSize="Medium"
+                                                           Grid.Row="0"
+                                                           Grid.Column="1"/>
+                                                    <Label Text="{Binding Room}" 
+                                                           TextColor="#525252" 
+                                                           HorizontalTextAlignment="Center"                                                 
+                                                           FontSize="Medium"
+                                                           Grid.Row="1"
+                                                           Grid.Column="1"/>
+                                                    <CheckBox Grid.Row="0"
+                                                              Grid.Column="2"
+                                                              IsChecked="{Binding Registerd}"
+                                                              CheckedChanged="TutorialRegister"
+                                                              AutomationId="{Binding Tag}" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                </StackLayout>
                             </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

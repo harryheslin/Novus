@@ -23,14 +23,14 @@ namespace Novus.Models
 
         }
 
-        public static Student GenerateStudent()
+        public static Student GenerateStudent(int numberOfUnits)
         {
             ObservableCollection<Semester> Enrollment = new ObservableCollection<Semester>();
             for(int x=0; x<3; x++)
             {
                 for(int y=0; y<2; y++)
                 {
-                    Enrollment.Add(new Semester(new int[] {y, x}, Unit.GenerateUnits()));
+                    Enrollment.Add(new Semester(new int[] {y, x}, Unit.GenerateUnits(numberOfUnits)));
                 }
             }
 

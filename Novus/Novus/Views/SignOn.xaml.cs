@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Novus.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,26 @@ namespace Novus.Views
         public SignOn()
         {
             InitializeComponent();
+        }
+
+        private void ExpandUnit(object sender, EventArgs e)
+        {
+            var viewModel = BindingContext as SignOnViewModel;
+            viewModel?.SetIsVisible((int)((TappedEventArgs)e).Parameter);
+        }
+
+        private void LectureRegister(object sender, EventArgs e)
+        {
+            var viewModel = BindingContext as SignOnViewModel;
+            CheckBox checkBox = (CheckBox)sender;
+            viewModel?.RegisterForLecture(checkBox.AutomationId);
+        }
+
+        private void TutorialRegister(object sender, EventArgs e)
+        {
+            var viewModel = BindingContext as SignOnViewModel;
+            CheckBox checkBox = (CheckBox)sender;
+            viewModel?.RegisterForTutorial(checkBox.AutomationId);
         }
     }
 }

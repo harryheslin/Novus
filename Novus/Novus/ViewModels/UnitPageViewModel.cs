@@ -5,7 +5,6 @@ using Xamarin.Forms;
 using Xamarin.Essentials;
 using MvvmHelpers;
 using System.Collections.ObjectModel;
-using Android.Content;
 using System.Threading.Tasks;
 using Novus.Models;
 

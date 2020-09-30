@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Novus.Views.EventAdd"
+             xmlns:viewmodel="clr-namespace:Novus.ViewModels">
+
+    <ContentPage.BindingContext>
+        <viewmodel:EventAddViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand">
+                <Label Text="Event Name:"
+                       Grid.Column="0"
+                       Grid.Row="0"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center"/>
+                <Entry Text="{Binding NameInput}"
+                       Grid.Column="1"
+                       Grid.Row="0"
+                       
+                       VerticalOptions="Center"/>
+                <Label Text="All Day:"
+                       Grid.Column="0"
+                       Grid.Row="1"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center"/>
+                <Switch OnColor="#0060ae"
+                        ThumbColor="#00467F"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        IsToggled="true"
+                        HorizontalOptions="Center"/>
+                <Label Text="Start:"
+                       Grid.Column="0"
+                       Grid.Row="2"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center"/>
+                <telerikInput:RadDatePicker x:Name="datePickerStart"
+                                            Grid.Column="1"
+                                            Grid.Row="2">
+                </telerikInput:RadDatePicker>
+                <Label Text="End:"
+                       Grid.Column="0"
+                       Grid.Row="3"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center"/>
+                <telerikInput:RadDatePicker x:Name="datePickerEnd"
+                                            Grid.Column="1"
+                                            Grid.Row="3">
+                </telerikInput:RadDatePicker>
+            </Grid>
+            <Entry Text="{Binding ColourText}"/>
+            <Picker>
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Red</x:String>
+                        <x:String>Blue</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <Button Text="Add"
+                    Command="{Binding AddEventButton}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

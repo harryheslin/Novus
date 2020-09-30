@@ -11,22 +11,39 @@
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
-        <StackLayout>
-            <Grid>
+        <StackLayout
+            BackgroundColor="#A3A3A3">
+            <Grid Margin="10,10,10,10">
                 <Button Text="Month" Grid.Column="0"
-                        Command="{Binding MonthViewButton}"/>
+                        Command="{Binding MonthViewButton}"
+                        BackgroundColor="#525252"
+                        TextColor="White"/>
                 <Button Text="Day" Grid.Column="1"
-                        Command="{Binding DayViewButton}"/>
-                <Button Text="Add new event" 
-                        Grid.Column="0"
-                        Grid.Row="1"/>
+                        Command="{Binding DayViewButton}"
+                        BackgroundColor="#525252"
+                        TextColor="White"/>
+                <Button Text="Add new event" Grid.Column="0"
+                        Grid.Row="1"
+                        Command="{Binding EventAddButton}"
+                        BackgroundColor="#525252"
+                        TextColor="White"/>
                 <Button Text="Settings" Grid.Column="1"
-                        Grid.Row="1"/>
+                        Command="{Binding SettingsButton}"
+                        Grid.Row="1"
+                        BackgroundColor="#525252"
+                        TextColor="White"/>
             </Grid>
-
+   
+                
             <telerikInput:RadCalendar x:Name="calendar" ViewMode="MultiDay"
                                       VerticalOptions="FillAndExpand"
-                                      Margin="10,5,10,20">
+                                      Margin="10,5,10,20"
+                                      SchedulingUiEnabled="True"
+                                      AppointmentsSource="{Binding Appointments}"
+                                      IsAddAppointmentButtonVisible="True">
+                <telerikInput:RadCalendar.BindingContext>
+                    <viewmodel:EventAddViewModel/>
+                </telerikInput:RadCalendar.BindingContext>
                 <telerikInput:RadCalendar.MultiDayViewSettings>
                     <telerikInput:MultiDayViewSettings VisibleDays="7"
                                             DayStartTime="00:00:00"

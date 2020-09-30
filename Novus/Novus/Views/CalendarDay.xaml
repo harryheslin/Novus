@@ -10,36 +10,39 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
-        <StackLayout>
-            <Grid>
-                <Button Text="Month" Grid.Column="0"
-                        Command="{Binding MonthViewButton}"/>
+        <StackLayout
+            BackgroundColor="#A3A3A3">
+            <Grid Margin="10,10,10,10">
+                <Button Text="Month" Grid.Column="0"                        
+                        Command="{Binding MonthViewButton}"
+                        BackgroundColor="#525252"
+                        TextColor="White"/>
                 <Button Text="Week" Grid.Column="1"
-                        Command="{Binding WeekViewButton}"/>
-                <Button Text="Add new event" 
-                        Grid.Column="0"
-                        Grid.Row="1"/>
+                        Command="{Binding WeekViewButton}"
+                        BackgroundColor="#525252"
+                        TextColor="White"/>
+                <Button Text="Add new event" Grid.Column="0"
+                        Grid.Row="1"
+                        Command="{Binding EventAddButton}"
+                        BackgroundColor="#525252"
+                        TextColor="White"/>
                 <Button Text="Settings" Grid.Column="1"
-                        Grid.Row="1"/>
+                        Command="{Binding SettingsButton}"
+                        Grid.Row="1"
+                        BackgroundColor="#525252"
+                        TextColor="White"/>
             </Grid>
-            <telerikPrimitives:RadExpander x:Name="expander">
-                <telerikPrimitives:RadExpander.Header>
-                    <telerikPrimitives:ExpanderHeader>
-                        <Label Text="Calendar" />
-                    </telerikPrimitives:ExpanderHeader>
-                </telerikPrimitives:RadExpander.Header>
-                <telerikPrimitives:RadExpander.Content>
-                    <StackLayout>
-                        <Button Text="All" />
-                        <Button Text="Personal"/>
-                        <Button Text="University"/>
-                    </StackLayout>
-                </telerikPrimitives:RadExpander.Content>
-            </telerikPrimitives:RadExpander>
+            
 
             <telerikInput:RadCalendar x:Name="calendar" ViewMode="Day"
+                                      SchedulingUiEnabled="True"
+                                      AppointmentsSource="{Binding Appointments}"
+                                      Margin="10,5,10,20"
                                       VerticalOptions="FillAndExpand"
-                                      Margin="10,5,10,20">
+                                      IsAddAppointmentButtonVisible="True">
+                <telerikInput:RadCalendar.BindingContext>
+                    <viewmodel:EventAddViewModel/>
+                </telerikInput:RadCalendar.BindingContext>
                 <telerikInput:RadCalendar.DayViewSettings>
                     <telerikInput:DayViewSettings DayStartTime="00:00:00"
                                                   DayEndTime="23:59:59"

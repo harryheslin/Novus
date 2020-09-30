@@ -55,7 +55,7 @@
                 </telerikPrimitives:RadExpander.Content>
             </telerikPrimitives:RadExpander>
             <telerikInput:RadCalendar x:Name="calendar" 
-                                      IsAddAppointmentButtonVisible="True"
+                                      IsAddAppointmentButtonVisible="True"                                     
                                       SchedulingUiEnabled="True"
                                       AppointmentsSource="{Binding Appointments}"
                                       Margin="10,5,10,20"

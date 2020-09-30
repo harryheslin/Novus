@@ -57,7 +57,8 @@
                                       VerticalOptions="FillAndExpand"
                                       Margin="10,5,10,20"
                                       SchedulingUiEnabled="True"
-                                      AppointmentsSource="{Binding Appointments}">
+                                      AppointmentsSource="{Binding Appointments}"
+                                      IsAddAppointmentButtonVisible="True">
                 <telerikInput:RadCalendar.BindingContext>
                     <viewmodel:EventAddViewModel/>
                 </telerikInput:RadCalendar.BindingContext>

@@ -11,7 +11,7 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding Unit}"></Label>
+            <Label Text="Welcome to Resources!" TextColor="Black"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

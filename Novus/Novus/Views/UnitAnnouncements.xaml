@@ -2,18 +2,97 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Novus.Views.UnitAnnouncements"
-             xmlns:viewmodel="clr-namespace:Novus.ViewModels">
+             xmlns:viewmodel="clr-namespace:Novus.ViewModels"
+             xmlns:local="clr-namespace:Novus.Extensions;assembly=Novus">
 
     <ContentPage.BindingContext>
-        <viewmodel:UnitResourcesViewModel/>
+        <viewmodel:UnitAnnouncementsViewModel/>
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="{Binding Unit}"/>
-            <Label Text="Welcome to Announcements!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout BackgroundColor="#A3A3A3" 
+                     Spacing="0">
+            <Label HeightRequest="25" 
+                   TextColor="Black" 
+                   BackgroundColor="{Binding Colour}" />
+            <ListView 
+                ItemsSource="{Binding Announcements}"
+                HasUnevenRows="True" 
+                VerticalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame 
+                                Padding="10,10,10,0" 
+                                BackgroundColor="#A3A3A3">
+                                <Frame 
+                                    CornerRadius="15" 
+                                    BackgroundColor="#707070">
+                                    <StackLayout 
+                                        BackgroundColor="#707070">
+                                        <Grid 
+                                            Padding="0, 0,0, 20">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label 
+                                                Grid.Column="1" 
+                                                Grid.Row="0" 
+                                                Grid.ColumnSpan="4" 
+                                                Text="{Binding Title}" 
+                                                FontSize="Medium" 
+                                                Padding="10,0,0,0" 
+                                                FontAttributes="Bold" 
+                                                TextColor="White"/>
+                                            <Image  
+                                                Grid.Column="0" 
+                                                Grid.Row="0" 
+                                                HeightRequest="15"  
+                                                Source="{local:ImageResource Novus.Images.announcementsIcon2.png}"/>
+                                        </Grid>
+                                        <Frame 
+                                            BackgroundColor="White" 
+                                            VerticalOptions="FillAndExpand" 
+                                            CornerRadius="10">
+                                            <Label  
+                                                TextColor="Black" 
+                                                Text="{Binding Message}" />
+                                        </Frame>
+                                        <Grid Padding="0, 20,0, 0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label 
+                                                Grid.Column="0" 
+                                                Padding="10,0,0,0" 
+                                                FontSize="Caption" 
+                                                FontAttributes="Bold" 
+                                                TextColor="White" 
+                                                Text= "&#x2022;" />
+                                            <Label
+                                                Grid.Column="0" 
+                                                Padding="15,0,0,0" 
+                                                FontSize="Caption" 
+                                                FontAttributes="Bold"
+                                                TextColor="White" 
+                                                Text= "{Binding User}" />
+                                            <Label 
+                                                Grid.Column="1" 
+                                                FontSize="Caption" 
+                                                FontAttributes="Bold"  
+                                                TextColor="White" 
+                                                Text="{Binding Date}" 
+                                                Padding="0,0,0,0"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </Frame>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

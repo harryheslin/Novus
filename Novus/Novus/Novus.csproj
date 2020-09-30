@@ -14,6 +14,7 @@
     <None Remove="Images\announcementsIcon.png" />
     <None Remove="Images\announcementsIcon2.png" />
     <None Remove="Images\assesmentIcon.png" />
+    <None Remove="Images\backArrow.png" />
     <None Remove="Images\circlePoint.png" />
     <None Remove="Images\gradesIcon.png" />
     <None Remove="Images\novusIcon.png" />
@@ -28,6 +29,7 @@
     <EmbeddedResource Include="Images\announcementsIcon.png" />
     <EmbeddedResource Include="Images\announcementsIcon2.png" />
     <EmbeddedResource Include="Images\assesmentIcon.png" />
+    <EmbeddedResource Include="Images\backArrow.png" />
     <EmbeddedResource Include="Images\circlePoint.png" />
     <EmbeddedResource Include="Images\gradesIcon.png" />
     <EmbeddedResource Include="Images\novusIcon.png" />

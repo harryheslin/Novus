@@ -19,11 +19,22 @@ namespace Novus.Views
             InitializeComponent();
         }
 
-        private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
+        private void ExpandUnit(object sender, EventArgs e)
         {
-            var unit = e.Item as Unit;
-            var vm = BindingContext as RegisterViewModel;
-            vm?.ShowOrHideUnit(unit);
+            var viewModel = BindingContext as RegisterViewModel;
+            viewModel?.SetIsVisible((int)((TappedEventArgs)e).Parameter);
+        }
+
+        private void RemoveUnit(object sender, EventArgs e)
+        {
+            var viewModel = BindingContext as RegisterViewModel;
+            viewModel?.RemoveUnit((int)((TappedEventArgs)e).Parameter);
+        }
+
+        private void AddUnit(object sender, EventArgs e)
+        {
+            var viewModel = BindingContext as RegisterViewModel;
+            viewModel?.AddUnit((int[])((TappedEventArgs)e).Parameter);
         }
     }
 }

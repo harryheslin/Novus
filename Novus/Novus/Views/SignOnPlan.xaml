@@ -39,7 +39,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Image Source="{local:ImageResource Novus.Images.onedriveIcon.png}" 
+                <Image Source="{local:ImageResource Novus.Images.backArrow.png}" 
                        HeightRequest="50"
                        Grid.Column="0" 
                        Grid.Row="0"

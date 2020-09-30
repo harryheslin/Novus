@@ -1,33 +1,34 @@
-﻿using System;
+﻿using MvvmHelpers.Commands;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
 
 namespace Novus.Models
 {
     class Unit
     {
+        private static int unitID = 0; 
         public bool IsVisible { get; set; }
-        public int[] Semester { get; set; }
+        public int UnitID { get; private set; }
         public string Code { get; private set; }
         public string Name {get; private set;}
-        public string Colour { get; private set; }
-
-
-        public Information Information { get; private set; }
+        public ObservableCollection<Information> Information { get; private set; }
         public string FullName { get; private set; }
-        public Class[] Lectures { get; set; }
-        public Class[] Tutorials { get; set; }
+        public ObservableCollection<Class> Lectures { get; set; }
+        public ObservableCollection<Class> Tutorials { get; set; }
+        public string Colour { get; private set; }
         public Announcement[] StaffAnnouncements { get; set; }
         public Assesment[] Assesments { get; set; }
-
-        public Unit(string Code, string Name, Information Information)
-
+      
+        public Unit(string Code, string Name, ObservableCollection<Information> Information, int UnitID)
         {
             this.Code = Code;
             this.Name = Name;
             this.Information = Information;
             this.IsVisible = false;
+            this.UnitID = UnitID;
             GenerateFullName();
         }
 
@@ -36,30 +37,37 @@ namespace Novus.Models
             this.FullName = Code + ' ' + Name;
         }
 
-        public static Unit[] GenerateUnits(int counter)
+        public static ObservableCollection<Unit> GenerateUnits(int number)
         {
-            Information BlankInformation = new Information(new string[] { "THIS IS INFORMATION THAT AT SOME POINT IN THE FUTURE WILL BE REPLACED WITH REAL STUFF", "THIS IS INFORMATION THAT AT SOME POINT IN THE FUTURE WILL BE REPLACED WITH REAL STUFF" });
+            ObservableCollection<Unit> Units = new ObservableCollection<Unit>();
+            for (int i = 0; i < number; i++)
+            {
+                Units.Add(GenerateUnit());
+                Units[i].Colour = "#80EE8B";
+            }
+            return Units;
+        }
 
-            Unit[] Units = new Unit[4];
-
+        public static Unit GenerateUnit()
+        {
+            ObservableCollection<Information> BlankInformation = new ObservableCollection<Information>();
             for (int i = 0; i < 4; i++)
             {
-                //Temporary - Adding I to make unique listings
-                Unit unit = new Unit("IFB101" + i.ToString(), "Test Subject" + i.ToString(), BlankInformation);
-                unit.Lectures = (Class.GenerateClassLecture(2));
-                unit.Tutorials = (Class.GenerateClassLecture(4));
-                unit.Semester = new int[] { counter, i };
-                unit.StaffAnnouncements = (Announcement.GenerateAnnouncements("IFB101" + i.ToString(), 3));
-                unit.Assesments = (Assesment.GenerateAssesments("IFB101" + i.ToString(), 2));
-                Units[i] = unit;
+                BlankInformation.Add(new Information("THIS IS INFORMATION THAT WILL BE CHANGED"));
             }
-            //Currently not using this - Maybe use on menu?
-            Units[0].Colour = "#80EE8B";
-            Units[1].Colour = "#F3B15B";
-            Units[2].Colour = "#A1F1F4";
-            Units[3].Colour = "#EFE379";
+          
+            Unit unit = new Unit("IFB101" + i.ToString(), "Test Subject" + i.ToString(), BlankInformation);
+            unit.Lectures = (Class.GenerateClassLecture(2));
+            unit.Tutorials = (Class.GenerateClassLecture(4));
+            unit.StaffAnnouncements = (Announcement.GenerateAnnouncements("IFB101" + i.ToString(), 3));
+            unit.Assesments = (Assesment.GenerateAssesments("IFB101" + i.ToString(), 2)); 
+            return unit;
+        }
 
-            return Units;
+        public static int GenerateUnitID()
+        {
+            unitID++;
+            return unitID;
         }
     }
 }

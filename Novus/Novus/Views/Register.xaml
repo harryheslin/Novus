@@ -53,58 +53,100 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                         Padding="0,0,0,0"/>
             </Grid>
 
-            <ListView ItemsSource="{Binding Enrollment}" 
-                      HasUnevenRows="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout>
+            <ScrollView>
+                <StackLayout BindableLayout.ItemsSource="{Binding Enrollment}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout VerticalOptions="FillAndExpand">
                                 <Label Text="{Binding DisplayName}" 
                                        HorizontalTextAlignment="Center"
                                        TextColor="White" 
                                        BackgroundColor="#525252"/>
-                                <ListView ItemsSource="{Binding Units}" 
-                                          HasUnevenRows="True"
-                                          ItemTapped="ListView_OnItemTapped">
-                                    <ListView.ItemTemplate>
+                                <StackLayout BindableLayout.ItemsSource="{Binding EnrolledUnits}">
+                                    <BindableLayout.ItemTemplate>
                                         <DataTemplate>
-                                            <ViewCell>
-                                                <StackLayout BackgroundColor="White" 
-                                                             Margin="10, 10, 10, 10">
+                                            <StackLayout BackgroundColor="White" 
+                                                             Margin="10, 10, 10, 10"
+                                                             VerticalOptions="Center">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="-" 
+                                                           TextColor="#525252" 
+                                                           BackgroundColor="White"
+                                                           FontSize="Large"
+                                                           Margin="10,5,5,5"
+                                                           WidthRequest="10"
+                                                           HorizontalTextAlignment="Center"
+                                                           HorizontalOptions="CenterAndExpand"
+                                                           VerticalOptions="CenterAndExpand"
+                                                           Grid.Column="0">
+                                                        <Label.GestureRecognizers>
+                                                            <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                                          Tapped="RemoveUnit" 
+                                                                          CommandParameter="{Binding UnitID}" />
+                                                        </Label.GestureRecognizers>
+                                                    </Label>
                                                     <Label Text="{Binding FullName}" 
-                                                            TextColor="#525252" 
-                                                            BackgroundColor="White"
-                                                            HorizontalTextAlignment="Center"                                                 
-                                                            FontSize="Medium"
-                                                            Margin="5,5,5,5"/>
-                                                    <Label Text="{Binding IsVisible}" 
-                                                            TextColor="#525252" 
-                                                            HorizontalTextAlignment="Center"                                                
-                                                            FontSize="Medium"
-                                                            Margin="5,5,5,5"/>
-                                                    <Label Text="{Binding Semester[0]}" 
-                                                            TextColor="#525252" 
-                                                            HorizontalTextAlignment="Center"                                                 
-                                                            FontSize="Medium"
-                                                            Margin="5,5,5,5"/>
-                                                    <Label Text="{Binding Semester[1]}" 
-                                                            TextColor="#525252" 
-                                                            HorizontalTextAlignment="Center"                                                 
-                                                            FontSize="Medium"
-                                                            Margin="5,5,5,5"/>
-                                                    <StackLayout IsVisible="{Binding IsVisible}">
-                                                        <Label Text="MORE INFORMATION"/>
-                                                    </StackLayout>
+                                                           TextColor="#525252" 
+                                                           BackgroundColor="White"
+                                                           FontSize="Medium"
+                                                           Margin="5,5,5,5"
+                                                           HorizontalTextAlignment="Center"
+                                                           HorizontalOptions="CenterAndExpand"
+                                                           VerticalOptions="CenterAndExpand"
+                                                           Grid.Column="1">
+                                                        <Label.GestureRecognizers>
+                                                            <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                                          Tapped="ExpandUnit" 
+                                                                          CommandParameter="{Binding UnitID}" />
+                                                        </Label.GestureRecognizers>
+                                                    </Label>
+                                                </Grid>
+                                                <StackLayout BindableLayout.ItemsSource="{Binding Information}"
+                                                             IsVisible="{Binding IsVisible}">
+                                                    <BindableLayout.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <StackLayout>
+                                                                <Label Text="{Binding Line, StringFormat='&#x2022; {0}'}" />
+                                                            </StackLayout>
+                                                        </DataTemplate>
+                                                    </BindableLayout.ItemTemplate>
                                                 </StackLayout>
-                                            </ViewCell>
+                                            </StackLayout>
                                         </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
+                                <StackLayout BindableLayout.ItemsSource="{Binding AvalibleUnits}">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                              Tapped="AddUnit"
+                                                              CommandParameter="{Binding SemesterNumber}"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout BackgroundColor="White" 
+                                                         Margin="10, 10, 10, 10"
+                                                         VerticalOptions="Center">
+                                                <Label Text="+" 
+                                                       TextColor="#525252" 
+                                                       BackgroundColor="White"
+                                                       FontSize="Large"
+                                                       Margin="5,5,5,5"
+                                                       HorizontalTextAlignment="Center"
+                                                       HorizontalOptions="CenterAndExpand"
+                                                       VerticalOptions="CenterAndExpand"/>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
                             </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

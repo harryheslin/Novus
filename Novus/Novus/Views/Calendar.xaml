@@ -41,7 +41,7 @@
                                       Margin="10,5,10,20"
                                       VerticalOptions="FillAndExpand">
                 <telerikInput:RadCalendar.BindingContext>
-                    <viewmodel:EventAddViewModel/>
+                    <viewmodel:EventsViewModel/>
                 </telerikInput:RadCalendar.BindingContext>
             </telerikInput:RadCalendar>
 

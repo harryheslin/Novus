@@ -42,7 +42,7 @@
                                       AppointmentsSource="{Binding Appointments}"
                                       IsAddAppointmentButtonVisible="True">
                 <telerikInput:RadCalendar.BindingContext>
-                    <viewmodel:EventAddViewModel/>
+                    <viewmodel:EventsViewModel/>
                 </telerikInput:RadCalendar.BindingContext>
                 <telerikInput:RadCalendar.MultiDayViewSettings>
                     <telerikInput:MultiDayViewSettings VisibleDays="7"

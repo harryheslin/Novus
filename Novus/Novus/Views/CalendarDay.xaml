@@ -38,8 +38,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                                       SchedulingUiEnabled="True"
                                       AppointmentsSource="{Binding Appointments}"
                                       Margin="10,5,10,20"
-                                      VerticalOptions="FillAndExpand"
-                                      IsAddAppointmentButtonVisible="True">
+                                      VerticalOptions="FillAndExpand">
                 <telerikInput:RadCalendar.BindingContext>
                     <viewmodel:EventsViewModel/>
                 </telerikInput:RadCalendar.BindingContext>

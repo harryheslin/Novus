@@ -10,10 +10,11 @@ xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.Xa
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <StackLayout>
-            <Grid
-                VerticalOptions="Center"
-                HorizontalOptions="FillAndExpand">
+        <StackLayout BackgroundColor="#A3A3A3">
+            <Grid VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                BackgroundColor="White"
+                  Margin="10,10,10,10">
                 <Label Text="Event Name:"
                        Grid.Column="0"
                        Grid.Row="0"
@@ -22,49 +23,80 @@ xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.Xa
                 <Entry Text="{Binding NameInput}"
                        Grid.Column="1"
                        Grid.Row="0"
-                       
+                       Grid.ColumnSpan="2"
+                       VerticalOptions="Center"/>
+                <Label Text="Description:"
+                       VerticalOptions="Center"
+                       HorizontalOptions="End"
+                       Grid.Column="0"
+                       Grid.Row="1"/>
+                <Entry Text="{Binding DescriptionInput}"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Grid.Row="1"
                        VerticalOptions="Center"/>
                 <Label Text="All Day:"
-                       Grid.Column="0"
-                       Grid.Row="1"
-                       HorizontalOptions="End"
-                       VerticalOptions="Center"/>
-                <Switch OnColor="#0060ae"
-                        ThumbColor="#00467F"
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        IsToggled="true"
-                        HorizontalOptions="Center"/>
-                <Label Text="Start:"
                        Grid.Column="0"
                        Grid.Row="2"
                        HorizontalOptions="End"
                        VerticalOptions="Center"/>
-                <telerikInput:RadDatePicker x:Name="datePickerStart"
-                                            Grid.Column="1"
-                                            Grid.Row="2">
-                </telerikInput:RadDatePicker>
-                <Label Text="End:"
+                <Switch OnColor="#0060ae"
+                        ThumbColor="#00467F"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        IsToggled="{Binding AllDayToggle}"                        
+                        HorizontalOptions="Center"/>
+                <Label Text="Start:"
                        Grid.Column="0"
                        Grid.Row="3"
                        HorizontalOptions="End"
                        VerticalOptions="Center"/>
-                <telerikInput:RadDatePicker x:Name="datePickerEnd"
+                <telerikInput:RadDateTimePicker x:Name="datePickerStart"
                                             Grid.Column="1"
-                                            Grid.Row="3">
-                </telerikInput:RadDatePicker>
+                                            Grid.ColumnSpan="2"
+                                            Grid.Row="3"
+                                            VerticalOptions="Center"
+                                            Placeholder="Pick a Start Date">
+                </telerikInput:RadDateTimePicker>
+                <Label Text="End:"
+                       Grid.Column="0"
+                       Grid.Row="4"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center"/>
+                <telerikInput:RadDateTimePicker x:Name="datePickerEnd"
+                                            Grid.Column="1"
+                                            Grid.ColumnSpan="2"
+                                            Grid.Row="4"
+                                            VerticalOptions="Center"
+                                            Placeholder="Pick a End Date">
+                </telerikInput:RadDateTimePicker>
+                <Label Text="Event Colour:"
+                       Grid.Column="0" Grid.Row="5"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center"/>
+                <Picker SelectedItem="{Binding ColourSelected}"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="5"
+                        VerticalOptions="Center">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Red</x:String>
+                            <x:String>Blue</x:String>
+                            <x:String>Yellow</x:String>
+                            <x:String>Pink</x:String>
+                            <x:String>Orange</x:String>
+                            <x:String>Green</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
             </Grid>
-            <Entry Text="{Binding ColourText}"/>
-            <Picker>
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Red</x:String>
-                        <x:String>Blue</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
             <Button Text="Add"
-                    Command="{Binding AddEventButton}"/>
+                    Command="{Binding AddEventButton}"
+                    BackgroundColor="#525252"
+                    TextColor="White"
+                    Margin="10,10,10,10"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

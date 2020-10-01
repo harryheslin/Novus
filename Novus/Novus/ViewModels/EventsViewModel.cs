@@ -10,6 +10,17 @@ namespace Novus.ViewModels
 {
     class EventsViewModel : BaseViewModel
     {
+        public Color eventColour(string colour)
+        {
+            if (colour == "Green")
+            {
+                return Color.Green;
+            }
+            else
+            {
+                return Color.Beige;
+            }
+        }
         public EventsViewModel()
         {
             Appointments = new ObservableCollection<Appointment>
@@ -18,9 +29,9 @@ namespace Novus.ViewModels
                 {
                     Title = "Yeet",
                     Detail = "Tis the Day",
-                    StartDate = DateTime.Parse("21/09/2020"),
-                    EndDate = DateTime.Parse("21/09/2020"),
-                    Color = Color.Red,
+                    StartDate = DateTime.Parse("2/10/2020"),
+                    EndDate = DateTime.Parse("2/10/2020"),
+                    Color = eventColour("Green"),
                     IsAllDay = true
                 }
             };

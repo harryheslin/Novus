@@ -29,10 +29,10 @@ namespace Novus.ViewModels
                 {
                     Title = "Yeet",
                     Detail = "Tis the Day",
-                    StartDate = DateTime.Parse("2/10/2020"),
-                    EndDate = DateTime.Parse("2/10/2020"),
+                    StartDate = DateTime.Parse("23/12/2020 00:00:00"),
+                    EndDate = DateTime.Parse("23/12/2020 01:00:00"),
                     Color = eventColour("Green"),
-                    IsAllDay = true
+                    IsAllDay = false
                 }
             };
         }

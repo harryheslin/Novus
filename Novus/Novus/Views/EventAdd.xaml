@@ -52,12 +52,14 @@ xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.Xa
                        Grid.Row="3"
                        HorizontalOptions="End"
                        VerticalOptions="Center"/>
-                <telerikInput:RadDateTimePicker x:Name="datePickerStart"
+                <telerikInput:RadDateTimePicker x:Name="datePickerStart"                                           
                                             Grid.Column="1"
                                             Grid.ColumnSpan="2"
                                             Grid.Row="3"
                                             VerticalOptions="Center"
-                                            Placeholder="Pick a Start Date">
+                                            Placeholder="Pick a Start Date"
+                                            MinimumDate="{Binding Today}"
+                                            Date="{Binding StartDateSelected}">
                 </telerikInput:RadDateTimePicker>
                 <Label Text="End:"
                        Grid.Column="0"
@@ -69,7 +71,9 @@ xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.Xa
                                             Grid.ColumnSpan="2"
                                             Grid.Row="4"
                                             VerticalOptions="Center"
-                                            Placeholder="Pick a End Date">
+                                            Placeholder="Pick a End Date"
+                                            MinimumDate="{Binding Today}"
+                                            Date="{Binding EndDateSelected}">
                 </telerikInput:RadDateTimePicker>
                 <Label Text="Event Colour:"
                        Grid.Column="0" Grid.Row="5"

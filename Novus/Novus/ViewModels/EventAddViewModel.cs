@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Novus.Models;
 using MvvmHelpers;
 using Telerik.XamarinForms.Input;
 using Xamarin.Forms;
@@ -26,10 +27,13 @@ namespace Novus.ViewModels
         {
             AddEventButton = new Command(AddEventAndGoBack);
             Today = DateTime.Now;
+            ColourSelected = "Red";
         }
 
         async void AddEventAndGoBack()
         {
+            Events e = new Events(NameInput, DescriptionInput, StartDateSelected, EndDateSelected, ColourSelected, AllDayToggle);
+            e.AddToEvents();
             await Shell.Current.Navigation.PopAsync();
         }
     }

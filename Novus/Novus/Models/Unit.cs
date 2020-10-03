@@ -56,11 +56,11 @@ namespace Novus.Models
                 BlankInformation.Add(new Information("THIS IS INFORMATION THAT WILL BE CHANGED"));
             }
           
-            Unit unit = new Unit("IFB101" + i.ToString(), "Test Subject" + i.ToString(), BlankInformation);
-            unit.Lectures = (Class.GenerateClassLecture(2));
-            unit.Tutorials = (Class.GenerateClassLecture(4));
-            unit.StaffAnnouncements = (Announcement.GenerateAnnouncements("IFB101" + i.ToString(), 3));
-            unit.Assesments = (Assesment.GenerateAssesments("IFB101" + i.ToString(), 2)); 
+            Unit unit = new Unit("IFB101", "Test Subject", BlankInformation, Unit.GenerateUnitID());
+            unit.Lectures = (Class.GenerateClassLecture(2, unit.UnitID));
+            unit.Tutorials = (Class.GenerateClassLecture(4, unit.UnitID));
+            unit.StaffAnnouncements = (Announcement.GenerateAnnouncements("IFB101" , 3));
+            unit.Assesments = (Assesment.GenerateAssesments("IFB101", 2)); 
             return unit;
         }
 

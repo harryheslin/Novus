@@ -90,7 +90,6 @@
                                                 Text="&#x2022; Submission Page"
                                                 FontAttributes="Bold"
                                                 >
-
                                                 <Label.GestureRecognizers>
                                                     <TapGestureRecognizer
                                                         Command="{Binding Path=BindingContext.SubmissionPage, Source={x:Reference Page}}" />

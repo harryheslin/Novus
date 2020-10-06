@@ -16,7 +16,9 @@
     <None Remove="Images\assesmentIcon.png" />
     <None Remove="Images\backArrow.png" />
     <None Remove="Images\circlePoint.png" />
+    <None Remove="Images\fileIcon.png" />
     <None Remove="Images\gradesIcon.png" />
+    <None Remove="Images\lectureIcon.png" />
     <None Remove="Images\novusIcon.png" />
     <None Remove="Images\onedriveIcon.png" />
     <None Remove="Images\resourcesIcon.png" />
@@ -31,7 +33,9 @@
     <EmbeddedResource Include="Images\assesmentIcon.png" />
     <EmbeddedResource Include="Images\backArrow.png" />
     <EmbeddedResource Include="Images\circlePoint.png" />
+    <EmbeddedResource Include="Images\fileIcon.png" />
     <EmbeddedResource Include="Images\gradesIcon.png" />
+    <EmbeddedResource Include="Images\lectureIcon.png" />
     <EmbeddedResource Include="Images\novusIcon.png" />
     <EmbeddedResource Include="Images\onedriveIcon.png" />
     <EmbeddedResource Include="Images\resourcesIcon.png" />

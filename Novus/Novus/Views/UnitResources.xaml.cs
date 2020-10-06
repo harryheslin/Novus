@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Novus.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,12 @@ namespace Novus.Views
         public UnitResources()
         {
             InitializeComponent();
+        }
+
+        private void ExpandUnit(object sender, EventArgs e)
+        {
+            var viewModel = BindingContext as UnitResourcesViewModel;
+            viewModel?.SetIsVisible((string)((TappedEventArgs)e).Parameter);
         }
     }
 }

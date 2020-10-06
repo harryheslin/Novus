@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Novus.Views.UnitResources"
              xmlns:viewmodel="clr-namespace:Novus.ViewModels"
+             xmlns:local="clr-namespace:Novus.Extensions;assembly=Novus"
+             x:Name="Page"
              >
 
     <ContentPage.BindingContext>
@@ -10,8 +12,118 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Resources!" TextColor="Black"></Label>
+        <StackLayout BackgroundColor="#A3A3A3" >
+            <Label HeightRequest="25" 
+                   TextColor="Black" 
+                   BackgroundColor="{Binding Colour}" />
+            <ScrollView>
+                <StackLayout BindableLayout.ItemsSource="{Binding UnitResources}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout BackgroundColor="#707070" 
+                                         Margin="10, 10, 10, 10">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Week}" 
+                                           Padding="0, 10,0, 0"
+                                            TextColor="White" 
+                                            HorizontalTextAlignment="Center"                                                 
+                                            FontSize="Large"
+                                            Margin="5,5,5,5"
+                                            Grid.Column="0" 
+                                            Grid.Row="0" 
+                                            Grid.ColumnSpan="5">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                              Tapped="ExpandUnit" 
+                                                              CommandParameter="{Binding Week}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Image  
+                                           Grid.Column="0" 
+                                           Grid.Row="0" 
+                                           HeightRequest="70"
+                                           InputTransparent="true"
+                                           Source="{local:ImageResource Novus.Images.resourcesIcon.png}"/>
+                                </Grid>
+                                <StackLayout BackgroundColor="White" IsVisible="{Binding IsVisible}">
+                                    <Grid Padding="0,10,0,0">
+                                        <Image 
+                                           Grid.Column="0" 
+                                           Grid.Row="0" 
+                                           HeightRequest="0"
+                                           InputTransparent="true"
+                                           Source="{local:ImageResource Novus.Images.fileIcon.png}"/>
+                                        <Label Text="{Binding Files[0]}" 
+                                           TextColor="#525252" 
+                                           HorizontalTextAlignment="Start"                                                 
+                                           FontSize="Medium"
+                                           Margin="5,5,5,5"
+                                           Grid.Column="1"
+                                           Grid.ColumnSpan="3"/>
+                                    </Grid>
+                                    <Grid>
+                                        <Image 
+                                           Grid.Column="0" 
+                                           Grid.Row="0" 
+                                           HeightRequest="0"
+                                           InputTransparent="true"
+                                           Source="{local:ImageResource Novus.Images.fileIcon.png}"/>
+                                        <Label Text="{Binding Files[1]}" 
+                                           TextColor="#525252" 
+                                           HorizontalTextAlignment="Start"                                                 
+                                           FontSize="Medium"
+                                           Margin="5,5,5,5"
+                                           Grid.Column="1"
+                                           Grid.ColumnSpan="3"/>
+                                    </Grid>
+                                    <Grid>
+                                        <Image 
+                                           Grid.Column="0" 
+                                           Grid.Row="0" 
+                                           HeightRequest="0"
+                                           InputTransparent="true"
+                                           Source="{local:ImageResource Novus.Images.fileIcon.png}"/>
+                                        <Label Text="{Binding Files[2]}" 
+                                           TextColor="#525252" 
+                                           HorizontalTextAlignment="Start"                                                 
+                                           FontSize="Medium"
+                                           Margin="5,5,5,5"
+                                           Grid.Column="1"
+                                           Grid.ColumnSpan="3"/>
+                                    </Grid>
+                                    <Grid>
+                                        <Image 
+                                           Grid.Column="0" 
+                                           Grid.Row="0" 
+                                           HeightRequest="0"
+                                           InputTransparent="true"
+                                           Source="{local:ImageResource Novus.Images.lectureIcon.png}"/>
+                                        <Label Text="{Binding Lecture}" 
+                                           TextColor="#525252" 
+                                           HorizontalTextAlignment="Start"                                                 
+                                           FontSize="Medium"
+                                           Margin="5,5,5,5"
+                                           Grid.Column="1"
+                                           Grid.ColumnSpan="3"
+                                           FontAttributes="Bold">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                        Command="{Binding Path=BindingContext.LecturePage, Source={x:Reference Page}}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Grid>
+                                    <StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

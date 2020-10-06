@@ -32,9 +32,9 @@ namespace Novus.ViewModels
 
         async void AddEventAndGoBack()
         {
-            Events e = new Events(NameInput, DescriptionInput, StartDateSelected, EndDateSelected, ColourSelected, AllDayToggle);
-            e.AddToEvents();
-            await Shell.Current.Navigation.PopAsync();
+            
+            Events.AddToEvents(NameInput, DescriptionInput, StartDateSelected, EndDateSelected, ColourSelected, AllDayToggle);
+            await Shell.Current.GoToAsync("calendar");
         }
     }
 }

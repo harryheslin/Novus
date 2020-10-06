@@ -16,8 +16,7 @@ namespace Novus.Models
         public string Name {get; private set;}
         public ObservableCollection<Information> Information { get; private set; }
         public string FullName { get; private set; }
-        public ObservableCollection<Class> Lectures { get; set; }
-        public ObservableCollection<Class> Tutorials { get; set; }
+        public ObservableCollection<Class> Classes { get; private set; }
         public string Colour { get; private set; }
         public Announcement[] StaffAnnouncements { get; set; }
         public Assesment[] Assesments { get; set; }
@@ -29,12 +28,48 @@ namespace Novus.Models
             this.Information = Information;
             this.IsVisible = false;
             this.UnitID = UnitID;
+            this.Classes = new ObservableCollection<Class>();
             GenerateFullName();
+        }
+
+        public Unit()
+        {
+            this.UnitID = -1;
         }
 
         private void GenerateFullName()
         {
             this.FullName = Code + ' ' + Name;
+        }
+
+        public void AddClasses(ObservableCollection<Class> classes)
+        {
+            foreach(Class value in classes)
+            {
+                this.Classes.Add(value);
+            }
+        }
+
+        public void UpdateClassPlanned(bool value, int classID)
+        {
+            foreach(Class classs in Classes)
+            {
+                if(classs.ClassID == classID)
+                {
+                    Classes[Classes.IndexOf(classs)].Planned = value;
+                }
+            }
+        }
+
+        public void UpdateClassRegistered(bool value, int classID)
+        {
+            foreach (Class classs in Classes)
+            {
+                if (classs.ClassID == classID)
+                {
+                    Classes[Classes.IndexOf(classs)].Registerd = value;
+                }
+            }
         }
 
         public static ObservableCollection<Unit> GenerateUnits(int number)
@@ -57,8 +92,8 @@ namespace Novus.Models
             }
           
             Unit unit = new Unit("IFB101", "Test Subject", BlankInformation, Unit.GenerateUnitID());
-            unit.Lectures = (Class.GenerateClassLecture(2, unit.UnitID));
-            unit.Tutorials = (Class.GenerateClassLecture(4, unit.UnitID));
+            unit.AddClasses(Class.GenerateClassLecture(2, unit.UnitID));
+            unit.AddClasses(Class.GenerateClassTutorial(4, unit.UnitID));
             unit.StaffAnnouncements = (Announcement.GenerateAnnouncements("IFB101" , 3));
             unit.Assesments = (Assesment.GenerateAssesments("IFB101", 2)); 
             return unit;
@@ -69,5 +104,31 @@ namespace Novus.Models
             unitID++;
             return unitID;
         }
+
+        public static int GetUnitIndex(ObservableCollection<Unit> units, int indexingUnitID)
+        {
+            foreach (Unit unit in units)
+            {
+                if (unit.UnitID == indexingUnitID)
+                {
+                    return units.IndexOf(unit);
+                }
+            }
+
+            return -1;
+        }
+
+        public static int GetUnitIndex(ObservableCollection<Unit> units, Unit indexingUnit)
+        {
+            foreach(Unit unit in units)
+            {
+                if(unit.UnitID == indexingUnit.UnitID)
+                {
+                    return units.IndexOf(unit);
+                }
+            }
+
+            return -1;
+        }        
     }
 }

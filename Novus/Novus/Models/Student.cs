@@ -9,18 +9,13 @@ namespace Novus.Models
     {
         public string Name { get; private set; }
         public int StudentID { get; private set; }
-        public ObservableCollection<Semester> Enrollment { get; private set; }
+        public ObservableCollection<Semester> Enrollment { get; set; }
 
         public Student(string Name, int StudentID, ObservableCollection<Semester> Enrollment)
         {
             this.Name = Name;
             this.StudentID = StudentID;
             this.Enrollment = Enrollment;
-        }
-
-        public Student()
-        {
-
         }
 
         public static Student GenerateStudent(int numberOfUnits)

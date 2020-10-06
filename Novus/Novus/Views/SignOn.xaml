@@ -17,21 +17,21 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
                 <Label Text="IN01" Grid.Column="0"
                        BackgroundColor="#00467F" 
                        TextColor="White"
-                       VerticalTextAlignment="Center"
                        HorizontalOptions="Center"
                        Padding="10,0,10,0"
                        Margin="10,10,0,0"
-                       HeightRequest="40"/>
-                <Label Text="Bacholar of Information Systems" 
-                       Grid.Column="1" 
-                       Margin="0,5,0,0"
+                       HeightRequest="20"/>
+                <Label Text="Bacholar of Information Systems" Grid.Column="1" 
                        TextColor="White"
                        FontSize="Medium"
                        HorizontalOptions="Center"
-                       VerticalOptions="End"/>
+                       Margin="0,8,0,0"/>
             </Grid>
             <Grid Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
@@ -60,12 +60,12 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
                             <StackLayout BackgroundColor="White" 
-                                         Margin="10, 10, 10, 10">
+                                         Margin="10, 15, 10, 15">
                                 <Label Text="{Binding FullName}" 
                                     TextColor="#525252" 
                                     HorizontalTextAlignment="Center"                                                 
-                                    FontSize="Medium"
-                                    Margin="5,5,5,5">
+                                    FontSize="Large"
+                                    Margin="0,10,0,10">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer NumberOfTapsRequired="1" 
                                                               Tapped="ExpandUnit" 
@@ -73,12 +73,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                                     </Label.GestureRecognizers>
                                 </Label>
                                 <StackLayout IsVisible="{Binding IsVisible}">
-                                    <Label Text="Lectures" 
-                                    TextColor="#525252" 
-                                    HorizontalTextAlignment="Start"                                                 
-                                    FontSize="Medium"
-                                    Margin="5,5,5,5"/>
-                                    <StackLayout BindableLayout.ItemsSource="{Binding Lectures}">
+                                    <StackLayout BindableLayout.ItemsSource="{Binding Classes}">
                                         <BindableLayout.ItemTemplate>
                                             <DataTemplate>
                                                 <Grid>
@@ -114,56 +109,9 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                                                     <CheckBox Grid.Row="0"
                                                               Grid.Column="2"
                                                               IsChecked="{Binding Registerd}"
-                                                              CheckedChanged="LectureRegister"
+                                                              CheckedChanged="Register"
                                                               AutomationId="{Binding Tag}">
                                                     </CheckBox>
-                                                </Grid>
-                                            </DataTemplate>
-                                        </BindableLayout.ItemTemplate>
-                                    </StackLayout>
-                                    <Label Text="Tutorials" 
-                                           TextColor="#525252" 
-                                           HorizontalTextAlignment="Start"                                                 
-                                           FontSize="Medium"
-                                           Margin="5,5,5,5"/>
-                                    <StackLayout BindableLayout.ItemsSource="{Binding Tutorials}">
-                                        <BindableLayout.ItemTemplate>
-                                            <DataTemplate>
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="*" />
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Label Text="{Binding DayOfWeek}"
-                                                           TextColor="#525252" 
-                                                           HorizontalTextAlignment="Center"                                                 
-                                                           FontSize="Medium"
-                                                           Grid.Row="0"
-                                                           Grid.Column="0"/>
-                                                    <Label Text="{Binding DisplayTime}"
-                                                           TextColor="#525252" 
-                                                           HorizontalTextAlignment="Center"                                                 
-                                                           FontSize="Medium"
-                                                           Grid.Row="1"
-                                                           Grid.Column="0"/>
-                                                    <Label Text="{Binding DisplayMode}" 
-                                                           TextColor="#525252" 
-                                                           HorizontalTextAlignment="Center"                                                 
-                                                           FontSize="Medium"
-                                                           Grid.Row="0"
-                                                           Grid.Column="1"/>
-                                                    <Label Text="{Binding Room}" 
-                                                           TextColor="#525252" 
-                                                           HorizontalTextAlignment="Center"                                                 
-                                                           FontSize="Medium"
-                                                           Grid.Row="1"
-                                                           Grid.Column="1"/>
-                                                    <CheckBox Grid.Row="0"
-                                                              Grid.Column="2"
-                                                              IsChecked="{Binding Registerd}"
-                                                              CheckedChanged="TutorialRegister"
-                                                              AutomationId="{Binding Tag}" />
                                                 </Grid>
                                             </DataTemplate>
                                         </BindableLayout.ItemTemplate>
@@ -174,6 +122,11 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                     </BindableLayout.ItemTemplate>
                 </StackLayout>
             </ScrollView>
+            <Button Text="View Timetable"
+                        BackgroundColor="White"
+                        TextColor="#525252"
+                        Margin="10, 10, 10, 10"
+                        FontSize="30"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

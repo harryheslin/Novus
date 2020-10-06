@@ -20,15 +20,6 @@ namespace Novus.Models
 
         public int numEvents = 0;
 
-        /*public Events(string EventName, string EventDescription, DateTime StartDate, DateTime EndDate, String EventColour, bool IsAllDay)
-        {
-            this.EventName = EventName;
-            this.EventDescription = EventDescription;
-            this.StartDate = StartDate;
-            this.EndDate = EndDate;
-            this.EventColour = EventColour;
-            this.IsAllDay = IsAllDay;
-        }*/
 
         public static List<string> TitleList = new List<string>();
         public static List<string> DetailList = new List<string>();
@@ -65,8 +56,9 @@ namespace Novus.Models
             }            
         }
 
-        public static ObservableCollection<Appointment> Appointments { get; set; }
+        public static ObservableCollection<Appointment> Appointments {get; set;}
 
+        //determine the colour given the input from the list
         public static Color ColourDeterminer(string colour)
         {
             Color eventColour;            

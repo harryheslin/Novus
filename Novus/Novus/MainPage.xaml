@@ -27,6 +27,12 @@
     <FlyoutItem Title="Calendar">
         <ShellContent ContentTemplate="{DataTemplate local:Calendar}" Route="calendar"/>
     </FlyoutItem>
+    <FlyoutItem Title="Calendar Week">
+        <ShellContent ContentTemplate="{DataTemplate local:CalendarWeek}" Route="calendarWeek"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Calendar Day">
+        <ShellContent ContentTemplate="{DataTemplate local:CalendarDay}" Route="calendarDay"/>
+    </FlyoutItem>
     <FlyoutItem Title="Register">
         <ShellContent ContentTemplate="{DataTemplate local:Register}" Route="register"/>
     </FlyoutItem>

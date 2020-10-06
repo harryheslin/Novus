@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Novus.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CalendarSettings : ContentPage
+    public partial class RegisterAbout : ContentPage
     {
-        public CalendarSettings()
+        public RegisterAbout()
         {
             InitializeComponent();
         }

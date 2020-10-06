@@ -30,6 +30,9 @@
     <FlyoutItem Title="Register">
         <ShellContent ContentTemplate="{DataTemplate local:Register}" Route="register"/>
     </FlyoutItem>
+    <FlyoutItem Title="Register About">
+        <ShellContent ContentTemplate="{DataTemplate local:RegisterAbout}" Route="registerAbout"/>
+    </FlyoutItem>
     <FlyoutItem Title="Sign-On Main">
         <ShellContent ContentTemplate="{DataTemplate local:SignOnMain}" Route="signOnMain"/>
     </FlyoutItem>
@@ -39,4 +42,5 @@
     <FlyoutItem Title="Sign-On Plan">
         <ShellContent ContentTemplate="{DataTemplate local:SignOnPlan}" Route="signOnPlan"/>
     </FlyoutItem>
+    
 </Shell>

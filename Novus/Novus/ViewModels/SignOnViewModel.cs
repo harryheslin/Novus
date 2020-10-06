@@ -11,100 +11,177 @@ namespace Novus.ViewModels
     {
         public SignOnViewModel()
         {
-            units = Unit.GenerateUnits(4);
+            student = Student.GenerateStudent(3);
         }
 
-        ObservableCollection<Unit> units;
-        public ObservableCollection<Unit> Units
+        Student student;
+        public Student Student
         {
-            get => units;
+            get => student;
             set
             {
-                SetProperty(ref units, value);
+                SetProperty(ref student, value);
                 OnPropertyChanged(nameof(Student));
             }
         }
 
-        public void SetIsVisible(int unitID)
+        public ObservableCollection<Unit> Units
         {
-            for (int i= 0; i < Units.Count; i++)
+            get => student.Enrollment[0].EnrolledUnits;
+        }
+
+        public void SetIsVisible(int unitID)
+        { 
+            Unit unit = GetUnit(unitID);
+            if (unit.UnitID != -1)
             {
-                if(unitID == Units[i].UnitID)
-                {
-                    Unit newUnit = Units[i];
-                    newUnit.IsVisible = !Units[i].IsVisible;
-                    Units[i] = newUnit;
-                    return;
-                }
+                unit.IsVisible = !unit.IsVisible;
+                SetUnitValue(unit);
             }
         }
 
-        public void RegisterForLecture(string tag)
+        public void RegisterForClass(string tag)
         {
             try
             {
                 string[] tagSplit = tag.Split('|');
-                for (int i = 0; i < Units.Count; i++)
+                 Class classs = GetClass(int.Parse(tagSplit[1]));
+                if (classs.ClassID != -1)
                 {
-                    if (Units[i].UnitID.ToString() == tagSplit[0])
+                    Semester semester = GetSemester(classs.UnitID);
+                    if (classs.Registerd)
                     {
-                        for (int x = 0; x < Units[i].Lectures.Count; x++)
-                        {
-                            if (Units[i].Lectures[x].ClassID.ToString() == tagSplit[1])
-                            {
-                                for (int y = 0; y < Units[i].Lectures.Count; y++)
-                                {
-                                    if (x != y)
-                                    {
-                                        Class newClass = Units[i].Lectures[y];
-                                        newClass.Registerd = false;
-                                        Units[i].Lectures[y] = newClass;
-                                    }
-                                }
-                                return;
-                            }
-                        }
+                        semester.EnrollInClass(classs);
                     }
+                    else
+                    {
+                        semester.UnEnrollInClass(classs);
+                    }
+
+                    SetSemesterValue(semester);
                 }
-            } catch (Exception)
+            } 
+            catch
             {
                 return;
             }
             
         }
 
-        public void RegisterForTutorial(string tag)
+        private Class GetClass(int classID)
+        {
+            foreach(Unit unit in Units)
+            {
+                int classIndex = Class.GetClassIndex(unit.Classes, classID);
+                if(classIndex != -1)
+                {
+                    return Student.Enrollment[0].EnrolledUnits[Unit.GetUnitIndex(Student.Enrollment[0].EnrolledUnits, unit.UnitID)].Classes[classIndex];
+                }
+            }
+            return new Class();
+        }
+
+        private void SetUnitValue(Unit newValue)
         {
             try
             {
-                string[] tagSplit = tag.Split('|');
-                for (int i = 0; i < Units.Count; i++)
-                {
-                    if (Units[i].UnitID.ToString() == tagSplit[0])
-                    {
-                        for (int x = 0; x < Units[i].Tutorials.Count; x++)
-                        {
-                            if (Units[i].Tutorials[x].ClassID.ToString() == tagSplit[1])
-                            {
-                                for (int y = 0; y < Units[i].Tutorials.Count; y++)
-                                {
-                                    if (x != y)
-                                    {
-                                        Class newClass = Units[i].Tutorials[y];
-                                        newClass.Registerd = false;
-                                        Units[i].Tutorials[y] = newClass;
-                                    }
-                                }
-                                return;
-                            }
-                        }
-                    }
-                }
-            } catch (Exception)
+                int[] index = Semester.GetUnitIndex(Student.Enrollment, newValue);
+                Student.Enrollment[index[0]].EnrolledUnits[index[1]] = newValue;
+            }
+            catch
             {
                 return;
             }
+        }
 
+        private Unit GetUnit(Unit indexingUnit)
+        {
+            int[] semesterIndex = Semester.GetUnitIndex(Student.Enrollment, indexingUnit);
+            if (semesterIndex != new int[] { -1, -1 })
+            {
+                return Student.Enrollment[semesterIndex[0]].EnrolledUnits[semesterIndex[1]];
+            }
+            else
+            {
+                return new Unit();
+            }
+        }
+
+        private Unit GetUnit(int indexingUnitID)
+        {
+            int[] semesterIndex = Semester.GetUnitIndex(Student.Enrollment, indexingUnitID);
+            if (semesterIndex != new int[] { -1, -1 })
+            {
+                return Student.Enrollment[semesterIndex[0]].EnrolledUnits[semesterIndex[1]];
+            }
+            else
+            {
+                return new Unit();
+            }
+        }
+
+        private void SetSemesterValue(Semester newValue)
+        {
+            try
+            {
+                Student.Enrollment[0] = newValue;
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        private Semester GetSemester(int[] semesterNumber)
+        {
+            int semesterIndex = Semester.GetSemesterIndex(Student.Enrollment, semesterNumber);
+            if (semesterIndex != -1)
+            {
+                return Student.Enrollment[semesterIndex];
+            }
+            else
+            {
+                return new Semester();
+            }
+        }
+
+        private Semester GetSemester(Semester semester)
+        {
+            int semesterIndex = Semester.GetSemesterIndex(Student.Enrollment, semester);
+            if (semesterIndex != -1)
+            {
+                return Student.Enrollment[semesterIndex];
+            }
+            else
+            {
+                return new Semester();
+            }
+        }
+
+        private Semester GetSemester(Unit unit)
+        {
+            int[] semesterIndex = Semester.GetUnitIndex(Student.Enrollment, unit);
+            if (semesterIndex != new int[] { -1, -1 })
+            {
+                return Student.Enrollment[semesterIndex[0]];
+            }
+            else
+            {
+                return new Semester();
+            }
+        }
+
+        private Semester GetSemester(int unitID)
+        {
+            int[] semesterIndex = Semester.GetUnitIndex(Student.Enrollment, unitID);
+            if (semesterIndex != new int[] { -1, -1 })
+            {
+                return Student.Enrollment[semesterIndex[0]];
+            }
+            else
+            {
+                return new Semester();
+            }
         }
     }
 }

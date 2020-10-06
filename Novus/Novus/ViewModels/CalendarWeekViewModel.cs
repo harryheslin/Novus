@@ -10,14 +10,12 @@ namespace Novus.ViewModels
     {
         public Command MonthViewButton { get; }
         public Command DayViewButton { get; }
-        public Command EventAddButton { get; }
-        public Command SettingsButton { get; }
+        public Command EventAddButton { get; }        
         public CalendarWeekViewModel()
         {
             MonthViewButton = new Command(GoToMonthPage);
             DayViewButton = new Command(GoToDayPage);
             EventAddButton = new Command(GoToNew);
-            SettingsButton = new Command(GoToSettings);
         }
 
         async void GoToMonthPage()
@@ -32,11 +30,6 @@ namespace Novus.ViewModels
         async void GoToNew()
         {
             await Shell.Current.GoToAsync("eventAdd");
-        }
-
-        async void GoToSettings()
-        {
-            await Shell.Current.GoToAsync("calendarSettings");
         }
     }
 }

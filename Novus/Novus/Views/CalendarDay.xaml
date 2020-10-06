@@ -22,13 +22,8 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                         BackgroundColor="#525252"
                         TextColor="White"/>
                 <Button Text="Add new event" Grid.Column="0"
-                        Grid.Row="1"
+                        Grid.Row="1" Grid.ColumnSpan="2"                     
                         Command="{Binding EventAddButton}"
-                        BackgroundColor="#525252"
-                        TextColor="White"/>
-                <Button Text="Settings" Grid.Column="1"
-                        Command="{Binding SettingsButton}"
-                        Grid.Row="1"
                         BackgroundColor="#525252"
                         TextColor="White"/>
             </Grid>
@@ -38,10 +33,9 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                                       SchedulingUiEnabled="True"
                                       AppointmentsSource="{Binding Appointments}"
                                       Margin="10,5,10,20"
-                                      VerticalOptions="FillAndExpand"
-                                      IsAddAppointmentButtonVisible="True">
+                                      VerticalOptions="FillAndExpand">
                 <telerikInput:RadCalendar.BindingContext>
-                    <viewmodel:EventAddViewModel/>
+                    <viewmodel:EventsViewModel/>
                 </telerikInput:RadCalendar.BindingContext>
                 <telerikInput:RadCalendar.DayViewSettings>
                     <telerikInput:DayViewSettings DayStartTime="00:00:00"

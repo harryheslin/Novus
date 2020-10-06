@@ -23,13 +23,8 @@
                         BackgroundColor="#525252"
                         TextColor="White"/>
                 <Button Text="Add new event" Grid.Column="0"
-                        Grid.Row="1"
+                        Grid.Row="1" Grid.ColumnSpan="2"                     
                         Command="{Binding EventAddButton}"
-                        BackgroundColor="#525252"
-                        TextColor="White"/>
-                <Button Text="Settings" Grid.Column="1"
-                        Command="{Binding SettingsButton}"
-                        Grid.Row="1"
                         BackgroundColor="#525252"
                         TextColor="White"/>
             </Grid>
@@ -39,10 +34,9 @@
                                       VerticalOptions="FillAndExpand"
                                       Margin="10,5,10,20"
                                       SchedulingUiEnabled="True"
-                                      AppointmentsSource="{Binding Appointments}"
-                                      IsAddAppointmentButtonVisible="True">
+                                      AppointmentsSource="{Binding Appointments}">
                 <telerikInput:RadCalendar.BindingContext>
-                    <viewmodel:EventAddViewModel/>
+                    <viewmodel:EventsViewModel/>
                 </telerikInput:RadCalendar.BindingContext>
                 <telerikInput:RadCalendar.MultiDayViewSettings>
                     <telerikInput:MultiDayViewSettings VisibleDays="7"

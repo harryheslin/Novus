@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Novus.Models;
 using MvvmHelpers;
 using Telerik.XamarinForms.Input;
 using Xamarin.Forms;
@@ -9,42 +10,31 @@ using Xamarin.Forms;
 namespace Novus.ViewModels
 {
     class EventAddViewModel : BaseViewModel
-    {
+    {                              
+        
+        public string NameInput { set; get; }
+        public string DescriptionInput { set; get; }
+        public Command AddEventButton { get; }
+        public DateTime StartDateSelected { get; set; }
+        public DateTime EndDateSelected { get; set; }
+        public string ColourSelected { get; set; }
+        public bool AllDayToggle { set; get; }
+
+
+        public DateTime Today { get; private set; }
+
         public EventAddViewModel()
         {
-            var date = DateTime.Today;
-            this.Appointments = new ObservableCollection<Appointment>
-            {
-            new Appointment {
-                    Title = "Meeting with Tom",
-                    Detail = "Sea Garden",
-                    StartDate = DateTime.Parse("23/12/2020").AddHours(0),
-                    EndDate = DateTime.Parse("23/12/2020").AddHours(0),
-                    Color = Color.Tomato,   
-                    IsAllDay=true
-                },
-                new Appointment {
-                    Title = "Lunch with Sara",
-                    Detail = "Restaurant",
-                    StartDate = date,
-                    EndDate = date.AddHours(14),
-                    Color = Color.DarkTurquoise
-                },
-                new Appointment {
-                    Title = "Elle Birthday",
-                    StartDate = date,
-                    EndDate = date.AddHours(11),
-                    Color = Color.Orange,
-                    IsAllDay = true
-                },
-                 new Appointment {
-                    Title = "Football Game",
-                    StartDate = date.AddDays(2).AddHours(15),
-                    EndDate = date.AddDays(2).AddHours(17),
-                    Color = Color.Green
-                }
-            };
+            AddEventButton = new Command(AddEventAndGoBack);
+            Today = DateTime.Now;
+            ColourSelected = "Red";
         }
-        public ObservableCollection<Appointment> Appointments { get; set; }
+
+        async void AddEventAndGoBack()
+        {
+            
+            Events.AddToEvents(NameInput, DescriptionInput, StartDateSelected, EndDateSelected, ColourSelected, AllDayToggle);
+            await Shell.Current.GoToAsync("calendar");
+        }
     }
 }

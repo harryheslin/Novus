@@ -15,10 +15,12 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
                 <Label Text="IN01" Grid.Column="0"
                        BackgroundColor="#00467F" 
                        TextColor="White"
-                       VerticalTextAlignment="Center"
                        HorizontalOptions="Center"
                        Padding="10,0,10,0"
                        Margin="10,10,0,0"
@@ -27,7 +29,7 @@
                        TextColor="White"
                        FontSize="Medium"
                        HorizontalOptions="Center"
-                       VerticalOptions="End"/>
+                       Margin="0,8,0,0"/>
             </Grid>
             <StackLayout>
                 <Label Text="Class Sign-On"
@@ -42,7 +44,7 @@
                     <Button Text="Sign-On"
                         BackgroundColor="White"
                         TextColor="#525252"
-                        Margin="0, 50, 0, 0"
+                        Margin="10, 50, 10, 0"
                         FontSize="30"/>
                     <Label Text="Use this link on sign-on day to register for classes"
                        TextColor="White"
@@ -55,6 +57,7 @@
                     <Button Text="Plan"
                         BackgroundColor="White"
                         TextColor="#525252"
+                        Margin="10, 0, 10, 0"
                         FontSize="30"/>
                     <Label Text="Use this link to plan classes before the offical sign-on date"
                        TextColor="White"

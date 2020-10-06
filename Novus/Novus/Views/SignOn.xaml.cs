@@ -24,18 +24,11 @@ namespace Novus.Views
             viewModel?.SetIsVisible((int)((TappedEventArgs)e).Parameter);
         }
 
-        private void LectureRegister(object sender, EventArgs e)
+        private void Register(object sender, EventArgs e)
         {
             var viewModel = BindingContext as SignOnViewModel;
             CheckBox checkBox = (CheckBox)sender;
-            viewModel?.RegisterForLecture(checkBox.AutomationId);
-        }
-
-        private void TutorialRegister(object sender, EventArgs e)
-        {
-            var viewModel = BindingContext as SignOnViewModel;
-            CheckBox checkBox = (CheckBox)sender;
-            viewModel?.RegisterForTutorial(checkBox.AutomationId);
+            viewModel?.RegisterForClass(checkBox.AutomationId);
         }
     }
 }

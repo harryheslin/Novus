@@ -33,9 +33,10 @@ namespace Novus.Models
         public string DisplayMode { get; private set; }
         public string Room { get; private set; }
         public bool Registerd { get; set; }
+        public bool Planned { get; set; }
         public string Tag { get; private set; }
 
-    public Class(ClassType type, DayOfWeek dayOfWeek,DateTime startTime, DateTime endTime, ClassMode mode, string room, int UnitID)
+        public Class(ClassType type, DayOfWeek dayOfWeek,DateTime startTime, DateTime endTime, ClassMode mode, string room, int UnitID)
         {
             this.Type = type;
             this.DayOfWeek = dayOfWeek;
@@ -46,9 +47,15 @@ namespace Novus.Models
             this.DisplayTime = GenerateDisplayTime();
             this.DisplayMode = GenerateDisplayMode();
             this.Registerd = false;
+            this.Planned = false;
             this.ClassID = GenerateClassID();
             this.UnitID = UnitID;
             this.Tag = GenerateTag();
+        }
+
+        public Class()
+        {
+            this.ClassID = -1;
         }
 
         private string GenerateTag()
@@ -70,7 +77,7 @@ namespace Novus.Models
         public static ObservableCollection<Class> GenerateClassLecture(int returnArrayLength, int unitID)
         {
             ObservableCollection<Class> returnArray = new ObservableCollection<Class>();
-            for(int i = 0; i < returnArrayLength; i++) {
+            for (int i = 0; i < returnArrayLength; i++) {
                 returnArray.Add(new Class(ClassType.Lecture, DayOfWeek.Monday, DateTime.Now, DateTime.Now, ClassMode.Virtual, "Z501", unitID));
             }
             return returnArray;
@@ -90,6 +97,30 @@ namespace Novus.Models
         {
             classID++;
             return classID;
+        }
+
+        public static int GetClassIndex(ObservableCollection<Class> classes, Class indexingClass)
+        {
+            foreach (Class classs in classes)
+            {
+                if (classs.ClassID == indexingClass.ClassID)
+                {
+                    return classes.IndexOf(classs);
+                }
+            }
+            return -1;
+        }
+
+        public static int GetClassIndex(ObservableCollection<Class> classes, int indexingClassID)
+        {
+            foreach (Class classs in classes)
+            {
+                if (classs.ClassID == indexingClassID)
+                {
+                    return classes.IndexOf(classs);
+                }
+            }
+            return -1;
         }
     }
 }

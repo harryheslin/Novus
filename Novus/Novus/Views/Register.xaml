@@ -16,19 +16,21 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
                 <Label Text="IN01" Grid.Column="0"
                        BackgroundColor="#00467F" 
                        TextColor="White"
-                       VerticalTextAlignment="Center"
                        HorizontalOptions="Center"
                        Padding="10,0,10,0"
                        Margin="10,10,0,0"
-                       HeightRequest="40"/>
+                       HeightRequest="20"/>
                 <Label Text="Bacholar of Information Systems" Grid.Column="1" 
                        TextColor="White"
                        FontSize="Medium"
                        HorizontalOptions="Center"
-                       VerticalOptions="End"/>
+                       Margin="0,8,0,0"/>
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -52,7 +54,6 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                         BackgroundColor="#525252"
                         Padding="0,0,0,0"/>
             </Grid>
-
             <ScrollView>
                 <StackLayout BindableLayout.ItemsSource="{Binding Enrollment}">
                     <BindableLayout.ItemTemplate>

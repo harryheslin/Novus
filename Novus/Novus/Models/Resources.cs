@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using SQLite;
 
 namespace Novus.Models
 {
-    class Resources
+    public class Resources
     {
+        [PrimaryKey, AutoIncrement]
+        public int UnitID { get; private set; }
         public string Week { get; private set; }
         public string[] Files { get; private set; }
         public string Lecture { get; private set; }

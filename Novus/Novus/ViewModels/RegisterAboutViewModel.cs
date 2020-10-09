@@ -11,7 +11,7 @@ namespace Novus.ViewModels
     {
         public RegisterAboutViewModel()
         {
-            course = Models.Course.GenerateCourse();
+            //course = Models.Course.GenerateCourse();
         }
 
         ObservableCollection<Course> course;

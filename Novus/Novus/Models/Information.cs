@@ -1,16 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using SQLite;
 
 namespace Novus.Models
 {
-    class Information
+    public class Information
     {
-        public string Line { get; private set; }
+        [PrimaryKey, AutoIncrement]
+        public int InformationID { get; set; }
+        public string Line { get; set; }
 
         public Information(string Line)
         {
             this.Line = Line;
+        }
+
+        public Information()
+        {
+
         }
     }
 }

@@ -2,39 +2,40 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
-using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions;
+using SQLite;
 
 namespace Novus.Models
 {
-    enum ClassType
+    public enum ClassType
     {
         Lecture = 1,
         Tutorial = 2,
         Practical = 3
     }
-    enum ClassMode
+    public enum ClassMode
     {
         Physical = 1,
         Virtual = 2
     }
 
-    class Class
+    public class Class
     {
-        private static int classID = 0;
-        public int ClassID { get; private set; }
 
-        public int UnitID { get; private set; }
-        public ClassType Type { get; private set; }
-        public DayOfWeek DayOfWeek { get; private set; }
-        public DateTime StartTime { get; private set; }
-        public DateTime EndTime { get; private set; }
-        public string DisplayTime { get; private set; }
-        public ClassMode Mode { get; private set; }
-        public string DisplayMode { get; private set; }
-        public string Room { get; private set; }
+        [PrimaryKey, AutoIncrement]
+        public int ClassID { get; set; }
+
+        public int UnitID { get; set; }
+        public ClassType Type { get; set; }
+        public DayOfWeek DayOfWeek { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public string DisplayTime { get; set; }
+        public ClassMode Mode { get; set; }
+        public string DisplayMode { get; set; }
+        public string Room { get; set; }
         public bool Registerd { get; set; }
         public bool Planned { get; set; }
-        public string Tag { get; private set; }
+        public string Tag { get; set; }
 
         public Class(ClassType type, DayOfWeek dayOfWeek,DateTime startTime, DateTime endTime, ClassMode mode, string room, int UnitID)
         {
@@ -48,7 +49,6 @@ namespace Novus.Models
             this.DisplayMode = GenerateDisplayMode();
             this.Registerd = false;
             this.Planned = false;
-            this.ClassID = GenerateClassID();
             this.UnitID = UnitID;
             this.Tag = GenerateTag();
         }
@@ -91,12 +91,6 @@ namespace Novus.Models
                 returnArray.Add(new Class(ClassType.Tutorial, DayOfWeek.Monday, DateTime.Now, DateTime.Now, ClassMode.Virtual, "Z501", unitID));
             }
             return returnArray;
-        }
-
-        public static int GenerateClassID()
-        {
-            classID++;
-            return classID;
         }
 
         public static int GetClassIndex(ObservableCollection<Class> classes, Class indexingClass)

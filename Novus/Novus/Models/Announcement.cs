@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using SQLite;
 
 namespace Novus.Models
 {
-    class Announcement
+    public class Announcement
     {
-        public string Unit { get; private set; }
-        public string Title { get; private set; }
-        public string Message { get; private set; }
-        public DateTime Date { get; private set; }
-        public string User { get; private set; }
+        [PrimaryKey, AutoIncrement]
+        public int AnnouncementID { get; set; }
+        public string Unit { get; set; }
+        public string Title { get; set; }
+        public string Message { get; set; }
+        public DateTime Date { get; set; }
+        public string User { get; set; }
 
         public Announcement(string unit, string title, string message, DateTime date, string user)
         {
@@ -19,6 +22,10 @@ namespace Novus.Models
             this.Message = message;
             this.Date = date;
             this.User = user;
+        }
+
+        public Announcement() {
+            this.AnnouncementID = -1;
         }
 
         public static Announcement[] GenerateAnnouncements(string unitCode, int returnArrayLength)

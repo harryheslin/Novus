@@ -1,21 +1,21 @@
-﻿//using Android.Test;
-//using Java.Lang;
-//using Java.Util;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using SQLite;
 
 namespace Novus.Models
 {
-    class Assesment
+    public class Assesment
     {
-        public string Code { get; private set; }
-        public string Title { get; private set; }
-        public string Percentage { get; private set; }
-        public string ReleaseDate { get; private set; }
-        public string DueDate { get; private set; }
-        public bool Graded { get; private set; }
-        public string GradedDate { get; private set; }
+        [PrimaryKey, AutoIncrement]
+        public int AssesmentID { get; set; }
+        public string Code { get; set; }
+        public string Title { get; set; }
+        public string Percentage { get; set; }
+        public string ReleaseDate { get; set; }
+        public string DueDate { get; set; }
+        public bool Graded { get; set; }
+        public string GradedDate { get; set; }
         public Assesment(string code, string title, int percentage, string releaseDate, string dueDate)
         {
             this.Code = code;
@@ -23,6 +23,11 @@ namespace Novus.Models
             this.Percentage = percentage.ToString() + "%";
             this.ReleaseDate = releaseDate;
             this.DueDate = dueDate;
+        }
+
+        public Assesment()
+        {
+            this.AssesmentID = -1;
         }
 
         public static Assesment[] GenerateAssesments(string unitCode, int returnArrayLength)

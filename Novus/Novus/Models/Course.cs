@@ -2,32 +2,41 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using SQLite;
+using SQLitePCL;
 
 namespace Novus.Models
 {
     class Course
     {
-        public ObservableCollection<Information> GeneralInformation { get; private set; }
-        public ObservableCollection<Major> Majors { get; private set; }
-        public ObservableCollection<Minor> Minors { get; private set; }
+        [PrimaryKey, AutoIncrement]
+        public int CourseID { get; set; }
+        public List<Information> GeneralInformation { get; set; }
+        public List<Major> Majors { get; set; }
+        public List<Minor> Minors { get; set; }
 
-        public Course(ObservableCollection<Information> generalInformation, ObservableCollection<Major> majors, ObservableCollection<Minor> minors)
+        public Course(List<Information> generalInformation, List<Major> majors, List<Minor> minors)
         {
             this.GeneralInformation = generalInformation;
             this.Majors = majors;
             this.Minors = minors;
         }
 
-        public static ObservableCollection<Course> GenerateCourse()
+        public Course()
         {
-            ObservableCollection<Information> BlankInformation = new ObservableCollection<Information>();
+            this.CourseID = -1;
+        }
+
+        public static List<Course> GenerateCourse()
+        {
+            List<Information> BlankInformation = new List<Information>();
             for (int i = 0; i < 4; i++)
             {
                 BlankInformation.Add(new Information("THIS IS INFORMATION THAT WILL BE CHANGED"));
             }
 
-            ObservableCollection<Course> course = new ObservableCollection<Course>();
-            course.Add(new Course(BlankInformation, Major.GenerateMajors(2), Minor.GenerateMinors(4)));
+            List<Course> course = new List<Course>();
+            //course.Add(new Course(BlankInformation, Major.GenerateMajors(2), Minor.GenerateMinors(4)));
             return course;
         }
     }

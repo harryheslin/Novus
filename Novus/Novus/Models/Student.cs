@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using SQLite;
 
 namespace Novus.Models
 {
-    class Student
+    public class Student
     {
-        public string Name { get; private set; }
+        [PrimaryKey, AutoIncrement]
         public int StudentID { get; private set; }
+        public string Name { get; private set; }
         public ObservableCollection<Semester> Enrollment { get; set; }
 
         public Student(string Name, int StudentID, ObservableCollection<Semester> Enrollment)
@@ -16,6 +18,11 @@ namespace Novus.Models
             this.Name = Name;
             this.StudentID = StudentID;
             this.Enrollment = Enrollment;
+        }
+
+        public Student()
+        {
+            this.StudentID = -1;
         }
 
         public static Student GenerateStudent(int numberOfUnits)

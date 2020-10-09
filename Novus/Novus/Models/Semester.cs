@@ -2,23 +2,21 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text; 
+using System.Text;
+using SQLite;
 
 namespace Novus.Models
 {
-    class Semester
+    public class Semester
     {
-        public int[] SemesterNumber { get; private set; }
-
+        [PrimaryKey, AutoIncrement]
+        public int SemesterID { get; set; }
+        public int[] SemesterNumber { get; set; }
         public ObservableCollection<Unit> EnrolledUnits { get; set; }
-
-        public List<int> AvalibleUnits { get; private set; }
-
-        public ObservableCollection<Class> EnrolledClasses { get; private set; }
-
-        public ObservableCollection<Class> PlannedClasses { get; private set; }
-
-        public string DisplayName { get; private set; }
+        public List<int> AvalibleUnits { get; set; }
+        public ObservableCollection<Class> EnrolledClasses { get; set; }
+        public ObservableCollection<Class> PlannedClasses { get; set; }
+        public string DisplayName { get; set; }
 
         public Semester(int[] Semester, ObservableCollection<Unit> EnrolledUnits)
         {

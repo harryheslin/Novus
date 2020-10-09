@@ -72,7 +72,7 @@ xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.Xa
                                             Grid.Row="4"
                                             VerticalOptions="Center"
                                             Placeholder="Pick a End Date"
-                                            MinimumDate="{Binding Today}"
+                                            MinimumDate="{Binding StartDateSelected}"
                                             Date="{Binding EndDateSelected}">
                 </telerikInput:RadDateTimePicker>
                 <Label Text="Event Colour:"

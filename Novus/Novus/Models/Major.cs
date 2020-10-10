@@ -13,13 +13,16 @@ namespace Novus.Models
         public ObservableCollection<Unit> Units { get; private set; }
         public string Name { get; private set; }
         public bool IsVisible { get; set; }
+        public bool IsNotVisible { get; set; }
 
         public Major(ObservableCollection<Information> information, ObservableCollection<Unit> units, string name)
         {
             this.Information = information;
             this.Units = units;
             this.Name = name;
-            this.IsVisible = false;
+            this.IsVisible = true;
+            this.IsNotVisible = false;
+            this.MajorID = GenerateMajorID();
         }
 
         public static ObservableCollection<Major> GenerateMajors(int number)
@@ -45,7 +48,7 @@ namespace Novus.Models
 
         public static int GenerateMajorID()
         {
-            majorID--;
+            majorID++;
             return majorID;
         }
     }

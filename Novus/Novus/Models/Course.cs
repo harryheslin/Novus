@@ -8,6 +8,9 @@ namespace Novus.Models
     class Course
     {
         public ObservableCollection<Information> GeneralInformation { get; private set; }
+        public bool IsVisibleGeneral { get; set; }
+        public bool IsVisibleMajor { get; set; }
+        public bool IsVisibleMinor { get; set; }
         public ObservableCollection<Major> Majors { get; private set; }
         public ObservableCollection<Minor> Minors { get; private set; }
 
@@ -16,6 +19,9 @@ namespace Novus.Models
             this.GeneralInformation = generalInformation;
             this.Majors = majors;
             this.Minors = minors;
+            this.IsVisibleGeneral = false;
+            this.IsVisibleMajor = true;
+            this.IsVisibleMinor = false;
         }
 
         public static ObservableCollection<Course> GenerateCourse()

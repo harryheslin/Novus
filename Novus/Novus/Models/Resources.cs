@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace Novus.Models
 {
     public class Resources
     {
         [PrimaryKey, AutoIncrement]
-        public int UnitID { get; private set; }
+        public int ResourceID { get; private set; }
+
+        [ForeignKey(typeof(Unit))]
+        public int UnitID { get; set; }
+
         public string Week { get; private set; }
         public string[] Files { get; private set; }
         public string Lecture { get; private set; }

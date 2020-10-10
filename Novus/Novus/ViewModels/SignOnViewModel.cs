@@ -25,7 +25,7 @@ namespace Novus.ViewModels
             }
         }
 
-        public ObservableCollection<Unit> Units
+        public List<Unit> Units
         {
             get => student.Enrollment[0].EnrolledUnits;
         }
@@ -132,7 +132,7 @@ namespace Novus.ViewModels
             }
         }
 
-        private Semester GetSemester(int[] semesterNumber)
+        private Semester GetSemester(List<int> semesterNumber)
         {
             int semesterIndex = Semester.GetSemesterIndex(Student.Enrollment, semesterNumber);
             if (semesterIndex != -1)

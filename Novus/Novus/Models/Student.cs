@@ -3,17 +3,23 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace Novus.Models
 {
     public class Student
     {
         [PrimaryKey, AutoIncrement]
-        public int StudentID { get; private set; }
-        public string Name { get; private set; }
-        public ObservableCollection<Semester> Enrollment { get; set; }
+        public int StudentID { get; set; }
+        public string Name { get; set; }
 
-        public Student(string Name, int StudentID, ObservableCollection<Semester> Enrollment)
+        [OneToMany]
+        public List<Semester> Enrollment { get; set; }
+        
+        [OneToMany]
+        public List<Events> Events { get; set; }
+
+        public Student(string Name, int StudentID, List<Semester> Enrollment)
         {
             this.Name = Name;
             this.StudentID = StudentID;
@@ -27,12 +33,12 @@ namespace Novus.Models
 
         public static Student GenerateStudent(int numberOfUnits)
         {
-            ObservableCollection<Semester> Enrollment = new ObservableCollection<Semester>();
+            List<Semester> Enrollment = new List<Semester>();
             for(int x=0; x<3; x++)
             {
                 for(int y=0; y<2; y++)
                 {
-                    Enrollment.Add(new Semester(new int[] {y, x}, Unit.GenerateUnits(numberOfUnits)));
+                    Enrollment.Add(new Semester(new List<int> {y, x}, Unit.GenerateUnits(numberOfUnits)));
                 }
             }
 

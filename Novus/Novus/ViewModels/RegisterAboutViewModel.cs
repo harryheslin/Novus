@@ -11,11 +11,11 @@ namespace Novus.ViewModels
     {
         public RegisterAboutViewModel()
         {
-            //course = Models.Course.GenerateCourse();
+            course = Models.Course.GenerateCourse();
         }
 
-        ObservableCollection<Course> course;
-        public ObservableCollection<Course> Course
+        List<Course> course;
+        public List<Course> Course
         {
             get => course;
             set

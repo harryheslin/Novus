@@ -65,8 +65,8 @@ namespace Novus.ViewModels
             }
         }
 
-        Assesment[] assesment;
-        public Assesment[] Assesments
+        List<Assesment> assesment;
+        public List<Assesment> Assesments
         {
             get => currentUnit.Assesments;
             set

@@ -34,7 +34,7 @@ namespace Novus.Views
         private void AddUnit(object sender, EventArgs e)
         {
             var viewModel = BindingContext as RegisterViewModel;
-            viewModel?.AddUnit((int[])((TappedEventArgs)e).Parameter);
+            viewModel?.AddUnit((List<int>)((TappedEventArgs)e).Parameter);
         }
     }
 }

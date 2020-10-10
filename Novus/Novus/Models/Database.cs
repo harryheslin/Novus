@@ -16,30 +16,19 @@ namespace Novus.Models
         public Database(string dbPath)
         {
             database = new SQLiteConnection(dbPath);
-
-            database.CreateTable<Information>();
             database.CreateTable<Announcement>();
             database.CreateTable<Assesment>();
             database.CreateTable<Class>();
-            database.CreateTable<Major>();
-            database.CreateTable<Minor>();
-            database.CreateTable<Course>();
             database.CreateTable<Resources>();
             database.CreateTable<Unit>();
             database.CreateTable<Semester>();
             database.CreateTable<Student>();
         }
 
-        public ObservableItemCollection<Unit> GetUnits()
+        public List<Unit> GetUnits()
         {
             List <Unit> values = database.Table<Unit>().ToList();
-            ObservableItemCollection<Unit> returnValue = new ObservableItemCollection<Unit>();
-            foreach(Unit value in values)
-            {
-                returnValue.Add(value);
-            }
-
-            return returnValue;
+            return values;
         }
 
         public void SaveUnit(Unit unit)

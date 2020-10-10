@@ -9,7 +9,7 @@ using Telerik.XamarinForms.Input;
 
 namespace Novus.Models
 {
-    class Events
+    public class Events
     {
         public string EventName { get; private set; }
         public string EventDescription { get; private set; }

@@ -29,7 +29,7 @@ namespace Novus.ViewModels
             }
         }
 
-        public ObservableCollection<Semester> Enrollment
+        public List<Semester> Enrollment
         {
             get => student.Enrollment;
         }
@@ -44,10 +44,10 @@ namespace Novus.ViewModels
             }
         }
 
-        public void AddUnit(int[] semesterNumber)
+        public void AddUnit(List<int> semesterNumber)
         {
             Semester semester = GetSemester(semesterNumber);
-            if(semester.SemesterNumber != new int[] { -1, -1 })
+            if(!semester.SemesterNumber.Equals(new List<int> { -1, -1 }))
             {
                 semester.EnrollInUnit(Unit.GenerateUnit());
                 SetSemesterValue(semester);
@@ -57,7 +57,7 @@ namespace Novus.ViewModels
         public void RemoveUnit(int unitID)
         {
             Semester semester = GetSemester(unitID);
-            if(semester.SemesterNumber != new int[] { -1, -1 })
+            if(!semester.SemesterNumber.Equals(new List<int>{ -1, -1 }))
             {
                 Unit unit = GetUnit(unitID);
 
@@ -118,7 +118,7 @@ namespace Novus.ViewModels
             }
         }
 
-        private Semester GetSemester(int[] semesterNumber)
+        private Semester GetSemester(List<int> semesterNumber)
         {
             int semesterIndex = Semester.GetSemesterIndex(Enrollment, semesterNumber);
             if(semesterIndex != -1)

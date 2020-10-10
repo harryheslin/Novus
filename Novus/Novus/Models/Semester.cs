@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace Novus.Models
 {
@@ -11,21 +12,51 @@ namespace Novus.Models
     {
         [PrimaryKey, AutoIncrement]
         public int SemesterID { get; set; }
-        public int[] SemesterNumber { get; set; }
-        public ObservableCollection<Unit> EnrolledUnits { get; set; }
-        public List<int> AvalibleUnits { get; set; }
-        public ObservableCollection<Class> EnrolledClasses { get; set; }
-        public ObservableCollection<Class> PlannedClasses { get; set; }
+
+        public List<int> SemesterNumber { get; private set; }
+
+        public int SemesterYear {
+            set
+            {
+                SemesterNumber[0] = value;
+            }
+        }
+
+        public int SemesterOfYear {
+            set 
+            {
+                SemesterNumber[1] = value;
+            } 
+        }
+
+        [OneToMany]
+        public List<Unit> EnrolledUnits { get; set; }
+
+        public int AvalibleUnitsCount { get; set; }
+
+        public List<int> AvalibleUnits { get; private set; }
+
+        [OneToMany]
+        public List<Class> EnrolledClasses { get; set; }
+
+        [OneToMany]
+        public List<Class> PlannedClasses { get; set; }
         public string DisplayName { get; set; }
 
-        public Semester(int[] Semester, ObservableCollection<Unit> EnrolledUnits)
+        [ForeignKey(typeof(Student))]
+        public int StudentID { get; set; }
+
+        public Semester(List<int> Semester, List<Unit> EnrolledUnits)
         {
             this.SemesterNumber = Semester;
+            this.SemesterYear = Semester[0];
+            this.SemesterOfYear = Semester[0];
             this.DisplayName = GetFullName();
-            this.EnrolledUnits = new ObservableCollection<Unit>();
+            this.EnrolledUnits = new List<Unit>();
             this.AvalibleUnits = new List<int>(new int[] { 1, 1, 1, 1 });
-            this.EnrolledClasses = new ObservableCollection<Class>();
-            this.PlannedClasses = new ObservableCollection<Class>();
+            this.AvalibleUnitsCount = 4;
+            this.EnrolledClasses = new List<Class>();
+            this.PlannedClasses = new List<Class>();
 
             foreach (Unit unit in EnrolledUnits)
             {
@@ -35,7 +66,7 @@ namespace Novus.Models
 
         public Semester()
         {
-            this.SemesterNumber = new int[] { -1, -1 };
+            this.SemesterNumber = new List<int>{ -1, -1 };
         }
 
         public void EnrollInUnit(Unit unit)
@@ -44,6 +75,7 @@ namespace Novus.Models
             {
                 EnrolledUnits.Add(unit);
                 AvalibleUnits.RemoveAt(0);
+                AvalibleUnitsCount--;
             }
         }
 
@@ -54,6 +86,7 @@ namespace Novus.Models
             {
                 EnrolledUnits.Remove(unit);
                 AvalibleUnits.Add(1);
+                AvalibleUnitsCount++;
 
                 foreach(Class oldClass in unit.Classes)
                 {
@@ -112,7 +145,7 @@ namespace Novus.Models
             }
         }
 
-        public static int[] GetUnitIndex(ObservableCollection<Semester> Enrollment, Unit indexingUnit)
+        public static int[] GetUnitIndex(List<Semester> Enrollment, Unit indexingUnit)
         {
             foreach(Semester semester in Enrollment)
             {
@@ -126,7 +159,7 @@ namespace Novus.Models
             return new int[]{-1, -1};
         }
 
-        public static int[] GetUnitIndex(ObservableCollection<Semester> Enrollment, int indexingUnitID)
+        public static int[] GetUnitIndex(List<Semester> Enrollment, int indexingUnitID)
         {
             foreach (Semester semester in Enrollment)
             {
@@ -140,7 +173,7 @@ namespace Novus.Models
             return new int[] { -1, -1 };
         }
 
-        public static int GetSemesterIndex(ObservableCollection<Semester> Enrollment, Semester indexingSemester)
+        public static int GetSemesterIndex(List<Semester> Enrollment, Semester indexingSemester)
         {
             foreach (Semester semester in Enrollment)
             {
@@ -153,11 +186,11 @@ namespace Novus.Models
             return -1;
         }
 
-        public static int GetSemesterIndex(ObservableCollection<Semester> Enrollment, int[] indexingSemesterNumber)
+        public static int GetSemesterIndex(List<Semester> Enrollment, List<int> indexingSemesterNumber)
         {
             foreach (Semester semester in Enrollment)
             {
-                if (semester.SemesterNumber == indexingSemesterNumber)
+                if (semester.SemesterNumber.Equals(indexingSemesterNumber))
                 {
                     return Enrollment.IndexOf(semester);
                 }

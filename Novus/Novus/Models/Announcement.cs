@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace Novus.Models
 {
@@ -9,6 +10,10 @@ namespace Novus.Models
     {
         [PrimaryKey, AutoIncrement]
         public int AnnouncementID { get; set; }
+
+        [ForeignKey(typeof(Unit))]
+        public int UnitID { get; set; }
+
         public string Unit { get; set; }
         public string Title { get; set; }
         public string Message { get; set; }

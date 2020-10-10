@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace Novus.Models
 {
@@ -24,6 +25,7 @@ namespace Novus.Models
         [PrimaryKey, AutoIncrement]
         public int ClassID { get; set; }
 
+        [ForeignKey(typeof(Unit))]
         public int UnitID { get; set; }
         public ClassType Type { get; set; }
         public DayOfWeek DayOfWeek { get; set; }
@@ -93,7 +95,7 @@ namespace Novus.Models
             return returnArray;
         }
 
-        public static int GetClassIndex(ObservableCollection<Class> classes, Class indexingClass)
+        public static int GetClassIndex(List<Class> classes, Class indexingClass)
         {
             foreach (Class classs in classes)
             {
@@ -105,7 +107,7 @@ namespace Novus.Models
             return -1;
         }
 
-        public static int GetClassIndex(ObservableCollection<Class> classes, int indexingClassID)
+        public static int GetClassIndex(List<Class> classes, int indexingClassID)
         {
             foreach (Class classs in classes)
             {

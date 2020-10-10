@@ -83,8 +83,8 @@ namespace Novus.ViewModels
             }
         }
 
-        ObservableCollection<Resources> unitResources;
-        public ObservableCollection<Resources> UnitResources
+        List<Resources> unitResources;
+        public List<Resources> UnitResources
         {
             get => currentUnit.UnitResources;
             set

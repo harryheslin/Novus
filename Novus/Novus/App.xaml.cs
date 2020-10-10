@@ -3,6 +3,7 @@ using System;
 using Xamarin.Forms;
 using System.IO;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace Novus
 {
@@ -21,8 +22,8 @@ namespace Novus
             }
         }
 
-        private Student student;
-        public Student Student
+        static Student student;
+        public static Student Student
         {
             get => student;
             set
@@ -32,8 +33,8 @@ namespace Novus
             }
         }
 
-        private ObservableCollection<Unit> units;
-        public ObservableCollection<Unit> Units
+        private List<Unit> units;
+        public List<Unit> Units
         {
             get => units;
         }

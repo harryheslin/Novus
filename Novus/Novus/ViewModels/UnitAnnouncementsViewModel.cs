@@ -58,8 +58,8 @@ namespace Novus.ViewModels
             }
         }
 
-        Announcement[] announcements;
-        public Announcement[] Announcements
+        List<Announcement> announcements;
+        public List<Announcement> Announcements
         {
             get => currentUnit.StaffAnnouncements;
             set

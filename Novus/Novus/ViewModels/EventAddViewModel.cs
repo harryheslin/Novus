@@ -1,22 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 using Novus.Models;
 using MvvmHelpers;
-using Telerik.XamarinForms.Input;
 using Xamarin.Forms;
 
 namespace Novus.ViewModels
 {
     class EventAddViewModel : BaseViewModel
-    {                              
-        
+    {
+
+        //public PropertyChangingEventHandler StartDateChange;
+
         public string NameInput { set; get; }
         public string DescriptionInput { set; get; }
         public Command AddEventButton { get; }
-        public DateTime StartDateSelected { get; set; }
-        public DateTime EndDateSelected { get; set; }
+        DateTime startDateSelected;
+        public DateTime StartDateSelected
+        {
+            get; set;
+            //get=> startDateSelected;
+            //set
+            //{            
+            //    SetProperty(ref startDateSelected, value);
+            //    OnPropertyChanged(nameof(StartDateSelected));
+            //}
+        }
+
+        //DateTime endDateSelected;
+        public DateTime EndDateSelected
+        {
+            get; set;
+            //get=> endDateSelected;
+            //set
+            //{
+            //    SetProperty(ref endDateSelected, value);
+            //    OnPropertyChanged(nameof(StartDateSelected));
+            //}
+        }
         public string ColourSelected { get; set; }
         public bool AllDayToggle { set; get; }
 
@@ -32,9 +51,9 @@ namespace Novus.ViewModels
 
         async void AddEventAndGoBack()
         {
-            
             Events.AddToEvents(NameInput, DescriptionInput, StartDateSelected, EndDateSelected, ColourSelected, AllDayToggle);
-            await Shell.Current.GoToAsync("calendar");
+            await Shell.Current.Navigation.PopAsync();
+            //Console.WriteLine(EndDateSelected);
         }
     }
 }

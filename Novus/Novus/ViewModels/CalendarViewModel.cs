@@ -1,8 +1,5 @@
 ﻿using MvvmHelpers;
 using Xamarin.Forms;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Novus.Views;
 
 namespace Novus.ViewModels

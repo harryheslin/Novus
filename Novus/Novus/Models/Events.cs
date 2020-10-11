@@ -15,9 +15,6 @@ namespace Novus.Models
         public string EventColour { get; private set; }
         public bool IsAllDay { get; private set; }
 
-        public int numEvents = 0;
-
-
         private static List<string> TitleList = new List<string>();
         private static List<string> DetailList = new List<string>();
         private static List<DateTime> StartDateList = new List<DateTime>();
@@ -54,33 +51,34 @@ namespace Novus.Models
         //determine the colour given the input from the list
         public static Color ColourDeterminer(string colour)
         {
-            Color eventColour;
             if (colour == "Red")
             {
-                eventColour = Color.Red;
+                return Color.Red;
             }
             else if (colour == "Blue")
             {
-                eventColour = Color.Blue;
+                return Color.Blue;
             }
             else if (colour == "Yellow")
             {
-                eventColour = Color.Yellow;
+                return Color.Yellow;
             }
             else if (colour == "Pink")
             {
-                eventColour = Color.Pink;
+                return Color.Pink;
             }
             else if (colour == "Orange")
             {
-                eventColour = Color.Orange;
+                return Color.Orange;
             }
             else if (colour == "Green")
             {
-                eventColour = Color.Green;
+                return Color.Green;
             }
-            return eventColour;
+            else
+            {
+                return Color.White;
+            }
         }
-
     }
 }

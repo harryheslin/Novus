@@ -7,10 +7,7 @@ using System.ComponentModel;
 namespace Novus.ViewModels
 {
     class EventAddViewModel : BaseViewModel
-    {
-
-        //public PropertyChangingEventHandler StartDateChange;
-
+    {      
         public string NameInput { set; get; }
         public string DescriptionInput { set; get; }
         public Command AddEventButton { get; }
@@ -63,8 +60,8 @@ namespace Novus.ViewModels
             }
             else
             {
-                Events.AddToEvents(NameInput, DescriptionInput, StartDateSelected, EndDateSelected, ColourSelected, AllDayToggle);
-                await Shell.Current.Navigation.PopAsync();
+                Events.AddToEvents(NameInput, DescriptionInput, StartDateSelected, EndDateSelected, ColourSelected, AllDayToggle);                
+                await Shell.Current.GoToAsync("calendar");
             }
         }
 

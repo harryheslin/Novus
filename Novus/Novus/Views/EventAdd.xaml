@@ -58,15 +58,15 @@ xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.Xa
                                             Grid.Row="3"
                                             VerticalOptions="Center"
                                             Placeholder="Pick a Start Date"
-                                            MinimumDate="{Binding Today}"
+                                            MinimumDate="{Binding Today}" 
                                             Date="{Binding StartDateSelected}">
                 </telerikInput:RadDateTimePicker>
-                <Label Text="End:"
+                    <Label Text="End:"
                        Grid.Column="0"
                        Grid.Row="4"
                        HorizontalOptions="End"
                        VerticalOptions="Center"/>
-                <telerikInput:RadDateTimePicker x:Name="datePickerEnd"
+                    <telerikInput:RadDateTimePicker x:Name="datePickerEnd"
                                             Grid.Column="1"
                                             Grid.ColumnSpan="2"
                                             Grid.Row="4"
@@ -74,27 +74,27 @@ xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.Xa
                                             Placeholder="Pick a End Date"
                                             MinimumDate="{Binding StartDateSelected}"
                                             Date="{Binding EndDateSelected}">
-                </telerikInput:RadDateTimePicker>
-                <Label Text="Event Colour:"
+                    </telerikInput:RadDateTimePicker>
+                    <Label Text="Event Colour:"
                        Grid.Column="0" Grid.Row="5"
                        HorizontalOptions="End"
                        VerticalOptions="Center"/>
-                <Picker SelectedItem="{Binding ColourSelected}"
+                    <Picker SelectedItem="{Binding ColourSelected}"
                         Grid.Column="1"
                         Grid.ColumnSpan="2"
                         Grid.Row="5"
                         VerticalOptions="Center">
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>Red</x:String>
-                            <x:String>Blue</x:String>
-                            <x:String>Yellow</x:String>
-                            <x:String>Pink</x:String>
-                            <x:String>Orange</x:String>
-                            <x:String>Green</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </Picker>
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Red</x:String>
+                                <x:String>Blue</x:String>
+                                <x:String>Yellow</x:String>
+                                <x:String>Pink</x:String>
+                                <x:String>Orange</x:String>
+                                <x:String>Green</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
             </Grid>
             <Button Text="Add"
                     Command="{Binding AddEventButton}"

@@ -6,34 +6,23 @@ using System.Text;
 using System.Windows.Input;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
+using Novus.Data;
 
 namespace Novus.Models
 {
     public class Unit
     {
-        [PrimaryKey, AutoIncrement]
-        public int UnitID { get; private set; }
-
-        [ForeignKey(typeof(Semester))]
+        public int UnitID { get; set; }
         public int SemesterID { get; set; }
-
         public bool IsVisible { get; set; }
         public string Code { get; private set; }
-        public string Name {get; private set;}
+        public string Name { get; private set; }
+        public string FullName { get; set; }
         public List<string> Information { get; private set; }
-        public string FullName { get; private set; }
-
-        [OneToMany]
-        public List<Class> Classes { get; private set; }
-        public string Colour { get; private set; }
-
-        [OneToMany]
+        public List<Class> Classes { get; set; }
+        public string Colour { get; set; }
         public List<Announcement> StaffAnnouncements { get; set; }
-
-        [OneToMany]
         public List<Assesment> Assesments { get; set; }
-
-        [OneToMany]
         public List<Resources> UnitResources { get; set; }
 
         private static string[] ColourCodes = { "#80EE8B", "#F3B15B", "#A1F1F4", "#EFE379" };
@@ -45,17 +34,69 @@ namespace Novus.Models
             this.Information = Information;
             this.IsVisible = false;
             this.Classes = new List<Class>();
+            this.StaffAnnouncements = new List<Announcement>();
+            this.Assesments = new List<Assesment>();
+            this.UnitResources = new List<Resources>();
             GenerateFullName();
         }
 
         public Unit()
         {
-            this.UnitID = -1;
+            UnitID = -1;
         }
 
         private void GenerateFullName()
         {
             this.FullName = Code + ' ' + Name;
+        }
+
+        public UnitDB ConvertToDB()
+        {
+            List<ClassDB> classes = new List<ClassDB>();
+            foreach (Class value in Classes)
+            {
+                classes.Add(value.ConvertToDB());
+            }
+
+            List<AnnouncementDB> announcements = new List<AnnouncementDB>();
+            foreach (Announcement value in StaffAnnouncements)
+            {
+                announcements.Add(value.ConvertToDB());
+            }
+
+            List<AssesmentDB> assesments = new List<AssesmentDB>();
+            foreach (Assesment value in Assesments)
+            {
+                assesments.Add(value.ConvertToDB());
+            }
+
+            List<ResourcesDB> resources = new List<ResourcesDB>();
+            foreach (Resources value in UnitResources)
+            {
+                resources.Add(value.ConvertToDB());
+            }
+
+            string information = "";
+
+            foreach (string value in Information)
+            {
+                information += value + "|";
+            }
+
+            UnitDB returnValue = new UnitDB
+            {
+                UnitID = this.UnitID,
+                SemesterID = this.SemesterID,
+                Code = this.Code,
+                Name = this.Name,
+                Information = information,
+                Classes = classes,
+                StaffAnnouncements = announcements,
+                Assesments = assesments,
+                UnitResources = resources
+            };
+
+            return returnValue;
         }
 
         public void AddClasses(ObservableCollection<Class> classes)
@@ -108,8 +149,8 @@ namespace Novus.Models
             }
           
             Unit unit = new Unit("IFB101", "Test Subject", BlankInformation);
-            unit.AddClasses(Class.GenerateClassLecture(2, unit.UnitID));
-            unit.AddClasses(Class.GenerateClassTutorial(4, unit.UnitID));
+            unit.AddClasses(Class.GenerateClassLecture(2));
+            unit.AddClasses(Class.GenerateClassTutorial(4));
             //unit.StaffAnnouncements = (Announcement.GenerateAnnouncements("IFB101" , 3));
             //unit.Assesments = (Assesment.GenerateAssesments("IFB101", 2));
             //unit.UnitResources = (Resources.GenerateResources());

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Novus.Data;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
 
@@ -8,19 +9,15 @@ namespace Novus.Models
 {
     public class Assesment
     {
-        [PrimaryKey, AutoIncrement]
         public int AssesmentID { get; set; }
-
-        [ForeignKey(typeof(Unit))]
         public int UnitID { get; set; }
-
-        public string Code { get; set; }
-        public string Title { get; set; }
-        public string Percentage { get; set; }
-        public string ReleaseDate { get; set; }
-        public string DueDate { get; set; }
-        public bool Graded { get; set; }
-        public string GradedDate { get; set; }
+        public string Code { get; private set; }
+        public string Title { get; private set; }
+        public string Percentage { get; private set; }
+        public string ReleaseDate { get; private set; }
+        public string DueDate { get; private set; }
+        public bool Graded { get; private set; }
+        public string GradedDate { get; private set; }
         public Assesment(string code, string title, int percentage, string releaseDate, string dueDate)
         {
             this.Code = code;
@@ -30,9 +27,22 @@ namespace Novus.Models
             this.DueDate = dueDate;
         }
 
-        public Assesment()
+        public AssesmentDB ConvertToDB()
         {
-            this.AssesmentID = -1;
+            AssesmentDB returnValue = new AssesmentDB
+            {
+                AssesmentID = this.AssesmentID,
+                UnitID = this.UnitID,
+                Code = this.Code,
+                Title = this.Title,
+                Percentage = this.Percentage,
+                ReleaseDate = this.ReleaseDate,
+                DueDate = this.DueDate,
+                Graded = this.Graded,
+                GradedDate = this.GradedDate
+            };
+
+            return returnValue;
         }
 
         public static Assesment[] GenerateAssesments(string unitCode, int returnArrayLength)

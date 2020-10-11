@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using Novus.Data;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
 
@@ -10,51 +11,21 @@ namespace Novus.Models
 {
     public class Semester
     {
-        [PrimaryKey, AutoIncrement]
         public int SemesterID { get; set; }
-
-        public List<int> SemesterNumber { get; private set; }
-
-        public int SemesterYear {
-            set
-            {
-                SemesterNumber[0] = value;
-            }
-        }
-
-        public int SemesterOfYear {
-            set 
-            {
-                SemesterNumber[1] = value;
-            } 
-        }
-
-        [OneToMany]
-        public List<Unit> EnrolledUnits { get; set; }
-
-        public int AvalibleUnitsCount { get; set; }
-
-        public List<int> AvalibleUnits { get; private set; }
-
-        [OneToMany]
-        public List<Class> EnrolledClasses { get; set; }
-
-        [OneToMany]
-        public List<Class> PlannedClasses { get; set; }
-        public string DisplayName { get; set; }
-
-        [ForeignKey(typeof(Student))]
         public int StudentID { get; set; }
+        public List<int> SemesterNumber { get; private set; }
+        public List<Unit> EnrolledUnits { get; set; }
+        public List<int> AvalibleUnits { get; private set; }
+        public List<Class> EnrolledClasses { get; set; }
+        public List<Class> PlannedClasses { get; set; }
+        public string DisplayName { get; private set; }
 
         public Semester(List<int> Semester, List<Unit> EnrolledUnits)
         {
             this.SemesterNumber = Semester;
-            this.SemesterYear = Semester[0];
-            this.SemesterOfYear = Semester[0];
             this.DisplayName = GetFullName();
             this.EnrolledUnits = new List<Unit>();
             this.AvalibleUnits = new List<int>(new int[] { 1, 1, 1, 1 });
-            this.AvalibleUnitsCount = 4;
             this.EnrolledClasses = new List<Class>();
             this.PlannedClasses = new List<Class>();
 
@@ -66,7 +37,46 @@ namespace Novus.Models
 
         public Semester()
         {
-            this.SemesterNumber = new List<int>{ -1, -1 };
+            SemesterID = -1;
+        }
+
+        public SemesterDB ConvertToDB()
+        {
+            List<UnitDB> enrolledUnits = new List<UnitDB>();
+            foreach (Unit value in EnrolledUnits)
+            {
+                enrolledUnits.Add(value.ConvertToDB());
+            }
+
+            List<ClassDB> enrolledClasses = new List<ClassDB>();
+            foreach (Class value in EnrolledClasses)
+            {
+                enrolledClasses.Add(value.ConvertToDB());
+            }
+
+            List<ClassDB> plannedClasses = new List<ClassDB>();
+            foreach (Class value in PlannedClasses)
+            {
+                plannedClasses.Add(value.ConvertToDB());
+            }
+
+            SemesterDB returnValue = new SemesterDB
+            {
+                SemesterID = this.SemesterID,
+                StudentID = this.StudentID,
+                SemesterYear = this.SemesterNumber[1],
+                SemesterOfYear = this.SemesterNumber[0],
+                EnrolledUnits = enrolledUnits,
+                EnrolledClasses = enrolledClasses,
+                PlannedClasses = plannedClasses
+            };
+
+            return returnValue;
+        }
+
+        private string GetFullName()
+        {
+            return String.Format("Year {0} Semester {1}", this.SemesterNumber[1] + 1, this.SemesterNumber[0] + 1);
         }
 
         public void EnrollInUnit(Unit unit)
@@ -75,7 +85,6 @@ namespace Novus.Models
             {
                 EnrolledUnits.Add(unit);
                 AvalibleUnits.RemoveAt(0);
-                AvalibleUnitsCount--;
             }
         }
 
@@ -86,7 +95,6 @@ namespace Novus.Models
             {
                 EnrolledUnits.Remove(unit);
                 AvalibleUnits.Add(1);
-                AvalibleUnitsCount++;
 
                 foreach(Class oldClass in unit.Classes)
                 {
@@ -197,11 +205,6 @@ namespace Novus.Models
             }
 
             return -1;
-        }
-
-        private string GetFullName()
-        {
-            return String.Format("Year {0} Semester {1}", this.SemesterNumber[1]+1, this.SemesterNumber[0]+1);
         }
     }
 }

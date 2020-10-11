@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Novus.Data;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
 
@@ -21,25 +22,22 @@ namespace Novus.Models
 
     public class Class
     {
-
-        [PrimaryKey, AutoIncrement]
         public int ClassID { get; set; }
-
-        [ForeignKey(typeof(Unit))]
         public int UnitID { get; set; }
-        public ClassType Type { get; set; }
-        public DayOfWeek DayOfWeek { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
-        public string DisplayTime { get; set; }
-        public ClassMode Mode { get; set; }
-        public string DisplayMode { get; set; }
-        public string Room { get; set; }
+        public int SemesterID { get; set; }
+        public ClassType Type { get; private set; }
+        public DayOfWeek DayOfWeek { get; private set; }
+        public DateTime StartTime { get; private set; }
+        public DateTime EndTime { get; private set; }
+        public string DisplayTime { get; private set; }
+        public ClassMode Mode { get; private set; }
+        public string DisplayMode { get; private set; }
+        public string Room { get; private set; }
         public bool Registerd { get; set; }
         public bool Planned { get; set; }
-        public string Tag { get; set; }
+        public string Tag { get; private set; }
 
-        public Class(ClassType type, DayOfWeek dayOfWeek,DateTime startTime, DateTime endTime, ClassMode mode, string room, int UnitID)
+        public Class(ClassType type, DayOfWeek dayOfWeek,DateTime startTime, DateTime endTime, ClassMode mode, string room)
         {
             this.Type = type;
             this.DayOfWeek = dayOfWeek;
@@ -57,7 +55,30 @@ namespace Novus.Models
 
         public Class()
         {
-            this.ClassID = -1;
+            ClassID = -1;
+        }
+
+        public ClassDB ConvertToDB()
+        {
+            ClassDB returnValue = new ClassDB
+            {
+                ClassID = this.ClassID,
+                UnitID = this.UnitID,
+                SemesterID = this.SemesterID,
+                Type = this.Type,
+                DayOfWeek = this.DayOfWeek,
+                StartTime = this.StartTime,
+                EndTime = this.EndTime,
+                DisplayMode = this.DisplayMode,
+                Mode = this.Mode,
+                DisplayTime = this.DisplayTime,
+                Room = this.Room,
+                Registerd = this.Registerd,
+                Planned = this.Planned,
+                Tag = this.Tag
+            };
+
+            return returnValue;
         }
 
         private string GenerateTag()
@@ -76,21 +97,21 @@ namespace Novus.Models
             return Enum.GetName(typeof(ClassMode), Mode);
         }
 
-        public static ObservableCollection<Class> GenerateClassLecture(int returnArrayLength, int unitID)
+        public static ObservableCollection<Class> GenerateClassLecture(int returnArrayLength)
         {
             ObservableCollection<Class> returnArray = new ObservableCollection<Class>();
             for (int i = 0; i < returnArrayLength; i++) {
-                returnArray.Add(new Class(ClassType.Lecture, DayOfWeek.Monday, DateTime.Now, DateTime.Now, ClassMode.Virtual, "Z501", unitID));
+                returnArray.Add(new Class(ClassType.Lecture, DayOfWeek.Monday, DateTime.Now, DateTime.Now, ClassMode.Virtual, "Z501"));
             }
             return returnArray;
         }
 
-        public static ObservableCollection<Class> GenerateClassTutorial( int returnArrayLength, int unitID)
+        public static ObservableCollection<Class> GenerateClassTutorial( int returnArrayLength)
         {
             ObservableCollection<Class> returnArray = new ObservableCollection<Class>();
             for (int i = 0; i < returnArrayLength; i++)
             {
-                returnArray.Add(new Class(ClassType.Tutorial, DayOfWeek.Monday, DateTime.Now, DateTime.Now, ClassMode.Virtual, "Z501", unitID));
+                returnArray.Add(new Class(ClassType.Tutorial, DayOfWeek.Monday, DateTime.Now, DateTime.Now, ClassMode.Virtual, "Z501"));
             }
             return returnArray;
         }

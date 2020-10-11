@@ -42,9 +42,10 @@ namespace Novus
         public App()
         {
             InitializeComponent();
-            MainPage = new MainPage();
             student = Database.GetStudent();
             units = Database.GetUnits();
+            MainPage = new MainPage();
+            
         }
 
         protected override void OnStart()

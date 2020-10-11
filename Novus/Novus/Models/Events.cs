@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
@@ -6,17 +7,21 @@ using System.Linq;
 using System.Text;
 using Telerik.Windows.Documents.Spreadsheet.Expressions;
 using Telerik.XamarinForms.Input;
+using SQLiteNetExtensions.Attributes;
+using Novus.Data;
 
 namespace Novus.Models
 {
     public class Events
     {
-        public string EventName { get; private set; }
-        public string EventDescription { get; private set; }
-        public DateTime StartDate { get; private set; }
-        public DateTime EndDate { get; private set; }
-        public string EventColour { get; private set; }
-        public bool IsAllDay { get; private set; }
+        public int EventID { get; set; }
+        public int StudentID { get; set; }
+        public string EventName { get; set; }
+        public string EventDescription { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string EventColour { get; set; }
+        public bool IsAllDay { get; set; }
 
         public int numEvents = 0;
 
@@ -29,6 +34,23 @@ namespace Novus.Models
             this.EventColour = EventColour;
             this.IsAllDay = IsAllDay;
         }*/
+
+        public EventsDB ConvertToDB()
+        {
+            EventsDB returnValue = new EventsDB
+            {
+                EventID = this.EventID,
+                StudentID = this.StudentID,
+                EventName = this.EventName,
+                EventDescription = this.EventDescription,
+                StartDate = this.StartDate,
+                EndDate = this.EndDate,
+                EventColour = this.EventColour,
+                IsAllDay = this.IsAllDay
+            };
+
+            return returnValue;
+        }
 
         public static List<string> TitleList = new List<string>();
         public static List<string> DetailList = new List<string>();

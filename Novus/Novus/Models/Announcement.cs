@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Novus.Data;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
 
@@ -8,17 +9,13 @@ namespace Novus.Models
 {
     public class Announcement
     {
-        [PrimaryKey, AutoIncrement]
         public int AnnouncementID { get; set; }
-
-        [ForeignKey(typeof(Unit))]
-        public int UnitID { get; set; }
-
-        public string Unit { get; set; }
-        public string Title { get; set; }
-        public string Message { get; set; }
-        public DateTime Date { get; set; }
-        public string User { get; set; }
+        public int UnitID { get; private set; }
+        public string Unit { get; private set; }
+        public string Title { get; private set; }
+        public string Message { get; private set; }
+        public DateTime Date { get; private set; }
+        public string User { get; private set; }
 
         public Announcement(string unit, string title, string message, DateTime date, string user)
         {
@@ -29,8 +26,20 @@ namespace Novus.Models
             this.User = user;
         }
 
-        public Announcement() {
-            this.AnnouncementID = -1;
+        public AnnouncementDB ConvertToDB()
+        {
+            AnnouncementDB returnValue = new AnnouncementDB
+            {
+                AnnouncementID = this.AnnouncementID,
+                UnitID = this.UnitID,
+                Unit = this.Unit,
+                Title = this.Title,
+                Message = this.Message,
+                Date = this.Date,
+                User = this.User
+            };
+
+            return returnValue;
         }
 
         public static Announcement[] GenerateAnnouncements(string unitCode, int returnArrayLength)

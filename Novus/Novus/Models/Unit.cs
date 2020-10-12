@@ -20,6 +20,7 @@ namespace Novus.Models
         public string Colour { get; private set; }
         public Announcement[] StaffAnnouncements { get; set; }
         public Assesment[] Assesments { get; set; }
+        public Assesment[] GradedAssesments { get; set; }
         public ObservableCollection<Resources> UnitResources { get; set; }
 
         private static string[] ColourCodes = { "#80EE8B", "#F3B15B", "#A1F1F4", "#EFE379" };
@@ -99,6 +100,7 @@ namespace Novus.Models
             unit.AddClasses(Class.GenerateClassTutorial(4, unit.UnitID));
             unit.StaffAnnouncements = (Announcement.GenerateAnnouncements("IFB101" , 3));
             unit.Assesments = (Assesment.GenerateAssesments("IFB101", 2));
+            unit.GradedAssesments = (Assesment.GenerateCompleteAssesment("IFB101", 1));
             unit.UnitResources = (Resources.GenerateResources());
             return unit;
         }

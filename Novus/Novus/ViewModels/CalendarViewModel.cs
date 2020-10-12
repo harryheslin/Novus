@@ -1,6 +1,5 @@
 ﻿using MvvmHelpers;
 using Xamarin.Forms;
-using Novus.Views;
 
 namespace Novus.ViewModels
 {
@@ -25,11 +24,14 @@ namespace Novus.ViewModels
         async void GoToDayPage()
         {
             await Shell.Current.GoToAsync("calendarDay");
+            Shell.Current.Navigation.RemovePage(Shell.Current.Navigation.NavigationStack[Shell.Current.Navigation.NavigationStack.Count - 2]);
         }
 
         async void GoToWeekPage()
         {
             await Shell.Current.GoToAsync("calendarWeek");
+            Shell.Current.Navigation.RemovePage(Shell.Current.Navigation.NavigationStack[Shell.Current.Navigation.NavigationStack.Count - 2]);
+
         }
 
         async void GoToNew()

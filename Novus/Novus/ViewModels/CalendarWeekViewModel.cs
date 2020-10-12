@@ -21,14 +21,16 @@ namespace Novus.ViewModels
         async void GoToMonthPage()
         {
             await Shell.Current.GoToAsync("calendar");
+            Shell.Current.Navigation.RemovePage(Shell.Current.Navigation.NavigationStack[Shell.Current.Navigation.NavigationStack.Count - 2]);
         }
 
         async void GoToDayPage()
         {
             await Shell.Current.GoToAsync("calendarDay");
+            Shell.Current.Navigation.RemovePage(Shell.Current.Navigation.NavigationStack[Shell.Current.Navigation.NavigationStack.Count - 2]);
         }
         async void GoToNew()
-        {
+        {  
             await Shell.Current.GoToAsync("eventAdd");
         }
     }

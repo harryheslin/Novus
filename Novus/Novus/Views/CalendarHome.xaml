@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Novus.Views.CalendarHome"
+             xmlns:viewmodel="clr-namespace:Novus.ViewModels">
+
+    <ContentPage.BindingContext>
+        <viewmodel:CalendarHomeViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout
+            BackgroundColor="#A3A3A3">
+            <Label Text="Welcome to the Calendar"
+                   FontSize="Title"
+                   HorizontalOptions="Center"
+                   TextColor="White"/>
+            <Label Text="please select the calendar you wish to view"
+                   FontSize="Subtitle"
+                   HorizontalOptions="Center"
+                   TextColor="White"/>
+            <Grid Margin="10,10,10,300"
+                  VerticalOptions="FillAndExpand">
+                <Button Text="Month"
+                    BackgroundColor="#525252"
+                        TextColor="White"
+                        Grid.Row="0"
+                        VerticalOptions="Center"
+                        Command="{Binding MonthViewButton}"/>
+                <Button Text="Week"                    
+                    BackgroundColor="#525252"
+                    TextColor="White"
+                        Grid.Row="1"
+                        VerticalOptions="Center"
+                        Command="{Binding WeekViewButton}"/>
+                <Button Text="Day"
+                    BackgroundColor="#525252"
+                    TextColor="White"
+                    Grid.Row="2"
+                        VerticalOptions="Center"
+                        Command="{Binding DayViewButton}"/>
+            </Grid>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

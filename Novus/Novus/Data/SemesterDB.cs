@@ -3,6 +3,7 @@ using SQLite;
 using SQLiteNetExtensions.Attributes;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Novus.Data
@@ -28,7 +29,7 @@ namespace Novus.Data
 
         public Semester ConvertToModel()
         {
-            List<Unit> enrolledUnits = new List<Unit>();
+            ObservableCollection<Unit> enrolledUnits = new ObservableCollection<Unit>();
             try
             {
                 foreach (UnitDB value in EnrolledUnits)
@@ -37,7 +38,7 @@ namespace Novus.Data
                 }
             } catch { }
 
-            List<Class> enrolledClasses = new List<Class>();
+            ObservableCollection<Class> enrolledClasses = new ObservableCollection<Class>();
             try
             {
                 foreach (ClassDB value in EnrolledClasses)
@@ -48,7 +49,7 @@ namespace Novus.Data
 
             
 
-            List<Class> plannedClasses = new List<Class>();
+            ObservableCollection<Class> plannedClasses = new ObservableCollection<Class>();
             try
             {
                 foreach (ClassDB value in PlannedClasses)
@@ -58,7 +59,7 @@ namespace Novus.Data
             } catch { }
             
 
-            Semester returnValue = new Semester(new List<int> { SemesterOfYear, SemesterYear }, enrolledUnits);
+            Semester returnValue = new Semester(new ObservableCollection<int> { SemesterOfYear, SemesterYear }, enrolledUnits);
             returnValue.SemesterID = SemesterID;
             returnValue.StudentID = StudentID;
             returnValue.EnrolledClasses = enrolledClasses;

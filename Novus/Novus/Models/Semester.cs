@@ -13,21 +13,21 @@ namespace Novus.Models
     {
         public int SemesterID { get; set; }
         public int StudentID { get; set; }
-        public List<int> SemesterNumber { get; private set; }
-        public List<Unit> EnrolledUnits { get; set; }
-        public List<int> AvalibleUnits { get; private set; }
-        public List<Class> EnrolledClasses { get; set; }
-        public List<Class> PlannedClasses { get; set; }
+        public ObservableCollection<int> SemesterNumber { get; private set; }
+        public ObservableCollection<Unit> EnrolledUnits { get; set; }
+        public ObservableCollection<int> AvalibleUnits { get; private set; }
+        public ObservableCollection<Class> EnrolledClasses { get; set; }
+        public ObservableCollection<Class> PlannedClasses { get; set; }
         public string DisplayName { get; private set; }
 
-        public Semester(List<int> Semester, List<Unit> EnrolledUnits)
+        public Semester(ObservableCollection<int> Semester, ObservableCollection<Unit> EnrolledUnits)
         {
             this.SemesterNumber = Semester;
             this.DisplayName = GetFullName();
-            this.EnrolledUnits = new List<Unit>();
-            this.AvalibleUnits = new List<int>(new int[] { 1, 1, 1, 1 });
-            this.EnrolledClasses = new List<Class>();
-            this.PlannedClasses = new List<Class>();
+            this.EnrolledUnits = new ObservableCollection<Unit>();
+            this.AvalibleUnits = new ObservableCollection<int>(new int[] { 1, 1, 1, 1 });
+            this.EnrolledClasses = new ObservableCollection<Class>();
+            this.PlannedClasses = new ObservableCollection<Class>();
 
             foreach (Unit unit in EnrolledUnits)
             {
@@ -153,7 +153,7 @@ namespace Novus.Models
             }
         }
 
-        public static int[] GetUnitIndex(List<Semester> Enrollment, Unit indexingUnit)
+        public static int[] GetUnitIndex(ObservableCollection<Semester> Enrollment, Unit indexingUnit)
         {
             foreach(Semester semester in Enrollment)
             {
@@ -167,7 +167,7 @@ namespace Novus.Models
             return new int[]{-1, -1};
         }
 
-        public static int[] GetUnitIndex(List<Semester> Enrollment, int indexingUnitID)
+        public static int[] GetUnitIndex(ObservableCollection<Semester> Enrollment, int indexingUnitID)
         {
             foreach (Semester semester in Enrollment)
             {
@@ -181,7 +181,7 @@ namespace Novus.Models
             return new int[] { -1, -1 };
         }
 
-        public static int GetSemesterIndex(List<Semester> Enrollment, Semester indexingSemester)
+        public static int GetSemesterIndex(ObservableCollection<Semester> Enrollment, Semester indexingSemester)
         {
             foreach (Semester semester in Enrollment)
             {
@@ -194,7 +194,7 @@ namespace Novus.Models
             return -1;
         }
 
-        public static int GetSemesterIndex(List<Semester> Enrollment, List<int> indexingSemesterNumber)
+        public static int GetSemesterIndex(ObservableCollection<Semester> Enrollment, ObservableCollection<int> indexingSemesterNumber)
         {
             foreach (Semester semester in Enrollment)
             {

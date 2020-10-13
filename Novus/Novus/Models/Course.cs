@@ -11,11 +11,11 @@ namespace Novus.Models
     {
         [PrimaryKey, AutoIncrement]
         public int CourseID { get; set; }
-        public List<string> GeneralInformation { get; set; }
-        public List<Major> Majors { get; set; }
-        public List<Minor> Minors { get; set; }
+        public ObservableCollection<string> GeneralInformation { get; set; }
+        public ObservableCollection<Major> Majors { get; set; }
+        public ObservableCollection<Minor> Minors { get; set; }
 
-        public Course(List<string> generalInformation, List<Major> majors, List<Minor> minors)
+        public Course(ObservableCollection<string> generalInformation, ObservableCollection<Major> majors, ObservableCollection<Minor> minors)
         {
             this.GeneralInformation = generalInformation;
             this.Majors = majors;
@@ -25,19 +25,6 @@ namespace Novus.Models
         public Course()
         {
             this.CourseID = -1;
-        }
-
-        public static List<Course> GenerateCourse()
-        {
-            List<string> BlankInformation = new List<string>();
-            for (int i = 0; i < 4; i++)
-            {
-                BlankInformation.Add("THIS IS INFORMATION THAT WILL BE CHANGED");
-            }
-
-            List<Course> course = new List<Course>();
-            course.Add(new Course(BlankInformation, Major.GenerateMajors(2), Minor.GenerateMinors(4)));
-            return course;
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Novus.ViewModels
         {
             Appointments = Events.Appointments;
         }
+
         ObservableCollection<Appointment> appointments;
         public ObservableCollection<Appointment> Appointments
         {

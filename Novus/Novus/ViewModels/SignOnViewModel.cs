@@ -11,7 +11,7 @@ namespace Novus.ViewModels
     {
         public SignOnViewModel()
         {
-            student = Student.GenerateStudent(3);
+            student = App.Student;
         }
 
         Student student;
@@ -20,14 +20,15 @@ namespace Novus.ViewModels
             get => student;
             set
             {
-                SetProperty(ref student, value);
+                App.Student = value;
+                SetProperty(ref student, App.Student);
                 OnPropertyChanged(nameof(Student));
             }
         }
 
-        public List<Unit> Units
+        public ObservableCollection<Unit> Units
         {
-            get => student.Enrollment[0].EnrolledUnits;
+            get => student.CurrentUnits;
         }
 
         public void SetIsVisible(int unitID)
@@ -132,7 +133,7 @@ namespace Novus.ViewModels
             }
         }
 
-        private Semester GetSemester(List<int> semesterNumber)
+        private Semester GetSemester(ObservableCollection<int> semesterNumber)
         {
             int semesterIndex = Semester.GetSemesterIndex(Student.Enrollment, semesterNumber);
             if (semesterIndex != -1)

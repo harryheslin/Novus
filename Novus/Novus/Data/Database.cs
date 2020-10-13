@@ -8,6 +8,7 @@ using SQLite;
 using Xamarin.Essentials;
 using Novus.Data;
 using SQLiteNetExtensions.Extensions;
+using System.Collections.ObjectModel;
 
 namespace Novus.Models
 {
@@ -37,7 +38,7 @@ namespace Novus.Models
 
             if(database.Table<UnitDB>().ToList().Count == 0)
             {
-                List<Unit> units = Datastore.GenerateAllUnits();
+                ObservableCollection<Unit> units = Datastore.GenerateAllUnits();
                 foreach(Unit unit in units)
                 {
                     SaveUnit(unit);

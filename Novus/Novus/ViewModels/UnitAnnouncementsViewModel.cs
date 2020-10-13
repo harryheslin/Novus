@@ -2,6 +2,7 @@
 using Novus.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using Xamarin.Forms;
 
@@ -10,25 +11,25 @@ namespace Novus.ViewModels
     [QueryProperty("Unit", "unit")]
     class UnitAnnouncementsViewModel : BaseViewModel
     {
-        static Student Student = Student.GenerateStudent(4);
+        static Student Student = App.Student;
 
-        static public Unit currentUnit = Student.Enrollment[0].EnrolledUnits[0];
+        static public Unit currentUnit = Student.CurrentUnits[0];
 
         public string GetUnitNumber(string routeCode)
         {
             switch (routeCode)
             {
                 case "/unit1":
-                    currentUnit = Student.Enrollment[0].EnrolledUnits[0];
+                    currentUnit = Student.CurrentUnits[0];
                     return currentUnit.FullName;
                 case "/IMPL_unit2/unit2":
-                    currentUnit = Student.Enrollment[0].EnrolledUnits[1];
+                    currentUnit = Student.CurrentUnits[1];
                     return currentUnit.FullName;
                 case "/IMPL_unit3/unit3":
-                    currentUnit = Student.Enrollment[0].EnrolledUnits[2];
+                    currentUnit = Student.CurrentUnits[2];
                     return currentUnit.FullName;
                 case "/IMPL_unit4/unit4":
-                    currentUnit = Student.Enrollment[0].EnrolledUnits[3];
+                    currentUnit = Student.CurrentUnits[3];
                     return currentUnit.FullName;
                 default:
                     return "Error";
@@ -58,8 +59,8 @@ namespace Novus.ViewModels
             }
         }
 
-        List<Announcement> announcements;
-        public List<Announcement> Announcements
+        ObservableCollection<Announcement> announcements;
+        public ObservableCollection<Announcement> Announcements
         {
             get => currentUnit.StaffAnnouncements;
             set

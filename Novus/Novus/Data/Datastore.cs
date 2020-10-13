@@ -1,37 +1,42 @@
 ﻿using Novus.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Novus.Data
 {
     class Datastore
     {
-        public static List<Unit> AllUnits = GenerateAllUnits();
+        public static ObservableCollection<Unit> AllUnits = GenerateAllUnits();
 
         public static Student GetStudent()
         {
-            return new Student("James Robertson", GetSemesters());
+            Student returnValue = new Student("James Robertson", GetSemesters());
+            ObservableCollection<Unit> currentUnits = GetUnits(new string[] { "IFB102", "IFB103", "IFB104", "IFB105" });
+            returnValue.CurrentUnits = currentUnits;
+
+            return returnValue;
         }
 
-        public static List<Semester> GetSemesters()
+        public static ObservableCollection<Semester> GetSemesters()
         {
-            List<Semester> semesters = new List<Semester>();
+            ObservableCollection<Semester> semesters = new ObservableCollection<Semester>();
 
-            List<Unit> units = GetUnits(new string[] { "IFB102", "IFB103", "IFB104", "IFB105" });
-            Semester semester = new Semester(new List<int> {0, 0}, units);
+            ObservableCollection<Unit> units = GetUnits(new string[] { "IFB102", "IFB103", "IFB104", "IFB105" });
+            Semester semester = new Semester(new ObservableCollection<int> {0, 0}, units);
             semesters.Add(semester);
 
             units = GetUnits(new string[] { "CAB201", "CAB202" });
-            semester = new Semester(new List<int> { 1, 0 }, units);
+            semester = new Semester(new ObservableCollection<int> { 1, 0 }, units);
             semesters.Add(semester);
 
-            units = new List<Unit>();
+            units = new ObservableCollection<Unit>();
             for(int x = 1; x < 3; x++)
             {
                 for(int y = 0; y < 2; y++)
                 {
-                    semester = new Semester(new List<int> { y, x }, units);
+                    semester = new Semester(new ObservableCollection<int> { y, x }, units);
                     semesters.Add(semester);
                 }
             }
@@ -39,12 +44,12 @@ namespace Novus.Data
             return semesters;
         }
 
-        public static List<Minor> GetMinors()
+        public static ObservableCollection<Minor> GetMinors()
         {
-            List<Minor> minors = new List<Minor>();
+            ObservableCollection<Minor> minors = new ObservableCollection<Minor>();
 
-            List<Unit> units = GetUnits(new string[] {"IAB320", "IAB321", "IAB402", "IAB303", "IAB250"});
-            List<string> information = new List<string>();
+            ObservableCollection<Unit> units = GetUnits(new string[] {"IAB320", "IAB321", "IAB402", "IAB303", "IAB250"});
+            ObservableCollection<string> information = new ObservableCollection<string>();
             information.Add("Business Process Management is a systematic approach to making the workflow of the organization more effective");
             information.Add("You will learn how to discover, analyse, model, improve, automate and monitor various business processes");
             information.Add("Units of this minor will prepare you to conduct an end to end organisational process improvement project, from analysis to redesign");
@@ -52,20 +57,20 @@ namespace Novus.Data
             minors.Add(new Minor(information, units, "Business process management"));
 
             units = GetUnits(new string[] {"MXB261", "MXB262", "MXB161", "MXB361", "MXB362"});
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("This hands on, real-world based curriculum will give you the opportunity to explore a wide range of areas within IT and gain a deep understanding of your chosen area of specialty, such as software development, networking,  data science, business processes, information management, and social technologies");
             information.Add("The degree is designed to develop creative, innovative problem-solving skills through teaching design thinking and human-centred design");
             minors.Add(new Minor(information, units, "Computational and Simulation Science"));
 
             units = GetUnits(new string[] {"CAB201", "CAB202", "CAB203", "CAB303"});
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Computer science is the scientific and practical approach to computer-based system design, development and operation");
             information.Add("It deals with areas ranging from the fundamental principles of computation through to tools and techniques for IT system development and evaluation, including identifying and solving systems design issues associated with efficiency, usability and security");
             information.Add("Computer science applications extend into specialised areas including mobile computing, artificial intelligence, robotics, and large-scale information management involving information retrieval and web search engines");
             minors.Add(new Minor(information, units, "Computer Science"));
 
             units = GetUnits(new string[] {"IAB250", "IAB351", "IAB352", "BSB115", "IAB230", "IAB401", "IAB320"});
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Enterprise systems are large scale application software packages that support business processes and information flows across departments");
             information.Add("This minor develops the knowledge and skills required in supporting Enterprise Systems within the modern organisation");
             information.Add("It develops an understanding of the Enterprise Systems Lifecycle and cloud computing services");
@@ -73,20 +78,20 @@ namespace Novus.Data
             minors.Add(new Minor(information, units, "Enterprise systems"));
 
             units = GetUnits(new string[] {"CAB320", "EGB339", "MXB103", "CAB201", "CAB420"});
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Robotics and artificial intelligence progressively allow robots to perform boring, repetitive tasks (cleaning, assembly line, environment monitoring and farming) as well as tasks too dangerous for humans, such as mining or fire-fighting");
             information.Add("This minor provides an introduction to the field of robotics and intelligent systems technologies");
             information.Add("You will learn how to design and build simple robotic systems and how to apply advanced algorithms and data structures to solve common problems");
             minors.Add(new Minor(information, units, "Intelligent systems"));
 
             units = GetUnits(new string[] { "IAB230", "IAB330", "CAB230", "CAB240", "CAB432" });
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("The Mobile Application minor develops your knowledge and skills to design, develop and distribute applications or games delivered as a Mobile Application");
             information.Add("You will learn about ubiquitous and pervasive computing, wireless and sensor technologies and applications of Mobile Applications in business and their effects on individuals and enterprises");
             minors.Add(new Minor(information, units, "Mobile applications"));
 
             units = GetUnits(new string[] { "CAB203", "CAB303", "CAB240", "CAB340", "CAB440", "CAB441" });
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("This minor develops your knowledge and skills in creating contemporary electronic communications infrastructure, concentrating on fundamental networking technologies and information security principles");
             information.Add("Information systems are vital for all sectors of the economy but are also vulnerable");
             information.Add("IT professionals are expected to have an understanding of the vulnerabilities and threats that computer systems under their protection may be exposed to");
@@ -97,13 +102,13 @@ namespace Novus.Data
             return minors;
         }
 
-        public static List<Major> GetMajors()
+        public static ObservableCollection<Major> GetMajors()
         {
-            List<Major> majors = new List<Major>();
+            ObservableCollection<Major> majors = new ObservableCollection<Major>();
 
-            List<Unit> units = GetUnits(new string[] { "IFB102", "IFB103", "IFB104", "IFB105", "CAB201", "CAB202", "CAB203", "CAB302", "CAB303", "IFB295", "CAB301", "IFB398", "CAB402", "CAB420", "IFB399", "CAB401", "CAB403" });
-            List<string> information = new List<string>();
-            information.Add("72 credit points (6 units) of information technology core units, which includes 24 credit points (2 units) of option unit* selected from an approved list");
+            ObservableCollection<Unit> units = GetUnits(new string[] { "IFB102", "IFB103", "IFB104", "IFB105", "CAB201", "CAB202", "CAB203", "CAB302", "CAB303", "IFB295", "CAB301", "IFB398", "CAB402", "CAB420", "IFB399", "CAB401", "CAB403" });
+            ObservableCollection<string> information = new ObservableCollection<string>();
+            information.Add("72 credit points (6 units) of information technology core units, which includes 24 credit points (2 units) of option unit* selected from an approved ObservableCollection");
             information.Add("120 credit points (10 units) of major core units");
             information.Add("96 credit points of complementary studies comprising of either a second major (8 unit set); or two minors (4 unit set each); or one minor (4 unit set) plus 4 elective units");
             information.Add("Computer science is the scientific and practical approach to computer-based system design, development and operation");
@@ -112,8 +117,8 @@ namespace Novus.Data
             majors.Add(new Major(information, units, "Computer Science"));
 
             units = GetUnits(new string[] { "IFB102", "IFB103", "IFB104", "IFB105", "IAB201", "IAB207", "IAB203", "IAB204", "IFB295", "IAB305", "IAB206", "IAB320", "IAB303", "IFB398", "IAB260", "IAB402", "IFB399", "IAB401" });
-            information = new List<string>();
-            information.Add("72 credit points (6 units) of information technology core units, which includes 24 credit points (2 units) of option unit* selected from an approved list");
+            information = new ObservableCollection<string>();
+            information.Add("72 credit points (6 units) of information technology core units, which includes 24 credit points (2 units) of option unit* selected from an approved ObservableCollection");
             information.Add("120 credit points (10 units) of major core units");
             information.Add("96 credit points of complementary studies comprising of either a second major (8 unit set); or two minors (4 unit set each); or one minor (4 unit set) plus 4 elective units");
             information.Add("Information systems focuses on identifying organisational requirements for applications and acquiring effective systems solutions, whether custom designed and built or selected and implemented, to meet the requirements");
@@ -122,13 +127,13 @@ namespace Novus.Data
             majors.Add(new Major(information, units, "Information Systems"));
 
             units = GetUnits(new string[] {"CAB401", "CAB201", "MXB100", "MXB103", "MXB161", "MXB261", "MXB262", "MXB361", "MXB362"});
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("This hands on, real-world based curriculum will give you the opportunity to explore a wide range of areas within IT and gain a deep understanding of your chosen area of specialty, such as software development, networking,  data science, business processes, information management, and social technologies");
             information.Add("The degree is designed to develop creative, innovative problem-solving skills through teaching design thinking and human-centred design");
             majors.Add(new Major(information, units, "Computational and Simulation Science"));
 
             units = GetUnits(new string[] {"MXB101", "MXB107", "MZB151", "CAB201", "CAB220", "CAB420", "BSB123", "CAB330", "IAB303", "MXB161", "MXB261", "MXB262", "MXB361"});
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Data Science provides the necessary skills to be a data scientist including statistical methods and data visualisation, computational tools for and data management techniques for large datasets, and high-performance computing resources and techniques");
             information.Add("This unique skill-set in statistics and computing will allow you to cope with sophisticated models applied to complex and/or large datasets");
             majors.Add(new Major(information, units, "Data Science"));
@@ -137,19 +142,19 @@ namespace Novus.Data
             return majors;
         }
 
-        public static List<Unit> GetUnits(string[] unitCodes)
+        public static ObservableCollection<Unit> GetUnits(string[] unitCodes)
         {
-            List<Unit> returnList = new List<Unit>();
+            ObservableCollection<Unit> returnObservableCollection = new ObservableCollection<Unit>();
             foreach(string unitCode in unitCodes)
             {
                 Unit unit = GetUnit(unitCode);
                 if(unit.Code == unitCode)
                 {
-                    returnList.Add(unit);
+                    returnObservableCollection.Add(unit);
                 }
             }
 
-            return returnList;
+            return returnObservableCollection;
         }
 
         public static Unit GetUnit(string unitCode)
@@ -165,11 +170,11 @@ namespace Novus.Data
             return new Unit();
         }
 
-        public static List<Unit> GenerateAllUnits()
+        public static ObservableCollection<Unit> GenerateAllUnits()
         {
-            List<Unit> units = new List<Unit>();
+            ObservableCollection<Unit> units = new ObservableCollection<Unit>();
 
-            List<string> information = new List<string>();
+            ObservableCollection<string> information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This is an introductory computer science unit concerning computer systems, in particular how modern computer systems work, how they are structured, and how they operate");
@@ -180,7 +185,7 @@ namespace Novus.Data
             Unit IFB102 = new Unit("IFB102", "Introduction to Computer Systems", information);
             units.Add(IFB102);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("Developing an innovative, practical and cost-effective IT solution that is user-focused is a complex task for IT experts");
@@ -191,7 +196,7 @@ namespace Novus.Data
             Unit IFB103 = new Unit("IFB103", "IT Systems Design", information);
             units.Add(IFB103);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This is an introductory unit on database addressing the core concepts, requirements and practices of databases");
@@ -203,7 +208,7 @@ namespace Novus.Data
             Unit IFB105 = new Unit("IFB105", "Database Management", information);
             units.Add(IFB105);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This unit provides a hands-on introduction to computer programming for students with no prior coding experience at all");
@@ -214,7 +219,7 @@ namespace Novus.Data
             Unit IFB104 = new Unit("IFB104", "Building IT Systems", information);
             units.Add(IFB104);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This unit builds on the gentle introduction to programming provided in IFB104 or MZB126");
@@ -226,7 +231,7 @@ namespace Novus.Data
             Unit CAB201 = new Unit("CAB201", "Programming Principles", information);
             units.Add(CAB201);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This unit introduces you to the components inside a computer and how these components work together");
@@ -237,7 +242,7 @@ namespace Novus.Data
             Unit CAB202 = new Unit("CAB202", "Microprocessors and Digital Systems", information);
             units.Add(CAB202);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("In trying to solve complex problems, a powerful approach is transform the problem into a simpler model by abstracting away some of the less important details");
@@ -248,14 +253,14 @@ namespace Novus.Data
             Unit CAB203 = new Unit("CAB203", "Discrete Structures", information);
             units.Add(CAB203);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This unit teaches you how to work effectively in a team to develop large-scale software systems. It includes principles of teamwork, modern software development methodologies and tools that are needed when working in a team on a large project");
             Unit CAB302 = new Unit("CAB302", "Software Development", information);
             units.Add(CAB302);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("Building on your digital systems knowledge, you will be introduced to practical and theoretical knowledge on a wide range of modern networking topics to be able to design, implement and maintain network-based applications");
@@ -263,7 +268,7 @@ namespace Novus.Data
             Unit CAB303 = new Unit("CAB303", "Networks", information);
             units.Add(CAB303);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("In your information technology career, you will participate in and then lead project teams that are expected to deliver real benefits to stakeholders");
@@ -274,7 +279,7 @@ namespace Novus.Data
             Unit IFB295 = new Unit("IFB295", "IT Project Management", information);
             units.Add(IFB295);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This unit teaches you the fundamental principles used to assess the efficiency of software algorithms, allowing you to distinguish solutions that can process large amounts of data or perform complex calculations effectively from those that run unacceptably slowly or not at all");
@@ -282,7 +287,7 @@ namespace Novus.Data
             Unit CAB301 = new Unit("CAB301", "Algorithms and Complexity", information);
             units.Add(CAB301);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This unit gives you the opportunity, under close guidance appropriate to the project, to apply and extend the knowledge and skills gained in your course to date to a substantial IT project");
@@ -292,7 +297,7 @@ namespace Novus.Data
             Unit IFB398 = new Unit("IFB398", "Capstone Project (Phase 1)", information);
             units.Add(IFB398);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This advanced unit exposes you to special-purpose programming languages that operate under different paradigms than the conventional 'imperative' languages you have used in the course so far");
@@ -301,7 +306,7 @@ namespace Novus.Data
             Unit CAB402 = new Unit("CAB402", "Programming Paradigms", information);
             units.Add(CAB402);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("Machine learning is the science of getting computers to act without being explicitly programmed");
@@ -311,7 +316,7 @@ namespace Novus.Data
             Unit CAB420 = new Unit("CAB420", "Machine Learning", information);
             units.Add(CAB420);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("Building upon the unit IFB398 Capstone Project (Phase 1), this unit gives you the opportunity to apply, under appropriate guidance, the knowledge and skills gained in your course to date to execute the completion of a planned project");
@@ -322,7 +327,7 @@ namespace Novus.Data
             Unit IFB399 = new Unit("IFB399", "Capstone Project (Phase 2)", information);
             units.Add(IFB399);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("Building on your skills in 'sequential' programming, this unit teaches you the tools and techniques needed to exploit multi-processor computer systems to achieve dramatic performance improvements for computationally intensive problems");
@@ -330,7 +335,7 @@ namespace Novus.Data
             Unit CAB401 = new Unit("CAB401", "High Performance and Parallel Computing", information);
             units.Add(CAB401);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This unit uses operating system concepts to teach the foundations of systems programming and advanced concepts for producing software that provides services to computer hardware");
@@ -341,7 +346,7 @@ namespace Novus.Data
             Unit CAB403 = new Unit("CAB403", "Systems Programming", information);
             units.Add(CAB403);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This is an introductory unit that will provide you with the foundational skills and knowledge required for understanding, designing and analysing information systems");
@@ -353,7 +358,7 @@ namespace Novus.Data
             Unit IAB201 = new Unit("IAB201", "Modelling Techniques for Information Systems", information);
             units.Add(IAB201);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("Web applications are widely in use both within enterprises and in consumer applications");
@@ -365,7 +370,7 @@ namespace Novus.Data
             Unit IAB207 = new Unit("IAB207", "Rapid Web Application Development", information);
             units.Add(IAB207);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This unit continues after IAB201 and introduces business process management concepts: how organisations improve their business processes in terms of time, cost and quality");
@@ -375,7 +380,7 @@ namespace Novus.Data
             Unit IAB203 = new Unit("IAB203", "Business Process Modelling", information);
             units.Add(IAB203);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This unit introduces you to the role, knowledge, skills and techniques required of a business analyst");
@@ -383,7 +388,7 @@ namespace Novus.Data
             Unit IAB204 = new Unit("IAB204", "Business Requirements Analysis", information);
             units.Add(IAB204);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This unit covers the essential activities in information systems lifecycle management");
@@ -394,7 +399,7 @@ namespace Novus.Data
             Unit IAB305 = new Unit("IAB305", "Information Systems Lifecycle Management", information);
             units.Add(IAB305);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("Introduce you to the technologies that can be used to address challenges in managing fast incoming, voluminous, and varied data that is increasingly being relied on to make decisions in today's business environment");
@@ -402,7 +407,7 @@ namespace Novus.Data
             Unit IAB206 = new Unit("IAB206", "Modern Data Management", information);
             units.Add(IAB206);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This unit fosters developing process analysis, improvement, and design skills of students");
@@ -413,7 +418,7 @@ namespace Novus.Data
             Unit IAB320 = new Unit("IAB320", "Business Process Improvement", information);
             units.Add(IAB320);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("In this unit you will draw on your knowledge and skills learnt in prior IT core units to learn how to problem solve with data for the purposes of extracting business insight");
@@ -423,7 +428,7 @@ namespace Novus.Data
             Unit IAB303 = new Unit("IAB303", "Data Analytics for Business Insight", information);
             units.Add(IAB303);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This unit will introduce you to the theoretical and practical requirements to build and understand social technology platforms, social networks, and digital communities");
@@ -434,7 +439,7 @@ namespace Novus.Data
             Unit IAB260 = new Unit("IAB260", "Social Technologies", information);
             units.Add(IAB260);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("In IAB402 Information Systems Consulting, you will gain an appreciation of the management of consulting practices and an understanding of the consulting sector generally");
@@ -446,7 +451,7 @@ namespace Novus.Data
             Unit IAB402 = new Unit("IAB402", "Information Systems Consulting", information);
             units.Add(IAB402);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This unit covers Enterprise Architecture (EA) theory and practice, concerning the ways in which business and IT systems are planned and designed using modelling techniques");
@@ -458,7 +463,7 @@ namespace Novus.Data
             Unit IAB401 = new Unit("IAB401", "Enterprise Architecture", information);
             units.Add(IAB401);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This unit builds on high school calculus by exploring derivatives, integrals and differential equations");
@@ -469,7 +474,7 @@ namespace Novus.Data
             Unit MXB100 = new Unit("IAB401", "Introductory Calculus and Algebra", information);
             units.Add(MXB100);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("Many real world phenomena are modelled by mathematical models whose solutions cannot be found analytically");
@@ -481,7 +486,7 @@ namespace Novus.Data
             Unit MXB103 = new Unit("MXB103", "Introductory Computational Mathematics", information);
             units.Add(MXB103);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This unit introduces you to techniques of computation and simulation across a range of application areas in Science, Technology, Engineering and Mathematics (STEM)");
@@ -491,7 +496,7 @@ namespace Novus.Data
             Unit MXB161 = new Unit("MXB161", "Computational Explorations", information);
             units.Add(MXB161);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("With the rapid development in both computing hardware and its application to advanced scientific problems that require computational solutions, there is a need for IT, Maths and Science students to have a practical understanding of Computational and Simulation Science");
@@ -501,7 +506,7 @@ namespace Novus.Data
             Unit MXB261 = new Unit("MXB261", "Modelling and Simulation Science", information);
             units.Add(MXB261);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("Visualisation is critical for exploring and communicating science and engineering data");
@@ -513,7 +518,7 @@ namespace Novus.Data
             Unit MXB262 = new Unit("MXB262", "Visualising Data", information);
             units.Add(MXB262);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("With the rapid development in computing hardware, algorithms, AI and their applications to advanced scientific problems that require computational solutions, there is a need for IT, Maths, Science and Engineering students to have a practical understanding of Computational Science");
@@ -522,7 +527,7 @@ namespace Novus.Data
             Unit MXB361 = new Unit("MXB361", "Aspects of Computational Science", information);
             units.Add(MXB361);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("Data visualisation is an essential element of modern computational and data science");
@@ -535,7 +540,7 @@ namespace Novus.Data
             Unit MXB362 = new Unit("MXB362", "Advanced Visualisation and Data Science", information);
             units.Add(MXB362);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This unit introduces probability and shows you how to apply its concepts to solve practical problems");
@@ -546,7 +551,7 @@ namespace Novus.Data
             Unit MXB101 = new Unit("MXB101", "Probability and Stochastic Modelling 1", information);
             units.Add(MXB101);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("Statistical modelling provides methods for analysing data to gain insight into real-world problems");
@@ -558,7 +563,7 @@ namespace Novus.Data
             Unit MXB107 = new Unit("MXB107", "Introduction to Statistical Modelling", information);
             units.Add(MXB107);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("Many applications within Computer Science use standard mathematical methods as tools for analysing and processing information");
@@ -567,7 +572,7 @@ namespace Novus.Data
             Unit MZB151 = new Unit("MZB151", "Mathematical Tools for Computing", information);
             units.Add(MZB151);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("Data is becoming central to every organization's decision making process, and the demand for data savvy modelers and software engineers is rapidly increasing");
@@ -577,7 +582,7 @@ namespace Novus.Data
             Unit CAB220 = new Unit("CAB220", "Fundamentals of Data Science", information);
             units.Add(CAB220);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("The ability to collect, analyse, manipulate, understand and report data effectively is important in any work environment");
@@ -588,7 +593,7 @@ namespace Novus.Data
             Unit BSB123 = new Unit("BSB123", "Data Analysis", information);
             units.Add(BSB123);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("Data analytics has become a popular way to support decision-making by turning an organization's large collection of data into useful knowledge about their customers and business processes");
@@ -601,7 +606,7 @@ namespace Novus.Data
             Unit CAB330 = new Unit("CAB330", "Data and Web Analytics", information);
             units.Add(CAB330);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("Whether you will be a business analyst, a process owner, a solution architect or a software engineer, it is essential that you understand the principles and value of business process automation, in order to fully realise the benefits of Business Process Management");
@@ -613,7 +618,7 @@ namespace Novus.Data
             Unit IAB321 = new Unit("IAB321", "Business Process Technologies", information);
             units.Add(IAB321);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This unit introduces the fundamentals of enterprise systems configuration");
@@ -625,7 +630,7 @@ namespace Novus.Data
             Unit IAB250 = new Unit("IAB250", "Enterprise Systems Configuration", information);
             units.Add(IAB250);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This unit provides knowledge and skills in designing businesses and systems in Cloud settings. It covers many aspects of the design in business models and IT systems, it introduces skills for developing business models and IT systems architecture, relevant for the Cloud");
@@ -636,7 +641,7 @@ namespace Novus.Data
             Unit IAB351 = new Unit("IAB351", "Business in the Cloud", information);
             units.Add(IAB351);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("Organisations invest substantial resources in acquiring enterprise systems from vendors such as SAP and Oracle, presumably expecting positive impacts to the organisation and its functions");
@@ -646,7 +651,7 @@ namespace Novus.Data
             Unit IAB352 = new Unit("IAB352", "Enterprise Systems Mangement", information);
             units.Add(IAB352);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("An ability to understand the basic functions of management and apply that knowledge to contemporary practice are key skills for competent business professionals and informed, effective managers");
@@ -657,7 +662,7 @@ namespace Novus.Data
             Unit BSB115 = new Unit("BSB115", "Management", information);
             units.Add(BSB115);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This unit introduces the components of a mobile ubiquitous system, including stand alone and wearable sensors and wireless network protocols");
@@ -668,20 +673,20 @@ namespace Novus.Data
             Unit IAB230 = new Unit("IAB230", "Design of Enterprise IoT", information);
             units.Add(IAB230);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This foundational unit introduces the basics of Artificial Intelligence (AI) ranging from Intelligent Search techniques to Machine Learning");
             information.Add("AI strives to build intelligent entities as well as understand them");
             information.Add("AI has produced many significant products; from AI chess champions to state of the art schedulers and planners");
             information.Add("This unit introduces state representations, techniques and architectures used to build intelligent systems");
-            information.Add("It covers topics such as heuristic search, machine learning (including deep neural networks) and probabilistic reasoning");
+            information.Add("It covers topics such as heuristic search, machine learning (including deep neural networks) and probabiObservableCollectionic reasoning");
             information.Add("The ability to formalise a given problem in the language/framework of relevant AI methods (for examples, a search problem, a planning problem, a classification problem, etc) and understand a fast evolving field is a requirement for a range of graduate entry software engineer positions");
             information.Add("This unit lays the foundations for further studies in Games, Robotics, Pattern Recognition, Information Retrieval, Data Mining and Intelligent Web Agents");
             Unit CAB320 = new Unit("CAB320", "Artificial Intelligence", information);
             units.Add(CAB320);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("This unit introduces you to the components, systems and mathematical foundations of robotics and computer vision");
@@ -690,7 +695,7 @@ namespace Novus.Data
             Unit EGB339 = new Unit("EGB339", "Introduction to Robotics", information);
             units.Add(EGB339);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("Mobile, tablet and wearable devices are the emerging computing platforms, resulting in a high demand for creative developers to build innovative cross platform applications, and given the variety of platforms there is a major skills shortage");
@@ -699,7 +704,7 @@ namespace Novus.Data
             Unit IAB330 = new Unit("IAB330", "Mobile Application Development", information);
             units.Add(IAB330);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("The World Wide Web is the most important platform for software systems and an integral part of modern life");
@@ -711,7 +716,7 @@ namespace Novus.Data
             Unit CAB230 = new Unit("CAB230", "Web Computing", information);
             units.Add(CAB230);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("Cybersecurity breaches, from database hacking to malware campaigns, are increasing");
@@ -724,7 +729,7 @@ namespace Novus.Data
             Unit CAB240 = new Unit("CAB240", "Information Security", information);
             units.Add(CAB240);
 
-            information = new List<string>();
+            information = new ObservableCollection<string>();
             information.Add("Worth 12 credit points");
             information.Add("Gardens Point Campus");
             information.Add("Cloud Computing is among the most important developments in the IT industry in recent years, and one which has received enormous attention");

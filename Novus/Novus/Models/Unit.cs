@@ -14,31 +14,32 @@ namespace Novus.Models
     {
         public int UnitID { get; set; }
         public int SemesterID { get; set; }
+        public int StudentID { get; set; }
         public bool IsVisible { get; set; }
         public string Code { get; private set; }
 
         public string Name { get; private set; }
         public string FullName { get; set; }
-        public List<string> Information { get; private set; }
-        public List<Class> Classes { get; set; }
+        public ObservableCollection<string> Information { get; private set; }
+        public ObservableCollection<Class> Classes { get; set; }
         public string Colour { get; set; }
-        public List<Announcement> StaffAnnouncements { get; set; }
-        public List<Assesment> Assesments { get; set; }
-        public List<Resources> UnitResources { get; set; }
+        public ObservableCollection<Announcement> StaffAnnouncements { get; set; }
+        public ObservableCollection<Assesment> Assesments { get; set; }
+        public ObservableCollection<Resources> UnitResources { get; set; }
 
 
         private static string[] ColourCodes = { "#80EE8B", "#F3B15B", "#A1F1F4", "#EFE379" };
       
-        public Unit(string Code, string Name, List<string> Information)
+        public Unit(string Code, string Name, ObservableCollection<string> Information)
         {
             this.Code = Code;
             this.Name = Name;
             this.Information = Information;
             this.IsVisible = false;
-            this.Classes = new List<Class>();
-            this.StaffAnnouncements = new List<Announcement>();
-            this.Assesments = new List<Assesment>();
-            this.UnitResources = new List<Resources>();
+            this.Classes = new ObservableCollection<Class>();
+            this.StaffAnnouncements = new ObservableCollection<Announcement>();
+            this.Assesments = new ObservableCollection<Assesment>();
+            this.UnitResources = new ObservableCollection<Resources>();
             GenerateFullName();
         }
 
@@ -95,7 +96,8 @@ namespace Novus.Models
                 Classes = classes,
                 StaffAnnouncements = announcements,
                 Assesments = assesments,
-                UnitResources = resources
+                UnitResources = resources,
+                StudentID = this.StudentID
             };
 
             return returnValue;
@@ -131,37 +133,7 @@ namespace Novus.Models
             }
         }
 
-        public static List<Unit> GenerateUnits(int number)
-        {
-            List<Unit> Units = new List<Unit>();
-            for (int i = 0; i < number; i++)
-            {
-                Units.Add(GenerateUnit());
-                Units[i].Colour = ColourCodes[i];
-            }
-            return Units;
-        }
-
-        public static Unit GenerateUnit()
-        {
-            List<string> BlankInformation = new List<string>();
-            for (int i = 0; i < 4; i++)
-            {
-                BlankInformation.Add("THIS IS INFORMATION THAT WILL BE CHANGED");
-            }
-          
-
-            Unit unit = new Unit("IFB101", "Test Subject", BlankInformation);
-            unit.AddClasses(Class.GenerateClassLecture(2));
-            unit.AddClasses(Class.GenerateClassTutorial(4));
-            //unit.StaffAnnouncements = (Announcement.GenerateAnnouncements("IFB101" , 3));
-            //unit.Assesments = (Assesment.GenerateAssesments("IFB101", 2));
-            //unit.UnitResources = (Resources.GenerateResources());
-
-            return unit;
-        }
-
-        public static int GetUnitIndex(List<Unit> units, int indexingUnitID)
+        public static int GetUnitIndex(ObservableCollection<Unit> units, int indexingUnitID)
         {
             foreach (Unit unit in units)
             {
@@ -174,7 +146,7 @@ namespace Novus.Models
             return -1;
         }
 
-        public static int GetUnitIndex(List<Unit> units, Unit indexingUnit)
+        public static int GetUnitIndex(ObservableCollection<Unit> units, Unit indexingUnit)
         {
             foreach(Unit unit in units)
             {

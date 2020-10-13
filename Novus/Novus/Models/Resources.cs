@@ -13,10 +13,10 @@ namespace Novus.Models
         public int ResourceID { get; set; }
         public int UnitID { get; set; }
         public string Week { get; private set; }
-        public List<string> Files { get; private set; }
+        public ObservableCollection<string> Files { get; private set; }
         public string Lecture { get; private set; }
         public bool IsVisible { get; set; }
-        public Resources(string week, List<string> files, string lecture)
+        public Resources(string week, ObservableCollection<string> files, string lecture)
         {
             this.Week = week;
             this.Files = files;
@@ -43,17 +43,6 @@ namespace Novus.Models
             };
 
             return returnValue;
-        }
-
-        public static ObservableCollection<Resources> GenerateResources()
-        {
-            ObservableCollection<Resources> returnCollection = new ObservableCollection<Resources>();
-            List<string> dummyFiles = new List<string> { "lecture_slides.pp", "tutorial_slides.pp", "worksheet.pdf" };
-            for(int i = 1; i < 14; i++)
-            {
-                returnCollection.Add(new Resources("Week " + i, dummyFiles, "Week " + i + " Lecture"));
-            }
-            return returnCollection;
         }
     }
 }

@@ -12,6 +12,8 @@ namespace Novus.ViewModels
 {
     class UnitPageViewModel : BaseViewModel
     {
+        static Student Student = App.Student;
+
         public Command ResourcesPageButton { get; }
         public Command AnnouncementsPageButton { get; }
         public Command GradesPageButton { get; }
@@ -40,13 +42,14 @@ namespace Novus.ViewModels
             switch (unitNumber)
             {
                 case "//unit1":
-                    return "#80EE8B";
+                    return Student.CurrentUnits[0].Colour; //Green
                 case "//IMPL_unit2/unit2":
-                    return "#F3B15B";
+                    return Student.CurrentUnits[1].Colour;  //Orange
                 case "//IMPL_unit3/unit3":
-                    return "#A1F1F4";
+                    return Student.CurrentUnits[2].Colour;  //Blue
                 case "//IMPL_unit4/unit4":
-                    return "#EFE379";
+                    return Student.CurrentUnits[3].Colour; //Yellow
+
                 default:
                     return "White";
             }

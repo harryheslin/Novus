@@ -66,10 +66,24 @@ namespace Novus.ViewModels
             }
         }
 
+        private ObservableCollection<Assesment> getCurrentAssesment(){
+            ObservableCollection<Assesment> result = new ObservableCollection<Assesment>(); 
+            foreach(Assesment assesment in currentUnit.Assesments)
+            {
+                if (assesment.Graded == false)
+                {
+                    if (assesment.ReleaseDate == "TBC")
+                        assesment.Grade = "False";
+                    result.Add(assesment);
+                }   
+            }
+            return result;
+        }
+
         ObservableCollection<Assesment> assesment;
         public ObservableCollection<Assesment> Assesments
         {
-            get => currentUnit.Assesments;
+            get => getCurrentAssesment();
             set
             {
                 SetProperty(ref assesment, currentUnit.Assesments);

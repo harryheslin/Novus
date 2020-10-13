@@ -18,7 +18,7 @@ namespace Novus.Models
         public string DueDate { get; private set; }
         public bool Graded { get; private set; }
         public string GradedDate { get; private set; }
-        public string Grade { get; private set; }
+        public string Grade { get;  set; }
         public Assesment(string code, string title, int percentage, string releaseDate, string dueDate, bool graded, string gradedDate, string grade)
         {
             this.Code = code;

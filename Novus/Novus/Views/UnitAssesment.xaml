@@ -80,7 +80,8 @@
                                                 Grid.ColumnSpan="2" 
                                                 Padding="50,0,0,0"  
                                                 TextColor="White" 
-                                                Text="&#x2022; View Task Sheet" />
+                                                Text="&#x2022; View Task Sheet" 
+                                                IsVisible="{Binding Grade}"/>
                                             <Label
                                                 Grid.Column="0" 
                                                 Grid.Row="3" 
@@ -89,6 +90,7 @@
                                                 TextColor="White" 
                                                 Text="&#x2022; Submission Page"
                                                 FontAttributes="Bold"
+                                                IsVisible="{Binding Grade}"
                                                 >
                                                 <Label.GestureRecognizers>
                                                     <TapGestureRecognizer

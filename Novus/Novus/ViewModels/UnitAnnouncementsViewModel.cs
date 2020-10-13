@@ -59,10 +59,17 @@ namespace Novus.ViewModels
             }
         }
 
+        ObservableCollection<Announcement> noAnnouncements()
+        {
+            ObservableCollection<Announcement> emptyAnnouncement = new ObservableCollection<Announcement>();
+            emptyAnnouncement.Add(new Announcement("", unit, "Currently no available announcements", new DateTime(2020, 01, 01, 12, 0, 0), "QUT"));
+            return emptyAnnouncement;
+        }
+
         ObservableCollection<Announcement> announcements;
         public ObservableCollection<Announcement> Announcements
         {
-            get => currentUnit.StaffAnnouncements;
+            get => (currentUnit.StaffAnnouncements).Count == 0 ? noAnnouncements() : currentUnit.StaffAnnouncements;
             set
             {
                 SetProperty(ref announcements, currentUnit.StaffAnnouncements);

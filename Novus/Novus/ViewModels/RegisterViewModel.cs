@@ -14,7 +14,7 @@ namespace Novus.ViewModels
     {
         public RegisterViewModel()
         {
-            student = Student.GenerateStudent(3);
+            student = App.Student;
         }
 
 
@@ -24,12 +24,13 @@ namespace Novus.ViewModels
             get => student;
             set
             {
-                SetProperty(ref student, value);
+                App.Student = value;
+                SetProperty(ref student, App.Student);
                 OnPropertyChanged(nameof(Student));
             }
         }
 
-        public List<Semester> Enrollment
+        public ObservableCollection<Semester> Enrollment
         {
             get => student.Enrollment;
         }
@@ -44,12 +45,12 @@ namespace Novus.ViewModels
             }
         }
 
-        public void AddUnit(List<int> semesterNumber)
+        public void AddUnit(ObservableCollection<int> semesterNumber)
         {
             Semester semester = GetSemester(semesterNumber);
-            if(!semester.SemesterNumber.Equals(new List<int> { -1, -1 }))
+            if(!semester.SemesterNumber.Equals(new ObservableCollection<int> { -1, -1 }))
             {
-                semester.EnrollInUnit(Unit.GenerateUnit());
+                //ADD NEW UNIT HERE
                 SetSemesterValue(semester);
             }
         }
@@ -57,7 +58,7 @@ namespace Novus.ViewModels
         public void RemoveUnit(int unitID)
         {
             Semester semester = GetSemester(unitID);
-            if(!semester.SemesterNumber.Equals(new List<int>{ -1, -1 }))
+            if(!semester.SemesterNumber.Equals(new ObservableCollection<int>{ -1, -1 }))
             {
                 Unit unit = GetUnit(unitID);
 
@@ -118,7 +119,7 @@ namespace Novus.ViewModels
             }
         }
 
-        private Semester GetSemester(List<int> semesterNumber)
+        private Semester GetSemester(ObservableCollection<int> semesterNumber)
         {
             int semesterIndex = Semester.GetSemesterIndex(Enrollment, semesterNumber);
             if(semesterIndex != -1)

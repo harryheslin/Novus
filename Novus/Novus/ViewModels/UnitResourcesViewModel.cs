@@ -16,10 +16,10 @@ namespace Novus.ViewModels
     {
         public Command LecturePage { get; }
 
-        static Student Student = Student.GenerateStudent(4);
+        static Student Student = App.Student;
 
-        static public Unit currentUnit = Student.Enrollment[0].EnrolledUnits[0];
-        
+        static public Unit currentUnit = Student.CurrentUnits[0];
+
         public UnitResourcesViewModel()
         {
             LecturePage = new Command(GoToLecturePage);
@@ -30,16 +30,16 @@ namespace Novus.ViewModels
             switch (routeCode)
             {
                 case "/unit1":
-                    currentUnit = Student.Enrollment[0].EnrolledUnits[0];
+                    currentUnit = Student.CurrentUnits[0];
                     return currentUnit.FullName;
                 case "/IMPL_unit2/unit2":
-                    currentUnit = Student.Enrollment[0].EnrolledUnits[1];
+                    currentUnit = Student.CurrentUnits[1];
                     return currentUnit.FullName;
                 case "/IMPL_unit3/unit3":
-                    currentUnit = Student.Enrollment[0].EnrolledUnits[2];
+                    currentUnit = Student.CurrentUnits[2];
                     return currentUnit.FullName;
                 case "/IMPL_unit4/unit4":
-                    currentUnit = Student.Enrollment[0].EnrolledUnits[3];
+                    currentUnit = Student.CurrentUnits[3];
                     return currentUnit.FullName;
                 default:
                     return "Error";
@@ -83,8 +83,8 @@ namespace Novus.ViewModels
             }
         }
 
-        List<Resources> unitResources;
-        public List<Resources> UnitResources
+        ObservableCollection<Resources> unitResources;
+        public ObservableCollection<Resources> UnitResources
         {
             get => currentUnit.UnitResources;
             set

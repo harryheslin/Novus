@@ -116,7 +116,7 @@ namespace Novus.Models
             return returnArray;
         }
 
-        public static int GetClassIndex(List<Class> classes, Class indexingClass)
+        public static int GetClassIndex(ObservableCollection<Class> classes, Class indexingClass)
         {
             foreach (Class classs in classes)
             {
@@ -128,7 +128,7 @@ namespace Novus.Models
             return -1;
         }
 
-        public static int GetClassIndex(List<Class> classes, int indexingClassID)
+        public static int GetClassIndex(ObservableCollection<Class> classes, int indexingClassID)
         {
             foreach (Class classs in classes)
             {

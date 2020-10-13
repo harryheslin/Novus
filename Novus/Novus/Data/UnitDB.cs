@@ -3,6 +3,7 @@ using SQLite;
 using SQLiteNetExtensions.Attributes;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Novus.Data
@@ -14,6 +15,10 @@ namespace Novus.Data
 
         [ForeignKey(typeof(SemesterDB))]
         public int SemesterID { get; set; }
+
+        [ForeignKey(typeof(StudentDB))]
+        public int StudentID { get; set; }
+
         public string Code { get; set; }
         public string Name { get; set; }
         public string Information { get; set; }
@@ -33,13 +38,13 @@ namespace Novus.Data
 
         public Unit ConvertToModel()
         {
-            List<Class> classes = new List<Class>();
+            ObservableCollection<Class> classes = new ObservableCollection<Class>();
             foreach(ClassDB value in Classes)
             {
                 classes.Add(value.ConvertToModel());
             }
 
-            List<Announcement> announcements = new List<Announcement>();
+            ObservableCollection<Announcement> announcements = new ObservableCollection<Announcement>();
             try
             {
                 foreach (AnnouncementDB value in StaffAnnouncements)
@@ -48,7 +53,7 @@ namespace Novus.Data
                 }
             } catch { }
             
-            List<Assesment> assesments = new List<Assesment>();
+            ObservableCollection<Assesment> assesments = new ObservableCollection<Assesment>();
             try
             {
                 foreach (AssesmentDB value in Assesments)
@@ -57,7 +62,7 @@ namespace Novus.Data
                 }
             } catch { }
            
-            List<Resources> resources = new List<Resources>();
+            ObservableCollection<Resources> resources = new ObservableCollection<Resources>();
             try
             {
                 foreach (ResourcesDB value in UnitResources)
@@ -67,7 +72,7 @@ namespace Novus.Data
             } catch { }
 
             string[] information = Information.Split('|');
-            List<string> newInformation = new List<string>();
+            ObservableCollection<string> newInformation = new ObservableCollection<string>();
 
             for (int i = 0; i < information.Length - 1; i++)
             {
@@ -81,6 +86,7 @@ namespace Novus.Data
             returnUnit.StaffAnnouncements = announcements;
             returnUnit.Assesments = assesments;
             returnUnit.UnitResources = resources;
+            returnUnit.StudentID = StudentID;
 
             return returnUnit;
         }

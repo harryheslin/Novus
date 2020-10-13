@@ -11,7 +11,8 @@ namespace Novus.ViewModels
     {
         public RegisterAboutViewModel()
         {
-            course = Models.Course.GenerateCourse();
+            //CHANGE TO DATASTORE
+            //course = Models.Course.GenerateCourse();
         }
 
         List<Course> course;

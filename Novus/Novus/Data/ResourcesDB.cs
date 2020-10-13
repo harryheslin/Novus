@@ -3,6 +3,7 @@ using SQLite;
 using SQLiteNetExtensions.Attributes;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Novus.Data
@@ -21,7 +22,7 @@ namespace Novus.Data
         public Resources ConvertToModel()
         {
             string[] files = Files.Split('|');
-            List<string> NewFiles = new List<string>();
+            ObservableCollection<string> NewFiles = new ObservableCollection<string>();
 
             for(int i = 0; i < files.Length-1; i++)
             {

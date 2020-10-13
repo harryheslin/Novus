@@ -17,11 +17,11 @@ namespace Novus
         Dictionary<string, Type> routes = new Dictionary<string, Type>();
         public Dictionary<string, Type> Routes { get { return routes; } }
 
-        Student TestStudent = Student.GenerateStudent(4);
-        public string Unit1 => TestStudent.Enrollment[0].EnrolledUnits[0].Name;
-        public string Unit2 => TestStudent.Enrollment[0].EnrolledUnits[1].Name;
-        public string Unit3 => TestStudent.Enrollment[0].EnrolledUnits[2].Name;
-        public string Unit4 => TestStudent.Enrollment[0].EnrolledUnits[3].Name;
+        Student TestStudent = App.Student;
+        public string Unit1 => TestStudent.CurrentUnits[0].Name;
+        public string Unit2 => TestStudent.CurrentUnits[1].Name;
+        public string Unit3 => TestStudent.CurrentUnits[2].Name;
+        public string Unit4 => TestStudent.CurrentUnits[3].Name;
 
         public MainPage()
         {

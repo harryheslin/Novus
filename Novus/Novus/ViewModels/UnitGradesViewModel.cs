@@ -42,7 +42,7 @@ namespace Novus.ViewModels
             set
             {
                 SetProperty(ref unit, GetUnitNumber(Uri.UnescapeDataString(value)));
-                OnPropertyChanged(nameof(GradedAssesment));
+                //OnPropertyChanged(nameof(GradedAssesment));
                 OnPropertyChanged(nameof(Colour));
             }
         }
@@ -59,14 +59,14 @@ namespace Novus.ViewModels
         }
 
         Assesment[] gradedAssesment;
-        public Assesment[] GradedAssesment
-        {
-            get => currentUnit.GradedAssesments;
-            set
-            {
-                SetProperty(ref gradedAssesment, currentUnit.GradedAssesments);
-                OnPropertyChanged();
-            }
-        }
+        //public Assesment[] GradedAssesment
+        //{
+        //    get => currentUnit.GradedAssesments;
+        //    set
+        //    {
+        //        SetProperty(ref gradedAssesment, currentUnit.GradedAssesments);
+        //        OnPropertyChanged();
+        //    }
+        //}
     }
 }

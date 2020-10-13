@@ -55,21 +55,21 @@ namespace Novus.Models
             return returnValue;
         }
 
-        public static List<string> TitleList = new List<string>();
-        public static List<string> DetailList = new List<string>();
-        public static List<DateTime> StartDateList = new List<DateTime>();
-        public static List<DateTime> EndDateList = new List<DateTime>();
-        public static List<String> ColourList = new List<string>();
-        public static List<bool> IsAllDayList = new List<bool>();
+        //public static List<string> TitleList = new List<string>();
+        //public static List<string> DetailList = new List<string>();
+        //public static List<DateTime> StartDateList = new List<DateTime>();
+        //public static List<DateTime> EndDateList = new List<DateTime>();
+        //public static List<String> ColourList = new List<string>();
+        //public static List<bool> IsAllDayList = new List<bool>();
 
         public static void AddToEvents(string EventName, string EventDescription, DateTime StartDate, DateTime EndDate, String EventColour, bool IsAllDay)
         {
             TitleList.Add(EventName);
             DetailList.Add(EventDescription);
-            StartDateList.Add(EventStartDate);
-            EndDateList.Add(EventEndDate);
+            StartDateList.Add(StartDate);
+            EndDateList.Add(EndDate);
             ColourList.Add(EventColour);
-            IsAllDayList.Add(EventIsAllDay);
+            IsAllDayList.Add(IsAllDay);
             Appointments = new ObservableCollection<Appointment>();
 
             for (int a = 0; a < TitleList.Count; a++)

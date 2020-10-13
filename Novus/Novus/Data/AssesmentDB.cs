@@ -21,11 +21,11 @@ namespace Novus.Data
         public string DueDate { get; set; }
         public bool Graded { get; set; }
         public string GradedDate { get; set; }
-
+        public string Grade { get; set; }
         public Assesment ConvertToModel()
         {
             int percent = Int32.Parse(Percentage.Trim('%'));
-            Assesment returnValue = new Assesment(this.Code, this.Title, percent, this.ReleaseDate, this.DueDate);
+            Assesment returnValue = new Assesment(this.Code, this.Title, percent, this.ReleaseDate, this.DueDate, this.Graded, this.GradedDate, this.Grade);
             returnValue.AssesmentID = this.AssesmentID;
             returnValue.UnitID = this.UnitID;
             return returnValue;

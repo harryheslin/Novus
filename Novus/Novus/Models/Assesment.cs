@@ -43,7 +43,8 @@ namespace Novus.Models
                 ReleaseDate = this.ReleaseDate,
                 DueDate = this.DueDate,
                 Graded = this.Graded,
-                GradedDate = this.GradedDate
+                GradedDate = this.GradedDate,
+                Grade = this.Grade
             };
 
             return returnValue;

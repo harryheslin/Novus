@@ -16,6 +16,7 @@ namespace Novus.Models
         public int SemesterID { get; set; }
         public bool IsVisible { get; set; }
         public string Code { get; private set; }
+
         public string Name { get; private set; }
         public string FullName { get; set; }
         public List<string> Information { get; private set; }
@@ -24,6 +25,7 @@ namespace Novus.Models
         public List<Announcement> StaffAnnouncements { get; set; }
         public List<Assesment> Assesments { get; set; }
         public List<Resources> UnitResources { get; set; }
+
 
         private static string[] ColourCodes = { "#80EE8B", "#F3B15B", "#A1F1F4", "#EFE379" };
       
@@ -148,12 +150,14 @@ namespace Novus.Models
                 BlankInformation.Add("THIS IS INFORMATION THAT WILL BE CHANGED");
             }
           
+
             Unit unit = new Unit("IFB101", "Test Subject", BlankInformation);
             unit.AddClasses(Class.GenerateClassLecture(2));
             unit.AddClasses(Class.GenerateClassTutorial(4));
             //unit.StaffAnnouncements = (Announcement.GenerateAnnouncements("IFB101" , 3));
             //unit.Assesments = (Assesment.GenerateAssesments("IFB101", 2));
             //unit.UnitResources = (Resources.GenerateResources());
+
             return unit;
         }
 

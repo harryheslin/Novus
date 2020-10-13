@@ -4,12 +4,12 @@
              xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Novus.Views.Calendar"
-             xmlns:viewmodel="clr-namespace:Novus.ViewModels"
->
+             xmlns:viewmodel="clr-namespace:Novus.ViewModels">
+
     <ContentPage.BindingContext>
         <viewmodel:CalendarViewModel/>
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Content>
         <StackLayout
             HorizontalOptions="Center"

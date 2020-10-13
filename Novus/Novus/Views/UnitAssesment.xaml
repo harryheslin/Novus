@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Novus.Views.UnitAssesment"
              xmlns:viewmodel="clr-namespace:Novus.ViewModels"
-            xmlns:local="clr-namespace:Novus.Extensions;assembly=Novus"
+             xmlns:local="clr-namespace:Novus.Extensions;assembly=Novus"
              x:Name="Page">
     
     <ContentPage.BindingContext>

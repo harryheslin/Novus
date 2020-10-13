@@ -31,7 +31,7 @@ namespace Novus
         }
 
         void RegisterRoutes()
-        {  
+        {
             routes.Add("unit1", typeof(UnitPage));
             routes.Add("unit2", typeof(UnitPage));
             routes.Add("unit3", typeof(UnitPage));
@@ -42,9 +42,10 @@ namespace Novus
             routes.Add("announcements", typeof(UnitAnnouncements));
             routes.Add("grades", typeof(UnitGrades));
             routes.Add("calendarDay", typeof(CalendarDay));
-            routes.Add("calendarWeek",typeof(CalendarWeek));
-            routes.Add("eventAdd",typeof(EventAdd));
-            
+            routes.Add("calendarWeek", typeof(CalendarWeek));
+            routes.Add("eventAdd", typeof(EventAdd));
+            routes.Add("calendarHome", typeof(CalendarHome));
+
 
             foreach (var item in routes)
             {

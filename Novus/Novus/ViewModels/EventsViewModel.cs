@@ -1,10 +1,6 @@
 ﻿using MvvmHelpers;
-using System;
 using Novus.Models;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Drawing;
-using System.Text;
 using Telerik.XamarinForms.Input;
 
 namespace Novus.ViewModels
@@ -15,7 +11,15 @@ namespace Novus.ViewModels
         {
             Appointments = Events.Appointments;
         }
-
-        public ObservableCollection<Appointment> Appointments { get; set; }
+        ObservableCollection<Appointment> appointments;
+        public ObservableCollection<Appointment> Appointments
+        {
+            get => appointments;
+            set
+            {
+                SetProperty(ref appointments, value);
+                OnPropertyChanged(nameof(Appointments));
+            }
+        }
     }
 }

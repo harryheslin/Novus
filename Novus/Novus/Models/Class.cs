@@ -2,28 +2,29 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
-using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions;
+using Novus.Data;
+using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace Novus.Models
 {
-    enum ClassType
+    public enum ClassType
     {
         Lecture = 1,
         Tutorial = 2,
         Practical = 3
     }
-    enum ClassMode
+    public enum ClassMode
     {
         Physical = 1,
         Virtual = 2
     }
 
-    class Class
+    public class Class
     {
-        private static int classID = 0;
-        public int ClassID { get; private set; }
-
-        public int UnitID { get; private set; }
+        public int ClassID { get; set; }
+        public int UnitID { get; set; }
+        public int SemesterID { get; set; }
         public ClassType Type { get; private set; }
         public DayOfWeek DayOfWeek { get; private set; }
         public DateTime StartTime { get; private set; }
@@ -36,7 +37,7 @@ namespace Novus.Models
         public bool Planned { get; set; }
         public string Tag { get; private set; }
 
-        public Class(ClassType type, DayOfWeek dayOfWeek,DateTime startTime, DateTime endTime, ClassMode mode, string room, int UnitID)
+        public Class(ClassType type, DayOfWeek dayOfWeek,DateTime startTime, DateTime endTime, ClassMode mode, string room)
         {
             this.Type = type;
             this.DayOfWeek = dayOfWeek;
@@ -48,14 +49,36 @@ namespace Novus.Models
             this.DisplayMode = GenerateDisplayMode();
             this.Registerd = false;
             this.Planned = false;
-            this.ClassID = GenerateClassID();
             this.UnitID = UnitID;
             this.Tag = GenerateTag();
         }
 
         public Class()
         {
-            this.ClassID = -1;
+            ClassID = -1;
+        }
+
+        public ClassDB ConvertToDB()
+        {
+            ClassDB returnValue = new ClassDB
+            {
+                ClassID = this.ClassID,
+                UnitID = this.UnitID,
+                SemesterID = this.SemesterID,
+                Type = this.Type,
+                DayOfWeek = this.DayOfWeek,
+                StartTime = this.StartTime,
+                EndTime = this.EndTime,
+                DisplayMode = this.DisplayMode,
+                Mode = this.Mode,
+                DisplayTime = this.DisplayTime,
+                Room = this.Room,
+                Registerd = this.Registerd,
+                Planned = this.Planned,
+                Tag = this.Tag
+            };
+
+            return returnValue;
         }
 
         private string GenerateTag()
@@ -74,32 +97,26 @@ namespace Novus.Models
             return Enum.GetName(typeof(ClassMode), Mode);
         }
 
-        public static ObservableCollection<Class> GenerateClassLecture(int returnArrayLength, int unitID)
+        public static ObservableCollection<Class> GenerateClassLecture(int returnArrayLength)
         {
             ObservableCollection<Class> returnArray = new ObservableCollection<Class>();
             for (int i = 0; i < returnArrayLength; i++) {
-                returnArray.Add(new Class(ClassType.Lecture, DayOfWeek.Monday, DateTime.Now, DateTime.Now, ClassMode.Virtual, "Z501", unitID));
+                returnArray.Add(new Class(ClassType.Lecture, DayOfWeek.Monday, DateTime.Now, DateTime.Now, ClassMode.Virtual, "Z501"));
             }
             return returnArray;
         }
 
-        public static ObservableCollection<Class> GenerateClassTutorial( int returnArrayLength, int unitID)
+        public static ObservableCollection<Class> GenerateClassTutorial( int returnArrayLength)
         {
             ObservableCollection<Class> returnArray = new ObservableCollection<Class>();
             for (int i = 0; i < returnArrayLength; i++)
             {
-                returnArray.Add(new Class(ClassType.Tutorial, DayOfWeek.Monday, DateTime.Now, DateTime.Now, ClassMode.Virtual, "Z501", unitID));
+                returnArray.Add(new Class(ClassType.Tutorial, DayOfWeek.Monday, DateTime.Now, DateTime.Now, ClassMode.Virtual, "Z501"));
             }
             return returnArray;
         }
 
-        public static int GenerateClassID()
-        {
-            classID++;
-            return classID;
-        }
-
-        public static int GetClassIndex(ObservableCollection<Class> classes, Class indexingClass)
+        public static int GetClassIndex(List<Class> classes, Class indexingClass)
         {
             foreach (Class classs in classes)
             {
@@ -111,7 +128,7 @@ namespace Novus.Models
             return -1;
         }
 
-        public static int GetClassIndex(ObservableCollection<Class> classes, int indexingClassID)
+        public static int GetClassIndex(List<Class> classes, int indexingClassID)
         {
             foreach (Class classs in classes)
             {

@@ -1,19 +1,24 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using Telerik.XamarinForms.Input;
+using SQLiteNetExtensions.Attributes;
+using Novus.Data;
 
 namespace Novus.Models
 {
-    class Events
+    public class Events
     {
-        public string EventName { get; private set; }
-        public string EventDescription { get; private set; }
-        public DateTime StartDate { get; private set; }
-        public DateTime EndDate { get; private set; }
-        public string EventColour { get; private set; }
-        public bool IsAllDay { get; private set; }
+        public int EventID { get; set; }
+        public int StudentID { get; set; }
+        public string EventName { get; set; }
+        public string EventDescription { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string EventColour { get; set; }
+        public bool IsAllDay { get; set; }
 
         private static List<string> TitleList = new List<string>();
         private static List<string> DetailList = new List<string>();
@@ -22,7 +27,42 @@ namespace Novus.Models
         private static List<String> ColourList = new List<string>();
         private static List<bool> IsAllDayList = new List<bool>();
 
-        public static void AddToEvents(string EventName, string EventDescription, DateTime EventStartDate, DateTime EventEndDate, String EventColour, bool EventIsAllDay)
+
+        /*public Events(string EventName, string EventDescription, DateTime StartDate, DateTime EndDate, String EventColour, bool IsAllDay)
+        {
+            this.EventName = EventName;
+            this.EventDescription = EventDescription;
+            this.StartDate = StartDate;
+            this.EndDate = EndDate;
+            this.EventColour = EventColour;
+            this.IsAllDay = IsAllDay;
+        }*/
+
+        public EventsDB ConvertToDB()
+        {
+            EventsDB returnValue = new EventsDB
+            {
+                EventID = this.EventID,
+                StudentID = this.StudentID,
+                EventName = this.EventName,
+                EventDescription = this.EventDescription,
+                StartDate = this.StartDate,
+                EndDate = this.EndDate,
+                EventColour = this.EventColour,
+                IsAllDay = this.IsAllDay
+            };
+
+            return returnValue;
+        }
+
+        public static List<string> TitleList = new List<string>();
+        public static List<string> DetailList = new List<string>();
+        public static List<DateTime> StartDateList = new List<DateTime>();
+        public static List<DateTime> EndDateList = new List<DateTime>();
+        public static List<String> ColourList = new List<string>();
+        public static List<bool> IsAllDayList = new List<bool>();
+
+        public static void AddToEvents(string EventName, string EventDescription, DateTime StartDate, DateTime EndDate, String EventColour, bool IsAllDay)
         {
             TitleList.Add(EventName);
             DetailList.Add(EventDescription);

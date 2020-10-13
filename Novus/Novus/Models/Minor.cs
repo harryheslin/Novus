@@ -9,12 +9,12 @@ namespace Novus.Models
     {
         private static int minorID = 0;
         public int MinorID { get; private set; }
-        public ObservableCollection<Information> Information { get; private set; }
-        public ObservableCollection<Unit> Units { get; private set; }
+        public List<string> Information { get; private set; }
+        public List<Unit> Units { get; private set; }
         public string Name { get; private set; }
         public bool IsVisible { get; set; }
 
-        public Minor(ObservableCollection<Information> information, ObservableCollection<Unit> units, string name)
+        public Minor(List<string> information, List<Unit> units, string name)
         {
             this.Information = information;
             this.Units = units;
@@ -22,9 +22,9 @@ namespace Novus.Models
             this.IsVisible = false;
         }
 
-        public static ObservableCollection<Minor> GenerateMinors(int number)
+        public static List<Minor> GenerateMinors(int number)
         {
-            ObservableCollection<Minor> Minors = new ObservableCollection<Minor>();
+            List<Minor> Minors = new List<Minor>();
             for (int i = 0; i < number; i++)
             {
                 Minors.Add(GenerateMinor());
@@ -34,10 +34,10 @@ namespace Novus.Models
 
         public static Minor GenerateMinor()
         {
-            ObservableCollection<Information> BlankInformation = new ObservableCollection<Information>();
+            List<string> BlankInformation = new List<string>();
             for (int i = 0; i < 4; i++)
             {
-                BlankInformation.Add(new Information("THIS IS INFORMATION THAT WILL BE CHANGED"));
+                BlankInformation.Add("THIS IS INFORMATION THAT WILL BE CHANGED");
             }
 
             return new Minor(BlankInformation, Unit.GenerateUnits(4), "Test Major");

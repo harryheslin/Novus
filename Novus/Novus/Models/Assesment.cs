@@ -1,14 +1,16 @@
-﻿//using Android.Test;
-//using Java.Lang;
-//using Java.Util;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Novus.Data;
+using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace Novus.Models
 {
-    class Assesment
+    public class Assesment
     {
+        public int AssesmentID { get; set; }
+        public int UnitID { get; set; }
         public string Code { get; private set; }
         public string Title { get; private set; }
         public string Percentage { get; private set; }
@@ -27,6 +29,24 @@ namespace Novus.Models
             this.Graded = graded;
             this.GradedDate = gradedDate;
             this.Grade = grade;
+        }
+
+        public AssesmentDB ConvertToDB()
+        {
+            AssesmentDB returnValue = new AssesmentDB
+            {
+                AssesmentID = this.AssesmentID,
+                UnitID = this.UnitID,
+                Code = this.Code,
+                Title = this.Title,
+                Percentage = this.Percentage,
+                ReleaseDate = this.ReleaseDate,
+                DueDate = this.DueDate,
+                Graded = this.Graded,
+                GradedDate = this.GradedDate
+            };
+
+            return returnValue;
         }
 
         public static Assesment[] GenerateAssesments(string unitCode, int returnArrayLength)

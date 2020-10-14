@@ -187,9 +187,9 @@ namespace Novus.Data
             information.Add("Raspberry Pi computers will be used throughout the unit and at the end students will build their own small computer system using a Raspberry Pi");
             announcements.Add(new Announcement("IFB102", "Raspberry Pi", "Good morning, students should now be aware of the requirement for a raspberry pi to complete this unit. Please either buy or borrow one ASAP, kits are available in the QUT bookstore", new DateTime(2020, 03, 01, 08, 14, 22), "Michael Adams"));
             announcements.Add(new Announcement("IFB102", "Welcome students!", "Hello students, I would like to welcome you all to IFB102. Please make sure you attend your week 1 tutorial for information regarding what you will need for the semester", new DateTime(2020, 02, 24, 16, 30, 0), "Michael Adams"));
-            assesment.Add(new Assesment("IFB102", "Technology Report 1", 25, new DateTime(2020, 03, 01, 12, 0, 0).ToShortDateString(), new DateTime(2020, 04, 12, 12, 0, 0).ToShortDateString(), false, "TBC", "0"));
-            assesment.Add(new Assesment("IFB102", "Technology Report 2", 25, new DateTime(2020, 04, 01, 12, 0, 0).ToShortDateString(), new DateTime(2020, 05, 12, 12, 0, 0).ToShortDateString(), false, "TBC", "0"));
-            assesment.Add(new Assesment("IFB102", "Raspberry Pi Project", 50, "TBC", "TBC", false, "TBC", "0"));
+            assesment.Add(new Assesment("IFB102", "Technology Report 1", 25, new DateTime(2020, 03, 01, 12, 0, 0).ToShortDateString(), new DateTime(2020, 04, 12, 12, 0, 0).ToShortDateString(), false, "TBC", "0", "true"));
+            assesment.Add(new Assesment("IFB102", "Technology Report 2", 25, new DateTime(2020, 04, 01, 12, 0, 0).ToShortDateString(), new DateTime(2020, 05, 12, 12, 0, 0).ToShortDateString(), false, "TBC", "0", "true"));
+            assesment.Add(new Assesment("IFB102", "Raspberry Pi Project", 50, "TBC", "TBC", false, "TBC", "0", "false"));
             Unit IFB102 = new Unit("IFB102", "Introduction to Computer Systems", information, "#80EE8B", announcements, assesment);
             units.Add(IFB102);
 
@@ -204,9 +204,9 @@ namespace Novus.Data
             information.Add("It exposes you to design contexts, theories, processes, principles and methods that IT experts use, either individually or in a group, to analyse and design an IT system");
             information.Add("The unit builds your skills towards any career related to operational analysis and design of a specific business scope, including Business Systems Analyst, Solution Architect, and Project Manager");
             Unit IFB103 = new Unit("IFB103", "IT Systems Design", information, "#F3B15B", announcements, assesment);
-            assesment.Add(new Assesment("IFB102", "Application Design - Assignment 1", 40, new DateTime(2020, 02, 20, 12, 35, 10).ToShortDateString(), new DateTime(2020, 03, 14, 12, 0, 0).ToShortDateString(), true, new DateTime(2020, 03, 19, 12, 0, 0).ToShortDateString(), "28.5/30"));
-            assesment.Add(new Assesment("IFB102", "Application Prototypes - Assignment 2", 40, new DateTime(2020, 03, 01, 12, 0, 0).ToShortDateString(), new DateTime(2020, 04, 12, 12, 0, 0).ToShortDateString(), false, "TBC", "0"));
-            assesment.Add(new Assesment("IFB102", "Final Exam", 20, "TBC", "TBC", false, "TBC", "0"));
+            assesment.Add(new Assesment("IFB102", "Application Design - Assignment 1", 40, new DateTime(2020, 02, 20, 12, 35, 10).ToShortDateString(), new DateTime(2020, 03, 14, 12, 0, 0).ToShortDateString(), true, new DateTime(2020, 03, 19, 12, 0, 0).ToShortDateString(), "28.5/30", "true"));
+            assesment.Add(new Assesment("IFB102", "Application Prototypes - Assignment 2", 40, new DateTime(2020, 03, 01, 12, 0, 0).ToShortDateString(), new DateTime(2020, 04, 12, 12, 0, 0).ToShortDateString(), false, "TBC", "0", "true"));
+            assesment.Add(new Assesment("IFB102", "Final Exam", 20, "TBC", "TBC", false, "TBC", "0", "false"));
             units.Add(IFB103);
 
             information = new ObservableCollection<string>();

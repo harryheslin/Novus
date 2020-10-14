@@ -14,12 +14,13 @@ namespace Novus.Models
         public string Code { get; private set; }
         public string Title { get; private set; }
         public string Percentage { get; private set; }
-        public string ReleaseDate { get; private set; }
+        public string ReleaseDate { get; set; }
         public string DueDate { get; private set; }
         public bool Graded { get; private set; }
         public string GradedDate { get; private set; }
         public string Grade { get;  set; }
-        public Assesment(string code, string title, int percentage, string releaseDate, string dueDate, bool graded, string gradedDate, string grade)
+        public string Available { get; set; }
+        public Assesment(string code, string title, int percentage, string releaseDate, string dueDate, bool graded, string gradedDate, string grade, string available)
         {
             this.Code = code;
             this.Title = title;
@@ -29,6 +30,7 @@ namespace Novus.Models
             this.Graded = graded;
             this.GradedDate = gradedDate;
             this.Grade = grade;
+            this.Available = available;
         }
 
         public AssesmentDB ConvertToDB()
@@ -44,7 +46,8 @@ namespace Novus.Models
                 DueDate = this.DueDate,
                 Graded = this.Graded,
                 GradedDate = this.GradedDate,
-                Grade = this.Grade
+                Grade = this.Grade,
+                Available = this.Available
             };
 
             return returnValue;

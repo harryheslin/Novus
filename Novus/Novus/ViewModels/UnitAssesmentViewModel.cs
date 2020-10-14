@@ -53,28 +53,34 @@ namespace Novus.ViewModels
             }
         }
 
-        private ObservableCollection<Assesment> getCurrentAssesment()
+        //private ObservableCollection<Assesment> getCurrentAssesment()
+        //{
+        //    ObservableCollection<Assesment> result = new ObservableCollection<Assesment>(); 
+        //    foreach(Assesment assesment in currentUnit.Assesments)
+        //    {
+        //        if (assesment.ReleaseDate != "TBC")
+        //            {
+        //                assesment.Grade = "True";                       
+        //            }
+        //        result.Add(assesment); 
+        //    }
+        //    return result;
+        //}
+
+        private ObservableCollection<Assesment> NoAssesment()
         {
-            ObservableCollection<Assesment> result = new ObservableCollection<Assesment>(); 
-            foreach(Assesment assesment in currentUnit.Assesments)
-            {
-                if (assesment.Graded == false)
-                {
-                    if (assesment.ReleaseDate == "TBC")
-                        assesment.Grade = "False";
-                    result.Add(assesment);
-                }   
-            }
-            return result;
+            ObservableCollection<Assesment> emptyAssesment = new ObservableCollection<Assesment>();
+            emptyAssesment.Add(new Assesment("False", "No Assesment Available", 0, "", "", false, "", "", "false"));
+            return emptyAssesment;
         }
 
         ObservableCollection<Assesment> assesment;
         public ObservableCollection<Assesment> Assesments
         {
-            get => getCurrentAssesment();
+            get => (currentUnit.Assesments).Count == 0 ? NoAssesment() : currentUnit.Assesments;
             set
             {
-                SetProperty(ref assesment, getCurrentAssesment());
+                SetProperty(ref assesment, currentUnit.Assesments);
                 OnPropertyChanged();
             }
         }

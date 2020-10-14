@@ -62,7 +62,7 @@ namespace Novus.ViewModels
         private ObservableCollection<Assesment> NoGradedAssesment()
         {
             ObservableCollection<Assesment> emptyGradedAssesment = new ObservableCollection<Assesment>();
-            emptyGradedAssesment.Add(new Assesment("", "No Grades Found", 0, "", "", false, "", ""));
+            emptyGradedAssesment.Add(new Assesment("", "No Grades Available", 0, "", "", false, "", "", "false"));
             return emptyGradedAssesment;
         }
 

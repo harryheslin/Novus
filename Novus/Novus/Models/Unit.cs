@@ -26,19 +26,17 @@ namespace Novus.Models
         public ObservableCollection<Announcement> StaffAnnouncements { get; set; }
         public ObservableCollection<Assesment> Assesments { get; set; }
         public ObservableCollection<Resources> UnitResources { get; set; }
-
-
-        private static string[] ColourCodes = { "#80EE8B", "#F3B15B", "#A1F1F4", "#EFE379" };
       
-        public Unit(string Code, string Name, ObservableCollection<string> Information)
+        public Unit(string Code, string Name, ObservableCollection<string> Information, string Colour, ObservableCollection<Announcement> Announcenment, ObservableCollection<Assesment> Assesment)
         {
             this.Code = Code;
             this.Name = Name;
+            this.Colour = Colour;
             this.Information = Information;
             this.IsVisible = false;
             this.Classes = new ObservableCollection<Class>();
-            this.StaffAnnouncements = new ObservableCollection<Announcement>();
-            this.Assesments = new ObservableCollection<Assesment>();
+            this.StaffAnnouncements = Announcenment;
+            this.Assesments = Assesment;
             this.UnitResources = new ObservableCollection<Resources>();
             GenerateFullName();
         }
@@ -91,6 +89,7 @@ namespace Novus.Models
                 UnitID = this.UnitID,
                 SemesterID = this.SemesterID,
                 Code = this.Code,
+                Colour = this.Colour,
                 Name = this.Name,
                 Information = information,
                 Classes = classes,

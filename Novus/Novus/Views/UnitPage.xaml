@@ -10,36 +10,39 @@
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
+        
         <StackLayout BackgroundColor="#A3A3A3">
-            <Frame BackgroundColor="{Binding Colour}" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" >
-                <Label FontSize="Medium"  FontAttributes="Bold" Text="{Binding Unit}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Left"></Label>
-            </Frame>
             <Grid>
-              <Grid.RowDefinitions>
+                <Grid.RowDefinitions>
                     <RowDefinition Height="70"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                   
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Command="{Binding OnedriveButton}"  CornerRadius="20" HeightRequest="80" HorizontalOptions="FillAndExpand"/>
-                <Image  Grid.Column="0"   HeightRequest="20" Source="{local:ImageResource Novus.Images.onedriveIcon.png}" InputTransparent="true"/>
-                <Button Grid.Column="1" Command="{Binding TeamsButton}" CornerRadius="20" HeightRequest="80" HorizontalOptions="FillAndExpand"/>
-                <Image  Grid.Column="1"   HeightRequest="20" Source="{local:ImageResource Novus.Images.teamsIcon.png}" InputTransparent="true"/>
-                <Button Grid.Column="2" Command="{Binding TrelloButton}" CornerRadius="20" HeightRequest="80" HorizontalOptions="FillAndExpand"/>
-                <Image  Grid.Column="2"  HeightRequest="20" Source="{local:ImageResource Novus.Images.trelloIcon.png}" InputTransparent="true"/>
-            </Grid>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="200"/>
-                </Grid.RowDefinitions>
+                <Frame Grid.Row ="0" Grid.ColumnSpan="3" BackgroundColor="{Binding Colour}" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" >
+                <Label FontSize="Medium"  FontAttributes="Bold" Text="{Binding Unit}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Left"></Label>
+            </Frame>
 
+                <Button Grid.Column="0" Grid.Row ="1" Command="{Binding OnedriveButton}"  CornerRadius="20" HeightRequest="80" HorizontalOptions="FillAndExpand"/>
+                <Image  Grid.Column="0" Grid.Row ="1" HeightRequest="20" Source="{local:ImageResource Novus.Images.onedriveIcon.png}" InputTransparent="true"/>
+                <Button Grid.Column="1" Grid.Row ="1" Command="{Binding TeamsButton}" CornerRadius="20" HeightRequest="80" HorizontalOptions="FillAndExpand"/>
+                <Image  Grid.Column="1" Grid.Row ="1"  HeightRequest="20" Source="{local:ImageResource Novus.Images.teamsIcon.png}" InputTransparent="true"/>
+                <Button Grid.Column="2" Grid.Row ="1" Command="{Binding TrelloButton}" CornerRadius="20" HeightRequest="80" HorizontalOptions="FillAndExpand"/>
+                <Image  Grid.Column="2" Grid.Row ="1" HeightRequest="20" Source="{local:ImageResource Novus.Images.trelloIcon.png}" InputTransparent="true"/>
+            </Grid>
+            <Grid VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
                 <ImageButton Command="{Binding ResourcesPageButton}" Source="{local:ImageResource Novus.Images.resourcesIcon.png}" Grid.Row="0" BackgroundColor="#525252" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5, 5, 5, 5" />
                 <Label Grid.Row="0"  Text="Resources" TextColor="White" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="End" Margin="0, 0, 0, 10"/>
                 <ImageButton Command="{Binding AnnouncementsPageButton}" Source="{local:ImageResource Novus.Images.announcementsIcon.png}" Grid.Row="0" Grid.Column="1" BackgroundColor="#525252" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5, 5, 5, 5" />
                 <Label Grid.Column="1" Text="Announcements" TextColor="White" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="End" Margin="0, 0, 0, 10"/>
                 <ImageButton Command="{Binding GradesPageButton}" Source="{local:ImageResource Novus.Images.gradesIcon.png}" Grid.Row="1" Grid.Column="0" BackgroundColor="#525252" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Margin="5, 5, 5, 5" />
                 <Label Grid.Row="1" Text="Grades" TextColor="White" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="End" Margin="0, 0, 0, 10"/>
-                <ImageButton Command="{Binding AssesmentPageButton}" Source="{local:ImageResource Novus.Images.assesmentIcon.png}" Grid.Row="1"  Grid.Column="1" BackgroundColor="#525252" HorizontalOptions="FillAndExpand" HeightRequest="200" VerticalOptions="EndAndExpand" Margin="5, 5, 5, 5" />
+                <ImageButton Command="{Binding AssesmentPageButton}" Source="{local:ImageResource Novus.Images.assesmentIcon.png}" Grid.Row="1"  Grid.Column="1" BackgroundColor="#525252" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Margin="5, 5, 5, 5" />
                 <Label Grid.Row="1" Grid.Column="1" Margin="0, 0, 0, 10" Text="Assesment" TextColor="White" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="End" />
             </Grid>
         </StackLayout>

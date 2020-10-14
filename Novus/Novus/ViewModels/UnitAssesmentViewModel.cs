@@ -24,23 +24,10 @@ namespace Novus.ViewModels
         }
         public string GetUnitNumber(string routeCode)
         {
-            switch (routeCode)
-            {
-                case "/unit1":
-                    currentUnit = Student.CurrentUnits[0];
-                    return currentUnit.FullName;
-                case "/IMPL_unit2/unit2":
-                    currentUnit = Student.CurrentUnits[1];
-                    return currentUnit.FullName;
-                case "/IMPL_unit3/unit3":
-                    currentUnit = Student.CurrentUnits[2];
-                    return currentUnit.FullName;
-                case "/IMPL_unit4/unit4":
-                    currentUnit = Student.CurrentUnits[3];
-                    return currentUnit.FullName;
-                default:
-                    return "Error";
-            }
+            int route = Int32.Parse(routeCode);
+            currentUnit = Student.CurrentUnits[route];
+            return currentUnit.FullName;
+
         }
 
         string unit;
@@ -66,7 +53,8 @@ namespace Novus.ViewModels
             }
         }
 
-        private ObservableCollection<Assesment> getCurrentAssesment(){
+        private ObservableCollection<Assesment> getCurrentAssesment()
+        {
             ObservableCollection<Assesment> result = new ObservableCollection<Assesment>(); 
             foreach(Assesment assesment in currentUnit.Assesments)
             {
@@ -86,7 +74,7 @@ namespace Novus.ViewModels
             get => getCurrentAssesment();
             set
             {
-                SetProperty(ref assesment, currentUnit.Assesments);
+                SetProperty(ref assesment, getCurrentAssesment());
                 OnPropertyChanged();
             }
         }

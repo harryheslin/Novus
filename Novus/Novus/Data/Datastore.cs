@@ -204,6 +204,9 @@ namespace Novus.Data
             information.Add("It exposes you to design contexts, theories, processes, principles and methods that IT experts use, either individually or in a group, to analyse and design an IT system");
             information.Add("The unit builds your skills towards any career related to operational analysis and design of a specific business scope, including Business Systems Analyst, Solution Architect, and Project Manager");
             Unit IFB103 = new Unit("IFB103", "IT Systems Design", information, "#F3B15B", announcements, assesment);
+            assesment.Add(new Assesment("IFB102", "Application Design - Assignment 1", 40, new DateTime(2020, 02, 20, 12, 35, 10).ToShortDateString(), new DateTime(2020, 03, 14, 12, 0, 0).ToShortDateString(), true, new DateTime(2020, 03, 19, 12, 0, 0).ToShortDateString(), "28.5/30"));
+            assesment.Add(new Assesment("IFB102", "Application Prototypes - Assignment 2", 40, new DateTime(2020, 03, 01, 12, 0, 0).ToShortDateString(), new DateTime(2020, 04, 12, 12, 0, 0).ToShortDateString(), false, "TBC", "0"));
+            assesment.Add(new Assesment("IFB102", "Final Exam", 20, "TBC", "TBC", false, "TBC", "0"));
             units.Add(IFB103);
 
             information = new ObservableCollection<string>();

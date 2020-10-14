@@ -5,13 +5,14 @@
              xmlns:controls="clr-namespace:Novus.Controls"
              xmlns:viewmodel="clr-namespace:Novus.ViewModels"
              x:Class="Novus.MainPage"
-             BackgroundColor="#00467F">
+             BackgroundColor="#00467F"
+        >
 
 
     <Shell.FlyoutHeader>
         <controls:FlyoutHeader />
     </Shell.FlyoutHeader>
-
+    
     <FlyoutItem Title="{Binding Unit1}">
         <ShellContent  ContentTemplate="{DataTemplate local:UnitPage}" Route="unit1" />
     </FlyoutItem>

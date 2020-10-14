@@ -49,25 +49,5 @@ namespace Novus.Models
 
             return returnValue;
         }
-
-        public static Assesment[] GenerateAssesments(string unitCode, int returnArrayLength)
-        {
-            Assesment[] returnArray = new Assesment[returnArrayLength];
-            for(int i = 0; i< returnArrayLength; i++)
-            {
-                returnArray[i] = new Assesment(unitCode + i.ToString(), unitCode + " Test Assignment", 30, DateTime.MinValue.ToShortDateString(), DateTime.Now.ToShortDateString(), false, "TBC", "0");
-            }
-            return returnArray;
-        }
-
-        public static Assesment[] GenerateCompleteAssesment(string unitCode, int returnArrayLength)
-        {
-            Assesment[] returnArray = new Assesment[returnArrayLength];
-            for (int i = 0; i < returnArrayLength; i++)
-            {
-                returnArray[i] = new Assesment(unitCode + i.ToString(), unitCode + " Assignment", 30, DateTime.MinValue.ToShortDateString(), DateTime.Now.ToShortDateString(), true, DateTime.Now.ToShortDateString().ToString(), "35/40");
-            }
-            return returnArray;
-        }
     }
 }

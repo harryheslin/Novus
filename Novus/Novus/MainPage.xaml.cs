@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using MvvmHelpers;
+using System.Collections.ObjectModel;
 
 namespace Novus
 {
@@ -18,10 +19,23 @@ namespace Novus
         public Dictionary<string, Type> Routes { get { return routes; } }
 
         Student TestStudent = App.Student;
-        public string Unit1 => TestStudent.CurrentUnits[0].Name;
+        //public string Unit1 => TestStudent.CurrentUnits[0].Name;
+        menuUnits = new ObservableCollection<ShellSection>
         public string Unit2 => TestStudent.CurrentUnits[1].Name;
         public string Unit3 => TestStudent.CurrentUnits[2].Name;
         public string Unit4 => TestStudent.CurrentUnits[3].Name;
+
+        private ObservableCollection<ShellSection> menuItems;
+
+        public ObservableCollection<ShellSection> MenuItems
+        {
+            get => menuItems;
+            set
+            {
+                menuItems = value;
+                OnPropertyChanged("MenuItems");
+            }
+        }
 
         public MainPage()
         {

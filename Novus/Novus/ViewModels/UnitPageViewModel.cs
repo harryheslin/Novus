@@ -7,6 +7,7 @@ using MvvmHelpers;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Novus.Models;
+using System.Linq;
 
 namespace Novus.ViewModels
 {
@@ -33,26 +34,12 @@ namespace Novus.ViewModels
             TrelloButton = new Command(GoToTrello);
         }
 
-        
+
 
         static string GetColour()
         {
-            string unitNumber = Shell.Current.CurrentState.Location.ToString();
-
-            switch (unitNumber)
-            {
-                case "//unit1":
-                    return Student.CurrentUnits[0].Colour; //Green
-                case "//IMPL_unit2/unit2":
-                    return Student.CurrentUnits[1].Colour;  //Orange
-                case "//IMPL_unit3/unit3":
-                    return Student.CurrentUnits[2].Colour;  //Blue
-                case "//IMPL_unit4/unit4":
-                    return Student.CurrentUnits[3].Colour; //Yellow
-
-                default:
-                    return "White";
-            }
+            int unitNumber = Int32.Parse(GetUnit());
+            return Student.CurrentUnits[unitNumber].Colour;
         }
 
         string unit = Shell.Current.CurrentItem.Title.ToString();
@@ -78,7 +65,15 @@ namespace Novus.ViewModels
             }
         }
 
-        string RouteCode = Shell.Current.CurrentState.Location.ToString();
+        static string GetUnit()
+        {
+            string route = Shell.Current.CurrentState.Location.ToString();
+            int routeIndex = Int32.Parse(route.Last().ToString());
+            string result = (routeIndex - 1).ToString();
+            return result;
+        }
+
+        string RouteCode = GetUnit();
         async void GoToResourcesPage()
         {
             await Shell.Current.GoToAsync($"resources?unit={RouteCode}");

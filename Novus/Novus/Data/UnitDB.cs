@@ -79,9 +79,10 @@ namespace Novus.Data
                 newInformation.Add(information[i]);
             }
 
-            Unit returnUnit = new Unit(Code, Name, newInformation);
+            Unit returnUnit = new Unit(Code, Name, newInformation, Colour, announcements, assesments);
             returnUnit.UnitID = UnitID;
             returnUnit.SemesterID = SemesterID;
+            returnUnit.Colour = Colour;
             returnUnit.Classes = classes;
             returnUnit.StaffAnnouncements = announcements;
             returnUnit.Assesments = assesments;

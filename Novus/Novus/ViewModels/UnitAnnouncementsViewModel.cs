@@ -17,23 +17,10 @@ namespace Novus.ViewModels
 
         public string GetUnitNumber(string routeCode)
         {
-            switch (routeCode)
-            {
-                case "/unit1":
-                    currentUnit = Student.CurrentUnits[0];
-                    return currentUnit.FullName;
-                case "/IMPL_unit2/unit2":
-                    currentUnit = Student.CurrentUnits[1];
-                    return currentUnit.FullName;
-                case "/IMPL_unit3/unit3":
-                    currentUnit = Student.CurrentUnits[2];
-                    return currentUnit.FullName;
-                case "/IMPL_unit4/unit4":
-                    currentUnit = Student.CurrentUnits[3];
-                    return currentUnit.FullName;
-                default:
-                    return "Error";
-            }
+            int route = Int32.Parse(routeCode);
+            currentUnit = Student.CurrentUnits[route];
+            return currentUnit.FullName;
+
         }
 
         string unit;
@@ -59,10 +46,17 @@ namespace Novus.ViewModels
             }
         }
 
+        private ObservableCollection<Announcement> noAnnouncements()
+        {
+            ObservableCollection<Announcement> emptyAnnouncement = new ObservableCollection<Announcement>();
+            emptyAnnouncement.Add(new Announcement("", unit, "Currently no available announcements", new DateTime(2020, 01, 01, 12, 0, 0), "QUT"));
+            return emptyAnnouncement;
+        }
+
         ObservableCollection<Announcement> announcements;
         public ObservableCollection<Announcement> Announcements
         {
-            get => currentUnit.StaffAnnouncements;
+            get => (currentUnit.StaffAnnouncements).Count == 0 ? noAnnouncements() : currentUnit.StaffAnnouncements;
             set
             {
                 SetProperty(ref announcements, currentUnit.StaffAnnouncements);

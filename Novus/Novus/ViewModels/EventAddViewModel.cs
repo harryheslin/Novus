@@ -70,7 +70,7 @@ namespace Novus.ViewModels
                 Console.WriteLine(x);
 
                 Shell.Current.Navigation.RemovePage(Shell.Current.Navigation.NavigationStack[Shell.Current.Navigation.NavigationStack.Count - 2]);
-                Shell.Current.Navigation.PopAsync(false);
+                await Shell.Current.Navigation.PopAsync(false);
 
                 if (x == "Novus.Views.Calendar")
                 {

@@ -7,11 +7,29 @@ namespace Novus.ViewModels
 {
     class EventAddViewModel : BaseViewModel
     {
+        //Event Name Preoperty changed
+        string nameInput;
         public string NameInput
-        { get; set; }
-        public string DescriptionInput { set; get; }
-        public Command AddEventButton { get; }
-        public DateTime EndDateMinimum => StartDateSelected.AddMinutes(1);
+        {
+            get => nameInput;
+            set
+            {
+                SetProperty(ref nameInput, value);
+                OnPropertyChanged(nameof(NameInput));
+            }
+        }
+
+        //Descrption Property changed
+        string descriptionInput;
+        public string DescriptionInput
+        {
+            get => descriptionInput;
+            set
+            {
+                SetProperty(ref descriptionInput, value);
+                OnPropertyChanged(nameof(DescriptionInput));
+            }
+        }
 
         private DateTime startDateSelected;
         public DateTime StartDateSelected
@@ -21,7 +39,10 @@ namespace Novus.ViewModels
             {
                 SetProperty(ref startDateSelected, value);
                 OnPropertyChanged(nameof(StartDateSelected));
-                OnPropertyChanged(nameof(EndDateMinimum));
+                if (StartDateSelected > EndDateSelected)
+                {
+                    OnPropertyChanged(nameof(EndDateSelected));
+                }
             }
         }
 
@@ -35,9 +56,34 @@ namespace Novus.ViewModels
                 OnPropertyChanged(nameof(EndDateSelected));
             }
         }
-        public string ColourSelected { get; set; }
-        public bool AllDayToggle { set; get; }
+
+        //Colour Proterty Change
+        string colourSelected;
+        public string ColourSelected
+        {
+            get => colourSelected;
+            set
+            {
+                SetProperty(ref colourSelected, value);
+                OnPropertyChanged(nameof(ColourSelected));
+            }
+        }
+
+        //All Day Property Change
+        bool allDayToggle;
+        public bool AllDayToggle { get => allDayToggle;
+            set
+            {
+                SetProperty(ref allDayToggle, value);
+                OnPropertyChanged(nameof(AllDayToggle));
+            }
+        }
+
+        //Current time for minimum start selection
         public DateTime Today { get; private set; }
+
+        public Command AddEventButton { get; }
+
 
         public EventAddViewModel()
         {

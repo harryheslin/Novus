@@ -49,53 +49,35 @@
                                            InputTransparent="true"
                                            Source="{local:ImageResource Novus.Images.resourcesIcon.png}"/>
                                 </Grid>
-                                <StackLayout BackgroundColor="White" IsVisible="{Binding IsVisible}">
-                                    <Grid Padding="0,10,0,0">
-                                        <Image 
+                                <StackLayout IsVisible="{Binding IsVisible}" BackgroundColor="white">
+                                    <StackLayout BindableLayout.ItemsSource="{Binding Files}">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Padding="0,10,0,0" >
+                                            <Image 
                                            Grid.Column="0" 
                                            Grid.Row="0" 
                                            HeightRequest="0"
                                            InputTransparent="true"
                                            Source="{local:ImageResource Novus.Images.fileIcon.png}"/>
-                                        <Label Text="{Binding Files[0]}" 
+                                           <Label Text="{Binding .}" 
                                            TextColor="#525252" 
                                            HorizontalTextAlignment="Start"                                                 
                                            FontSize="Medium"
                                            Margin="5,5,5,5"
                                            Grid.Column="1"
-                                           Grid.ColumnSpan="3"/>
-                                    </Grid>
-                                    <Grid>
-                                        <Image 
-                                           Grid.Column="0" 
-                                           Grid.Row="0" 
-                                           HeightRequest="0"
-                                           InputTransparent="true"
-                                           Source="{local:ImageResource Novus.Images.fileIcon.png}"/>
-                                        <Label Text="{Binding Files[1]}" 
-                                           TextColor="#525252" 
-                                           HorizontalTextAlignment="Start"                                                 
-                                           FontSize="Medium"
-                                           Margin="5,5,5,5"
-                                           Grid.Column="1"
-                                           Grid.ColumnSpan="3"/>
-                                    </Grid>
-                                    <Grid>
-                                        <Image 
-                                           Grid.Column="0" 
-                                           Grid.Row="0" 
-                                           HeightRequest="0"
-                                           InputTransparent="true"
-                                           Source="{local:ImageResource Novus.Images.fileIcon.png}"/>
-                                        <Label Text="{Binding Files[2]}" 
-                                           TextColor="#525252" 
-                                           HorizontalTextAlignment="Start"                                                 
-                                           FontSize="Medium"
-                                           Margin="5,5,5,5"
-                                           Grid.Column="1"
-                                           Grid.ColumnSpan="3"/>
-                                    </Grid>
-                                    <Grid>
+                                           Grid.ColumnSpan="3">
+                                               <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer
+                                                        Command="{Binding Path=BindingContext.OpenFile, Source={x:Reference Page}}" 
+                                                        CommandParameter="{Binding .}"/>
+                                                     </Label.GestureRecognizers>
+                                               </Label>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                    <Grid >
                                         <Image 
                                            Grid.Column="0" 
                                            Grid.Row="0" 
@@ -108,16 +90,15 @@
                                            FontSize="Medium"
                                            Margin="5,5,5,5"
                                            Grid.Column="1"
-                                           Grid.ColumnSpan="3"
-                                           FontAttributes="Bold">
+                                           Grid.ColumnSpan="3">
                                             <Label.GestureRecognizers>
                                                 <TapGestureRecognizer
                                                         Command="{Binding Path=BindingContext.LecturePage, Source={x:Reference Page}}" />
                                             </Label.GestureRecognizers>
                                         </Label>
                                     </Grid>
-                                    <StackLayout>
-                                    </StackLayout>
+                                </StackLayout>
+                                <StackLayout>
                                 </StackLayout>
                             </StackLayout>
                         </DataTemplate>

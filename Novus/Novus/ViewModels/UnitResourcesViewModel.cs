@@ -16,6 +16,8 @@ namespace Novus.ViewModels
     {
         public Command LecturePage { get; }
 
+        public Command OpenFile { get;  }
+
         static Student Student = App.Student;
 
         static public Unit currentUnit = Student.CurrentUnits[0];
@@ -23,6 +25,7 @@ namespace Novus.ViewModels
         public UnitResourcesViewModel()
         {
             LecturePage = new Command(GoToLecturePage);
+            OpenFile = new Command(GoToOpenFilePage);
         }
 
         public string GetUnitNumber(string routeCode)
@@ -85,6 +88,13 @@ namespace Novus.ViewModels
         {
             string Echo360Page = "https://play.google.com/store/apps/details?id=com.echo360.echoupload&hl=en_AU";
             await Launcher.OpenAsync(Echo360Page);
+        }
+
+        async void GoToOpenFilePage(Object s)
+        {
+            string colour = currentUnit.Colour;
+            string param = s.ToString();
+            await Shell.Current.GoToAsync($"file?name={param}");
         }
 
     }

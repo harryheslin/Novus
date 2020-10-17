@@ -13,10 +13,10 @@
         <controls:FlyoutHeader />
     </Shell.FlyoutHeader>
     
-    <FlyoutItem Title="{Binding Unit1}">
+    <FlyoutItem Title="{Binding Unit1}" >
         <ShellContent  ContentTemplate="{DataTemplate local:UnitPage}" Route="unit1" />
     </FlyoutItem>
-    <FlyoutItem Title="{Binding Unit2}">
+    <FlyoutItem Title="{Binding Unit2}" >
         <ShellContent  ContentTemplate="{DataTemplate local:UnitPage}" Route="unit2" />
     </FlyoutItem>
     <FlyoutItem Title="{Binding Unit3}">

@@ -45,6 +45,7 @@ namespace Novus
             routes.Add("calendarWeek", typeof(CalendarWeek));
             routes.Add("eventAdd", typeof(EventAdd));
             routes.Add("calendarHome", typeof(CalendarHome));
+            routes.Add("file", typeof(OpenFile));
 
 
             foreach (var item in routes)

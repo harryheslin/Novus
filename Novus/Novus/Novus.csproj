@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Files\pdf_mock.pdf" />
     <None Remove="Images\announcementsIcon.png" />
     <None Remove="Images\announcementsIcon2.png" />
     <None Remove="Images\assesmentIcon.png" />
@@ -28,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Files\pdf_mock.pdf" />
     <EmbeddedResource Include="Images\announcementsIcon.png" />
     <EmbeddedResource Include="Images\announcementsIcon2.png" />
     <EmbeddedResource Include="Images\assesmentIcon.png" />

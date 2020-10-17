@@ -1,7 +1,5 @@
 ﻿using MvvmHelpers;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace Novus.ViewModels
@@ -19,6 +17,5 @@ namespace Novus.ViewModels
                 SetProperty(ref name, Uri.UnescapeDataString(value));
             }
         }
-
     }
 }

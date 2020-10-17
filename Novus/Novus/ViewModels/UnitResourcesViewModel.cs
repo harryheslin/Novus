@@ -92,7 +92,6 @@ namespace Novus.ViewModels
 
         async void GoToOpenFilePage(Object s)
         {
-            string colour = currentUnit.Colour;
             string param = s.ToString();
             await Shell.Current.GoToAsync($"file?name={param}");
         }

@@ -2,11 +2,14 @@
 using Novus.Models;
 using MvvmHelpers;
 using Xamarin.Forms;
+using System.IO;
 
 namespace Novus.ViewModels
 {
     class EventAddViewModel : BaseViewModel
     {
+        Student student = App.Student;
+
         //Event Name Preoperty changed
         string nameInput;
         public string NameInput
@@ -109,25 +112,26 @@ namespace Novus.ViewModels
             }
             else
             {
-                Events.AddToEvents(NameInput, DescriptionInput, StartDateSelected, EndDateSelected, ColourSelected, AllDayToggle);
+                Events e = new Events(student.Events.Count+1, NameInput, DescriptionInput, StartDateSelected, EndDateSelected, ColourSelected, AllDayToggle);
+                student.Events.Add(e);
 
-                string x = (Shell.Current.Navigation.NavigationStack[Shell.Current.Navigation.NavigationStack.Count - 2]).ToString();
+                string priorPage = (Shell.Current.Navigation.NavigationStack[Shell.Current.Navigation.NavigationStack.Count - 2]).ToString();
 
-                Console.WriteLine(x);
+                Console.WriteLine(priorPage);
 
                 Shell.Current.Navigation.RemovePage(Shell.Current.Navigation.NavigationStack[Shell.Current.Navigation.NavigationStack.Count - 2]);
                 await Shell.Current.Navigation.PopAsync(false);
 
-                if (x == "Novus.Views.Calendar")
+                if (priorPage == "Novus.Views.Calendar")
                 {
                     await Shell.Current.GoToAsync("calendar", false);
                 }
-                else if (x == "Novus.Views.CalendarWeek")
+                else if (priorPage == "Novus.Views.CalendarWeek")
                 {
                     await Shell.Current.GoToAsync("calendarWeek", false);
 
                 }
-                else if (x == "Novus.Views.CalendarDay")
+                else if (priorPage == "Novus.Views.CalendarDay")
                 {
                     await Shell.Current.GoToAsync("calendarDay", false);
 

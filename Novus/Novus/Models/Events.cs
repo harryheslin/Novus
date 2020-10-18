@@ -1,10 +1,6 @@
-﻿using SQLite;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Drawing;
-using Telerik.XamarinForms.Input;
-using SQLiteNetExtensions.Attributes;
 using Novus.Data;
 
 namespace Novus.Models
@@ -20,23 +16,17 @@ namespace Novus.Models
         public string EventColour { get; set; }
         public bool IsAllDay { get; set; }
 
-        private static List<string> TitleList = new List<string>();
-        private static List<string> DetailList = new List<string>();
-        private static List<DateTime> StartDateList = new List<DateTime>();
-        private static List<DateTime> EndDateList = new List<DateTime>();
-        private static List<String> ColourList = new List<string>();
-        private static List<bool> IsAllDayList = new List<bool>();
-
-
-        /*public Events(string EventName, string EventDescription, DateTime StartDate, DateTime EndDate, String EventColour, bool IsAllDay)
+        public Events(int eventNum, string EventName, string EventDescription, DateTime StartDate, DateTime EndDate, String EventColour, bool IsAllDay)
         {
+            this.EventID = eventNum;
+            this.StudentID = App.Student.StudentID;
             this.EventName = EventName;
             this.EventDescription = EventDescription;
             this.StartDate = StartDate;
             this.EndDate = EndDate;
             this.EventColour = EventColour;
             this.IsAllDay = IsAllDay;
-        }*/
+        }
 
         public EventsDB ConvertToDB()
         {
@@ -54,32 +44,6 @@ namespace Novus.Models
 
             return returnValue;
         }
-
-        public static void AddToEvents(string EventName, string EventDescription, DateTime StartDate, DateTime EndDate, String EventColour, bool IsAllDay)
-        {
-            TitleList.Add(EventName);
-            DetailList.Add(EventDescription);
-            StartDateList.Add(StartDate);
-            EndDateList.Add(EndDate);
-            ColourList.Add(EventColour);
-            IsAllDayList.Add(IsAllDay);
-            Appointments = new ObservableCollection<Appointment>();
-
-            for (int a = 0; a < TitleList.Count; a++)
-            {
-                Appointments.Add(new Appointment
-                {
-                    Title = TitleList[a],
-                    Detail = DetailList[a],
-                    StartDate = StartDateList[a],
-                    EndDate = EndDateList[a],
-                    Color = ColourDeterminer(ColourList[a]),
-                    IsAllDay = IsAllDayList[a]
-                });
-            }
-        }
-
-        public static ObservableCollection<Appointment> Appointments { get; set; }
 
         //determine the colour given the input from the list
         public static Color ColourDeterminer(string colour)

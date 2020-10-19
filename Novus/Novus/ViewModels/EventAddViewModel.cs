@@ -74,7 +74,9 @@ namespace Novus.ViewModels
 
         //All Day Property Change
         bool allDayToggle;
-        public bool AllDayToggle { get => allDayToggle;
+        public bool AllDayToggle
+        {
+            get => allDayToggle;
             set
             {
                 SetProperty(ref allDayToggle, value);
@@ -95,42 +97,53 @@ namespace Novus.ViewModels
             ColourSelected = "Red";
         }
 
+        //when exicuted adds event to database and goes back to previous screen
         async void AddEventAndGoBack()
         {
+            //if the end date is before the start date then display apropriate error pop up
             if (EndDateSelected < StartDateSelected)
             {
                 await Application.Current.MainPage.DisplayAlert("Check your dates!", "Please ensure the end date is after the start date", "OK");
             }
+            //if the end date is the same as the start date and the event is not all day then display apropriate error pop up
             else if (EndDateSelected == StartDateSelected && !AllDayToggle)
             {
                 await Application.Current.MainPage.DisplayAlert("Check your dates!", "An event can not be zero minutes long. please selected a later" +
                     "date or turn the all day slider on", "OK");
             }
+            //if no name is entered display apropriate error pop up
             else if (NameInput == null)
             {
                 await Application.Current.MainPage.DisplayAlert("No Name", "Please ensure an event name has been enter", "OK");
             }
             else
             {
-                Events e = new Events(student.Events.Count+1, NameInput, DescriptionInput, StartDateSelected, EndDateSelected, ColourSelected, AllDayToggle);
+                //create new instant of event
+                Events e = new Events(student.Events.Count + 1, NameInput, DescriptionInput, StartDateSelected, EndDateSelected, ColourSelected, AllDayToggle);
+                //add the created event into the database
                 student.Events.Add(e);
 
+                //get the name of ther prior page
                 string priorPage = (Shell.Current.Navigation.NavigationStack[Shell.Current.Navigation.NavigationStack.Count - 2]).ToString();
 
-                Console.WriteLine(priorPage);
-
+                //remove the prior page and pop current page
                 Shell.Current.Navigation.RemovePage(Shell.Current.Navigation.NavigationStack[Shell.Current.Navigation.NavigationStack.Count - 2]);
                 await Shell.Current.Navigation.PopAsync(false);
 
+                //if the prior page was the month view open month view
                 if (priorPage == "Novus.Views.Calendar")
                 {
                     await Shell.Current.GoToAsync("calendar", false);
                 }
+
+                //if the prior page was the week view open week view
                 else if (priorPage == "Novus.Views.CalendarWeek")
                 {
                     await Shell.Current.GoToAsync("calendarWeek", false);
 
                 }
+
+                //if the prior page was the day view open day view
                 else if (priorPage == "Novus.Views.CalendarDay")
                 {
                     await Shell.Current.GoToAsync("calendarDay", false);

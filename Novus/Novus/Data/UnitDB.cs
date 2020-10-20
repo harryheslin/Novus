@@ -79,7 +79,7 @@ namespace Novus.Data
                 newInformation.Add(information[i]);
             }
 
-            Unit returnUnit = new Unit(Code, Name, newInformation, Colour, announcements, assesments);
+            Unit returnUnit = new Unit(Code, Name, newInformation, Colour, announcements, assesments, resources);
             returnUnit.UnitID = UnitID;
             returnUnit.SemesterID = SemesterID;
             returnUnit.Colour = Colour;
@@ -88,7 +88,7 @@ namespace Novus.Data
             returnUnit.Assesments = assesments;
             returnUnit.UnitResources = resources;
             returnUnit.StudentID = StudentID;
-
+            returnUnit.UnitResources = resources;
             return returnUnit;
         }
     }

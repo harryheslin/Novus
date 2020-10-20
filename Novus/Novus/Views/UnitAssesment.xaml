@@ -49,7 +49,8 @@
                                             TextColor="White" 
                                             FontSize="Medium" 
                                             Text="{Binding Percentage}" 
-                                            FontAttributes="Bold"  />
+                                            FontAttributes="Bold"  
+                                            />
                                         </Grid>
                                         <Grid>
                                             <Label 
@@ -57,23 +58,27 @@
                                                 Grid.ColumnSpan="2"
                                                 Padding="50,0,0,0"  
                                                 TextColor="White" 
-                                                Text="&#x2022; Release Date:" />
+                                                Text="&#x2022; Release Date:" 
+                                                />
                                             <Label 
                                                 Grid.Column="1" 
                                                 TextColor="White" 
-                                                Text="{Binding ReleaseDate}" />
+                                                Text="{Binding ReleaseDate}" 
+                                                />
                                             <Label 
                                                 Grid.Column="0" 
                                                 Grid.Row="1" 
                                                 Grid.ColumnSpan="2" 
                                                 Padding="50,0,0,0"  
                                                 TextColor="White" 
-                                                Text="&#x2022; Due Date:" />
+                                                Text="&#x2022; Due Date:" 
+                                                />
                                             <Label  
                                                 Grid.Column="1" 
                                                 Grid.Row="1"  
                                                 TextColor="White" 
-                                                Text="{Binding DueDate}"/>
+                                                Text="{Binding DueDate}"
+                                                />
                                             <Label 
                                                 Grid.Column="0" 
                                                 Grid.Row="2" 
@@ -81,7 +86,14 @@
                                                 Padding="50,0,0,0"  
                                                 TextColor="White" 
                                                 Text="&#x2022; View Task Sheet" 
-                                                IsVisible="{Binding Grade}"/>
+                                                IsVisible="{Binding Available}"
+                                                >
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer
+                                                        Command="{Binding Path=BindingContext.OpenFile, Source={x:Reference Page}}" 
+                                                        CommandParameter="{Binding Title}"/>
+                                                </Label.GestureRecognizers>
+                                            </Label>
                                             <Label
                                                 Grid.Column="0" 
                                                 Grid.Row="3" 
@@ -89,11 +101,10 @@
                                                 Padding="50,0,0,0"  
                                                 TextColor="White" 
                                                 Text="&#x2022; Submission Page"
-                                                FontAttributes="Bold"
-                                                IsVisible="{Binding Grade}"
+                                                IsVisible="{Binding Available}"
                                                 >
                                                 <Label.GestureRecognizers>
-                                                    <TapGestureRecognizer
+                                                    <TapGestureRecognizer 
                                                         Command="{Binding Path=BindingContext.SubmissionPage, Source={x:Reference Page}}" />
                                                 </Label.GestureRecognizers>
                                             </Label>

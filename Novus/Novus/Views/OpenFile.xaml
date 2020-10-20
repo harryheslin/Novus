@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:telerikPdf="clr-namespace:Telerik.XamarinForms.PdfViewer;assembly=Telerik.XamarinForms.PdfViewer"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Novus.Views.OpenFile"
+             xmlns:viewmodel="clr-namespace:Novus.ViewModels"
+             xmlns:local="clr-namespace:Novus.Extensions;assembly=Novus"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
+             xmlns:telerikPdfViewer="clr-namespace:Telerik.XamarinForms.PdfViewer;assembly=Telerik.XamarinForms.PdfViewer">
+
+    <ContentPage.BindingContext>
+        <viewmodel:OpenFileViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+
+        <ScrollView>
+            <StackLayout BackgroundColor="#A3A3A3">
+            <Label Text="{Binding Name}" TextColor="White"/>
+            <telerikPdf:RadPdfViewerToolbar PdfViewer="{Binding Source={x:Reference pdfViewer}}">
+                <telerikPdf:NavigateToPreviousPageToolbarItem />
+                <telerikPdf:NavigateToPageToolbarItem/>
+                <telerikPdf:NavigateToNextPageToolbarItem />
+                <telerikPdf:ZoomInToolbarItem/>
+                <telerikPdf:ZoomOutToolbarItem/>
+                <telerikPdf:FitToWidthToolbarItem/>
+            </telerikPdf:RadPdfViewerToolbar>
+            <telerikPdfViewer:RadPdfViewer x:Name="pdfViewer"  MaxZoomLevel="3"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

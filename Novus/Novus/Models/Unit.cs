@@ -27,7 +27,7 @@ namespace Novus.Models
         public ObservableCollection<Assesment> Assesments { get; set; }
         public ObservableCollection<Resources> UnitResources { get; set; }
       
-        public Unit(string Code, string Name, ObservableCollection<string> Information, string Colour, ObservableCollection<Announcement> Announcenment, ObservableCollection<Assesment> Assesment)
+        public Unit(string Code, string Name, ObservableCollection<string> Information, string Colour, ObservableCollection<Announcement> Announcenment, ObservableCollection<Assesment> Assesment, ObservableCollection<Resources> Resources)
         {
             this.Code = Code;
             this.Name = Name;
@@ -36,8 +36,9 @@ namespace Novus.Models
             this.Classes = new ObservableCollection<Class>();
             this.StaffAnnouncements = Announcenment;
             this.Assesments = Assesment;
-            this.UnitResources = new ObservableCollection<Resources>();
+            this.UnitResources = Resources;
             this.Information = new ObservableCollection<Information>();
+
             GenerateFullName();
 
             foreach(string line in Information)

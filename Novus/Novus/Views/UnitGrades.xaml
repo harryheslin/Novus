@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Novus.Views.UnitGrades"
              xmlns:viewmodel="clr-namespace:Novus.ViewModels"
-             xmlns:local="clr-namespace:Novus.Extensions;assembly=Novus">
+             xmlns:local="clr-namespace:Novus.Extensions;assembly=Novus"
+             x:Name="Page">
 
     <ContentPage.BindingContext>
         <viewmodel:UnitGradesViewModel/>
@@ -51,6 +52,7 @@
                                             Text="{Binding Grade}" 
                                             FontAttributes="Bold"  
                                             Padding="10, 0, 0, 0"
+                                            IsVisible="{Binding Graded}"
                                             />
                                         </Grid>
                                         <Grid>
@@ -62,27 +64,24 @@
                                                 Text="&#x2022; Graded:" 
                                                 IsVisible="{Binding Graded}"/>
                                             <Label 
-                                                Grid.Column="1" 
+                                                Grid.Column="2" 
                                                 TextColor="White" 
                                                 Text="{Binding GradedDate}"
                                                 IsVisible="{Binding Graded}"/>
                                             <Label 
                                                 Grid.Column="0" 
-                                                Grid.Row="2" 
-                                                Grid.ColumnSpan="2" 
-                                                Padding="50,0,0,0"  
-                                                TextColor="White" 
-                                                Text="&#x2022; View Task Sheet"
-                                                IsVisible="{Binding Graded}"/>
-                                               
-                                            <Label 
-                                                Grid.Column="0" 
                                                 Grid.Row="1" 
-                                                Grid.ColumnSpan="2" 
+                                                Grid.ColumnSpan="3"
                                                 Padding="50,0,0,0"  
                                                 TextColor="White" 
-                                                Text="&#x2022; View Rubric"
-                                                IsVisible="{Binding Graded}"/>
+                                                Text="&#x2022; View Rubric" 
+                                                IsVisible="{Binding Graded}">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer
+                                                        Command="{Binding Path=BindingContext.OpenFile, Source={x:Reference Page}}" 
+                                                        CommandParameter="{Binding Title}"/>
+                                                </Label.GestureRecognizers>
+                                            </Label>
                                         </Grid>
                                     </StackLayout>
                                 </Frame>

@@ -44,6 +44,25 @@ namespace Novus.Data
             return semesters;
         }
 
+        public static ObservableCollection<Course> GetCourse()
+        {
+            ObservableCollection<Information> information = new ObservableCollection<Information>();
+            information.Add(new Information("Computer science is the scientific and practical approach to computer-based system design, development and operation"));
+            information.Add(new Information("It deals with areas ranging from the fundamental principles of computation through to tools and techniques for IT system development and evaluation, including identifying and solving systems design issues associated with efficiency, usability and security"));
+            information.Add(new Information("Computer science applications extend into specialised areas including mobile computing, artificial intelligence, robotics, and large-scale information management involving information retrieval and web search engines"));
+            information.Add(new Information("f you want to work with cutting-edge technology and be a part of creating technologies that have not yet been invented, a computer science career could be for you"));
+            information.Add(new Information("Foster your passion and shape your career through complementary study areas"));
+            information.Add(new Information("As well as choosing a major area of study, your course includes a second study area, which can be either a second major or double minor"));
+            information.Add(new Information("A second major can complement your major area of study, giving you the opportunity to develop a significant depth of knowledge and skills in two discipline areas"));
+            information.Add(new Information("Computational and Simulation Science combines the study of science and mathematical models with the use of computers to provide quantitative analysis and visualisation in order to gain insight to the solution of scientific problems from a range of scientific application areas"));
+            information.Add(new Information("Computational and Simulation Science second major graduates will be in demand, to apply the latest computing and computational techniques to specialist application areas"));
+            information.Add(new Information("Data Science provides the necessary skills to be a data scientist including statistical methods and data visualisation, computational tools for and data management techniques for large datasets, and high-performance computing resources and techniques"));
+            information.Add(new Information("You might prefer to expand the breadth of your studies by adding to your major with two minors"));
+            information.Add(new Information("You can choose from the information technology discipline, or you can broaden your studies by completing minors that offer general knowledge and insights in study areas from across the university"));
+            
+             return new ObservableCollection<Course>() { new Course(information, GetMajors(), GetMinors()) };
+        }
+
         public static ObservableCollection<Minor> GetMinors()
         {
             ObservableCollection<Minor> minors = new ObservableCollection<Minor>();

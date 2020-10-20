@@ -45,6 +45,11 @@ namespace Novus
             routes.Add("calendarWeek", typeof(CalendarWeek));
             routes.Add("eventAdd", typeof(EventAdd));
             routes.Add("calendarHome", typeof(CalendarHome));
+            routes.Add("signOn", typeof(SignOn));
+            routes.Add("signOnPlan", typeof(SignOnPlan));
+            routes.Add("signOnMain", typeof(SignOnMain));
+            routes.Add("registerAbout", typeof(RegisterAbout));
+            routes.Add("register", typeof(Register));
 
 
             foreach (var item in routes)

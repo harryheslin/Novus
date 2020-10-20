@@ -33,28 +33,11 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                        HorizontalOptions="Center"
                        Margin="0,8,0,0"/>
             </Grid>
-            <Grid Margin="0,20,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Image Source="{local:ImageResource Novus.Images.backArrow.png}" 
-                       HeightRequest="50"
-                       Grid.Column="0" 
-                       Grid.Row="0"
-                       HorizontalOptions="End"
-                       Margin="65,0,0,0"/>
-                <Label Text="Sign-On"
-                       Grid.Column="1" 
-                       Grid.Row="0"
-                       HorizontalOptions="Start"
-                       HorizontalTextAlignment="Start"
-                       TextColor="White"
-                       FontSize="50"/>
-            </Grid>
+            <Label Text="Sign-On"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   TextColor="White"
+                   FontSize="50"/>
             <ScrollView>
                 <StackLayout BindableLayout.ItemsSource="{Binding Units}">
                     <BindableLayout.ItemTemplate>

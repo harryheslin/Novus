@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using System.IO;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using Novus.Data;
 
 namespace Novus
 {
@@ -33,8 +34,8 @@ namespace Novus
             }
         }
 
-        private List<Unit> units;
-        public List<Unit> Units
+        static List<Unit> units;
+        public static List<Unit> Units
         {
             get => units;
         }
@@ -44,8 +45,39 @@ namespace Novus
             InitializeComponent();
             student = Database.GetStudent();
             units = Database.GetUnits();
-            MainPage = new MainPage();
+            GenerateNewUnits();
             
+            MainPage = new MainPage();
+        }
+
+        private void GenerateNewUnits()
+        {
+            bool isInCurrent = false;
+            NewUnit.RemoveAllUnits();
+            foreach (Unit valueOne in Datastore.AllUnits)
+            {
+                foreach (Semester valueTwo in student.Enrollment)
+                {
+                    foreach (Unit valueThree in valueTwo.EnrolledUnits)
+                    {
+                        if (valueThree.Code == valueOne.Code)
+                        {
+                            isInCurrent = true;
+                            break;
+                        }
+                    }
+
+                }
+
+                if (isInCurrent)
+                {
+                    isInCurrent = false;
+                }
+                else
+                {
+                    NewUnit.AddUnit(valueOne);
+                }
+            }
         }
 
         protected override void OnStart()

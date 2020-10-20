@@ -13,6 +13,7 @@ namespace Novus.Models
         public ObservableCollection<Unit> Units { get; private set; }
         public string Name { get; private set; }
         public bool IsVisible { get; set; }
+        public bool IsNotVisible { get; set; }
 
         public Minor(ObservableCollection<string> information, ObservableCollection<Unit> units, string name)
         {
@@ -20,6 +21,8 @@ namespace Novus.Models
             this.Units = units;
             this.Name = name;
             this.IsVisible = false;
+            this.IsNotVisible = true;
+
         }
 
         public static int GenerateMinorID()

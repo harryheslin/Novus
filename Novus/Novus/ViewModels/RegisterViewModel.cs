@@ -4,17 +4,26 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 using MvvmHelpers;
-using MvvmHelpers.Commands;
+using Novus.Data;
 using Novus.Models;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace Novus.ViewModels
 {
     class RegisterViewModel : BaseViewModel
     {
+        public Command AboutButton { get; }
+
         public RegisterViewModel()
         {
             student = App.Student;
+            AboutButton = new Command(GoToAbout);
+        }
+
+        async void GoToAbout()
+        {
+            await Shell.Current.GoToAsync("registerAbout");
         }
 
 
@@ -35,7 +44,7 @@ namespace Novus.ViewModels
             get => student.Enrollment;
         }
 
-        public void SetIsVisible(int unitID)
+        public void SetIsVisibleUnit(int unitID)
         {
             Unit unit = GetUnit(unitID);
             if(unit.UnitID != -1)
@@ -45,12 +54,41 @@ namespace Novus.ViewModels
             }
         }
 
-        public void AddUnit(ObservableCollection<int> semesterNumber)
-        {
-            Semester semester = GetSemester(semesterNumber);
-            if(!semester.SemesterNumber.Equals(new ObservableCollection<int> { -1, -1 }))
+        public void SetIsVisiableNewUnit(int newUnitID) {
+            foreach(Semester semester in student.Enrollment)
             {
-                //ADD NEW UNIT HERE
+                foreach(AddUnit value in semester.AvalibleUnits)
+                {
+                    if(value.AddUnitID == newUnitID)
+                    {
+                        Semester newValue = GetSemester(semester);
+                        newValue.AvalibleUnits[semester.AvalibleUnits.IndexOf(value)].InverseIsVisible();
+                        SetSemesterValue(newValue);
+                        return;
+                    }
+                }
+            }
+        }
+
+        public void SetIsVisibleNewUnitsUnit(string code)
+        {
+            foreach(Unit unit in NewUnit.AvalibleUnits)
+            {
+                if(unit.Code == code)
+                {
+                    unit.IsVisible = !unit.IsVisible;
+                    NewUnit.AvalibleUnits[NewUnit.AvalibleUnits.IndexOf(unit)] = unit;
+                    return;
+                }
+            }
+        }
+
+        public void AddUnit(Unit unit)
+        {
+            Semester semester = GetSemesterByID(unit.SemesterID);
+            if (semester.SemesterID != -1)
+            {
+                semester.EnrollInUnit(unit);
                 SetSemesterValue(semester);
             }
         }
@@ -169,6 +207,20 @@ namespace Novus.ViewModels
             {
                 return new Semester();
             }
+        }
+
+        private Semester GetSemesterByID(int semesterID)
+        {
+            foreach(Semester semester in Enrollment)
+            {
+                if(semester.SemesterID == semesterID)
+                {
+                    return semester;
+                }
+            }
+
+            Semester notFound = new Semester();
+            return notFound;
         }
     }
 }

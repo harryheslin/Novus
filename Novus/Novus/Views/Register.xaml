@@ -3,7 +3,8 @@
 xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Novus.Views.Register"
-             xmlns:viewmodel="clr-namespace:Novus.ViewModels">
+             xmlns:viewmodel="clr-namespace:Novus.ViewModels"
+             xmlns:local="clr-namespace:Novus.Extensions;assembly=Novus">
 
     <ContentPage.BindingContext>
         <viewmodel:RegisterViewModel/>
@@ -37,6 +38,10 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
                 <Label Text="Progress" 
                        TextColor="White" 
                        Grid.Row="0" 
@@ -47,12 +52,15 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                          Grid.Column="0" 
                          Color="#00467F"
                          WidthRequest="200"
-                         HeightRequest="5"/>
+                         HeightRequest="20"/>
                 <Button Text="About" 
-                        Grid.Row="1" Grid.Column="1"
+                        Grid.Row="1" 
+                        Grid.Column="1"
                         TextColor="White" 
                         BackgroundColor="#525252"
-                        Padding="0,0,0,0"/>
+                        Padding="0,0,0,0"
+                        HeightRequest="20"
+                        Command="{Binding AboutButton}"/>
             </Grid>
             <ScrollView>
                 <StackLayout BindableLayout.ItemsSource="{Binding Enrollment}">
@@ -66,79 +74,145 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                                 <StackLayout BindableLayout.ItemsSource="{Binding EnrolledUnits}">
                                     <BindableLayout.ItemTemplate>
                                         <DataTemplate>
-                                            <StackLayout BackgroundColor="White" 
-                                                             Margin="10, 10, 10, 10"
-                                                             VerticalOptions="Center">
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto" />
-                                                        <ColumnDefinition Width="*" />
-                                                    </Grid.ColumnDefinitions>
-                                                    <Label Text="-" 
-                                                           TextColor="#525252" 
-                                                           BackgroundColor="White"
-                                                           FontSize="Large"
-                                                           Margin="10,5,5,5"
-                                                           WidthRequest="10"
-                                                           HorizontalTextAlignment="Center"
-                                                           HorizontalOptions="CenterAndExpand"
-                                                           VerticalOptions="CenterAndExpand"
-                                                           Grid.Column="0">
-                                                        <Label.GestureRecognizers>
-                                                            <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                            <StackLayout Margin="10, 10, 10, 10"
+                                                         VerticalOptions="Center">
+                                                <Frame CornerRadius="20"
+                                                       BackgroundColor="White">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Image Source="{local:ImageResource Novus.Images.minus.png}"
+                                                           HeightRequest="60">
+                                                            <Image.GestureRecognizers>
+                                                                <TapGestureRecognizer NumberOfTapsRequired="1" 
                                                                           Tapped="RemoveUnit" 
                                                                           CommandParameter="{Binding UnitID}" />
-                                                        </Label.GestureRecognizers>
-                                                    </Label>
-                                                    <Label Text="{Binding FullName}" 
+                                                            </Image.GestureRecognizers>
+                                                        </Image>
+                                                        <Label Text="{Binding FullName}" 
                                                            TextColor="#525252" 
-                                                           BackgroundColor="White"
                                                            FontSize="Medium"
                                                            Margin="5,5,5,5"
                                                            HorizontalTextAlignment="Center"
                                                            HorizontalOptions="CenterAndExpand"
                                                            VerticalOptions="CenterAndExpand"
                                                            Grid.Column="1">
-                                                        <Label.GestureRecognizers>
-                                                            <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                            <Label.GestureRecognizers>
+                                                                <TapGestureRecognizer NumberOfTapsRequired="1" 
                                                                           Tapped="ExpandUnit" 
                                                                           CommandParameter="{Binding UnitID}" />
-                                                        </Label.GestureRecognizers>
-                                                    </Label>
-                                                </Grid>
-                                                <StackLayout BindableLayout.ItemsSource="{Binding Information}"
+                                                            </Label.GestureRecognizers>
+                                                        </Label>
+                                                    </Grid>
+                                                </Frame>
+                                                <Frame CornerRadius="20"
+                                                       BackgroundColor="White"
+                                                       IsVisible="{Binding IsVisible}">
+                                                    <StackLayout BindableLayout.ItemsSource="{Binding Information}"
                                                              IsVisible="{Binding IsVisible}">
-                                                    <BindableLayout.ItemTemplate>
-                                                        <DataTemplate>
-                                                            <StackLayout>
+                                                        <BindableLayout.ItemTemplate>
+                                                            <DataTemplate>
                                                                 <Label Text="{Binding Line, StringFormat='&#x2022; {0}'}" />
-                                                            </StackLayout>
-                                                        </DataTemplate>
-                                                    </BindableLayout.ItemTemplate>
-                                                </StackLayout>
+                                                            </DataTemplate>
+                                                        </BindableLayout.ItemTemplate>
+                                                    </StackLayout>
+                                                </Frame>
                                             </StackLayout>
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>
                                 </StackLayout>
                                 <StackLayout BindableLayout.ItemsSource="{Binding AvalibleUnits}">
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer NumberOfTapsRequired="1" 
-                                                              Tapped="AddUnit"
-                                                              CommandParameter="{Binding SemesterNumber}"/>
-                                    </StackLayout.GestureRecognizers>
                                     <BindableLayout.ItemTemplate>
                                         <DataTemplate>
-                                            <StackLayout BackgroundColor="White" 
-                                                         Margin="10, 10, 10, 10"
+                                            <StackLayout Margin="10, 10, 10, 10"
                                                          VerticalOptions="Center">
-                                                <Label Text="+" 
-                                                       TextColor="#525252" 
+                                                <Frame CornerRadius="20"
                                                        BackgroundColor="White"
-                                                       FontSize="Large"
-                                                       Margin="5,5,5,5"
-                                                       HorizontalTextAlignment="Center"
-                                                       HorizontalOptions="CenterAndExpand"
-                                                       VerticalOptions="CenterAndExpand"/>
+                                                       IsVisible="{Binding IsNotVisible}">
+                                                    <Image Source="{local:ImageResource Novus.Images.plus.png}"
+                                                           HeightRequest="60"
+                                                           VerticalOptions="Center"
+                                                           HorizontalOptions="Center">
+                                                        <Image.GestureRecognizers>
+                                                            <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                                          Tapped="ExpandNewUnit" 
+                                                                          CommandParameter="{Binding AddUnitID}" />
+                                                        </Image.GestureRecognizers>
+                                                    </Image>
+                                                </Frame>
+                                                <StackLayout>
+                                                    <Frame CornerRadius="20"
+                                                           BackgroundColor="White"
+                                                           IsVisible="{Binding IsVisible}">
+                                                        <Label Text="Available Units" 
+                                                               TextColor="#525252" 
+                                                               FontSize="Large"
+                                                               Margin="5,5,5,5"
+                                                               HorizontalTextAlignment="Center"
+                                                               HorizontalOptions="CenterAndExpand"
+                                                               VerticalOptions="CenterAndExpand">
+                                                            <Label.GestureRecognizers>
+                                                                <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                                          Tapped="ExpandNewUnit" 
+                                                                          CommandParameter="{Binding AddUnitID}" />
+                                                            </Label.GestureRecognizers>
+                                                        </Label>
+                                                    </Frame>
+                                                    <StackLayout BindableLayout.ItemsSource="{Binding AvalibleUnits}"
+                                                                 BackgroundColor="#A3A3A3"
+                                                                 IsVisible="{Binding IsVisible}">
+                                                        <BindableLayout.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <StackLayout>
+                                                                    <Frame CornerRadius="20"
+                                                                           BackgroundColor="White">
+                                                                        <Grid>
+                                                                            <Grid.ColumnDefinitions>
+                                                                                <ColumnDefinition Width="Auto" />
+                                                                                <ColumnDefinition Width="*" />
+                                                                            </Grid.ColumnDefinitions>
+                                                                            <Image Source="{local:ImageResource Novus.Images.plus.png}"
+                                                                                   HeightRequest="60">
+                                                                                <Image.GestureRecognizers>
+                                                                                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                                                                          Tapped="AddUnit"
+                                                                                                          CommandParameter="{Binding .}" />
+                                                                                </Image.GestureRecognizers>
+                                                                            </Image>
+                                                                            <Label Text="{Binding FullName}"
+                                                                                   TextColor="#525252" 
+                                                                                   FontSize="Medium"
+                                                                                   Margin="5,5,5,5"
+                                                                                   HorizontalTextAlignment="Center"
+                                                                                   HorizontalOptions="CenterAndExpand"
+                                                                                   VerticalOptions="CenterAndExpand"
+                                                                                   Grid.Column="1">
+                                                                                <Label.GestureRecognizers>
+                                                                                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                                                                      Tapped="ExpandNewUnitsUnit"
+                                                                                                      CommandParameter="{Binding Code}" />
+                                                                                </Label.GestureRecognizers>
+                                                                            </Label>
+                                                                        </Grid>
+                                                                    </Frame>
+                                                                    <Frame CornerRadius="20"
+                                                                           BackgroundColor="White"
+                                                                           IsVisible="{Binding IsVisible}">
+                                                                        <StackLayout BindableLayout.ItemsSource="{Binding Information}">
+                                                                            <BindableLayout.ItemTemplate>
+                                                                                <DataTemplate>
+                                                                                    <Label Text="{Binding Line, StringFormat='&#x2022; {0}'}" />
+                                                                                </DataTemplate>
+                                                                            </BindableLayout.ItemTemplate>
+                                                                        </StackLayout>
+                                                                    </Frame>
+                                                                </StackLayout>
+                                                            </DataTemplate>
+                                                        </BindableLayout.ItemTemplate>
+                                                    </StackLayout>
+                                                </StackLayout>
                                             </StackLayout>
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>

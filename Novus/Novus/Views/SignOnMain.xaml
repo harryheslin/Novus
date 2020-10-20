@@ -45,7 +45,8 @@
                         BackgroundColor="White"
                         TextColor="#525252"
                         Margin="10, 50, 10, 0"
-                        FontSize="30"/>
+                        FontSize="30"
+                        Command="{Binding SignOnButton}"/>
                     <Label Text="Use this link on sign-on day to register for classes"
                        TextColor="White"
                        HorizontalTextAlignment="Center"
@@ -58,7 +59,8 @@
                         BackgroundColor="White"
                         TextColor="#525252"
                         Margin="10, 0, 10, 0"
-                        FontSize="30"/>
+                        FontSize="30"
+                        Command="{Binding PlanButton}"/>
                     <Label Text="Use this link to plan classes before the offical sign-on date"
                        TextColor="White"
                        HorizontalTextAlignment="Center"

@@ -11,11 +11,11 @@ namespace Novus.Models
 {
     public class Semester
     {
-        public int SemesterID { get; set; }
+        public int SemesterID { get; private set; }
         public int StudentID { get; set; }
         public ObservableCollection<int> SemesterNumber { get; private set; }
         public ObservableCollection<Unit> EnrolledUnits { get; set; }
-        public ObservableCollection<int> AvalibleUnits { get; private set; }
+        public ObservableCollection<AddUnit> AvalibleUnits { get; private set; }
         public ObservableCollection<Class> EnrolledClasses { get; set; }
         public ObservableCollection<Class> PlannedClasses { get; set; }
         public string DisplayName { get; private set; }
@@ -25,9 +25,29 @@ namespace Novus.Models
             this.SemesterNumber = Semester;
             this.DisplayName = GetFullName();
             this.EnrolledUnits = new ObservableCollection<Unit>();
-            this.AvalibleUnits = new ObservableCollection<int>(new int[] { 1, 1, 1, 1 });
+            this.AvalibleUnits = new ObservableCollection<AddUnit>();
             this.EnrolledClasses = new ObservableCollection<Class>();
             this.PlannedClasses = new ObservableCollection<Class>();
+
+            SetupAvailableUnits();
+
+            foreach (Unit unit in EnrolledUnits)
+            {
+                EnrollInUnit(unit);
+            }
+        }
+
+        public Semester(int SemesterID, ObservableCollection<int> Semester, ObservableCollection<Unit> EnrolledUnits)
+        {
+            this.SemesterID = SemesterID;
+            this.SemesterNumber = Semester;
+            this.DisplayName = GetFullName();
+            this.EnrolledUnits = new ObservableCollection<Unit>();
+            this.AvalibleUnits = new ObservableCollection<AddUnit>();
+            this.EnrolledClasses = new ObservableCollection<Class>();
+            this.PlannedClasses = new ObservableCollection<Class>();
+
+            SetupAvailableUnits();
 
             foreach (Unit unit in EnrolledUnits)
             {
@@ -74,6 +94,14 @@ namespace Novus.Models
             return returnValue;
         }
 
+        private void SetupAvailableUnits()
+        {
+            for(int i = 0; i < 4; i++)
+            {
+                AvalibleUnits.Add(new AddUnit(this.SemesterID));
+            }
+        }
+
         private string GetFullName()
         {
             return String.Format("Year {0} Semester {1}", this.SemesterNumber[1] + 1, this.SemesterNumber[0] + 1);
@@ -85,6 +113,7 @@ namespace Novus.Models
             {
                 EnrolledUnits.Add(unit);
                 AvalibleUnits.RemoveAt(0);
+                NewUnit.RemoveUnit(unit);
             }
         }
 
@@ -94,13 +123,15 @@ namespace Novus.Models
             if(unitIndex != -1)
             {
                 EnrolledUnits.Remove(unit);
-                AvalibleUnits.Add(1);
+                AvalibleUnits.Add(new AddUnit(this.SemesterID));
 
                 foreach(Class oldClass in unit.Classes)
                 {
                     UnEnrollInClass(oldClass);
                     UnPlanClass(oldClass);
                 }
+
+                NewUnit.AddUnit(unit);
             }
         }
 

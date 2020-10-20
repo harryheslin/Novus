@@ -20,7 +20,7 @@ namespace Novus.Models
 
         public string Name { get; private set; }
         public string FullName { get; set; }
-        public ObservableCollection<string> Information { get; private set; }
+        public ObservableCollection<Information> Information { get; private set; }
         public ObservableCollection<Class> Classes { get; set; }
         public string Colour { get; set; }
         public ObservableCollection<Announcement> StaffAnnouncements { get; set; }
@@ -32,13 +32,19 @@ namespace Novus.Models
             this.Code = Code;
             this.Name = Name;
             this.Colour = Colour;
-            this.Information = Information;
             this.IsVisible = false;
             this.Classes = new ObservableCollection<Class>();
             this.StaffAnnouncements = Announcenment;
             this.Assesments = Assesment;
             this.UnitResources = Resources;
+            this.Information = new ObservableCollection<Information>();
+
             GenerateFullName();
+
+            foreach(string line in Information)
+            {
+                this.Information.Add(new Information(line));
+            }
         }
 
         public Unit()
@@ -79,9 +85,9 @@ namespace Novus.Models
 
             string information = "";
 
-            foreach (string value in Information)
+            foreach (Information value in Information)
             {
-                information += value + "|";
+                information += value.Line + "|";
             }
 
             UnitDB returnValue = new UnitDB

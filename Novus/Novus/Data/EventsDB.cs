@@ -22,7 +22,7 @@ namespace Novus.Data
         public bool IsAllDay { get; set; }
         public Events ConvertToModel()
         {
-            Events returnValue = new Events
+            Events returnValue = new Events(EventID, EventName,EventDescription,StartDate,EndDate,EventColour,IsAllDay)
             {
                 EventID = this.EventID,
                 StudentID = this.StudentID,

@@ -87,7 +87,13 @@
                                                 TextColor="White" 
                                                 Text="&#x2022; View Task Sheet" 
                                                 IsVisible="{Binding Available}"
-                                                />
+                                                >
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer
+                                                        Command="{Binding Path=BindingContext.OpenFile, Source={x:Reference Page}}" 
+                                                        CommandParameter="{Binding Title}"/>
+                                                </Label.GestureRecognizers>
+                                            </Label>
                                             <Label
                                                 Grid.Column="0" 
                                                 Grid.Row="3" 
@@ -95,7 +101,6 @@
                                                 Padding="50,0,0,0"  
                                                 TextColor="White" 
                                                 Text="&#x2022; Submission Page"
-                                                FontAttributes="Bold"
                                                 IsVisible="{Binding Available}"
                                                 >
                                                 <Label.GestureRecognizers>

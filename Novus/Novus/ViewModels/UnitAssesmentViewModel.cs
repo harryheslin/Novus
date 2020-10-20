@@ -14,6 +14,8 @@ namespace Novus.ViewModels
     {
         public Command SubmissionPage { get; }
 
+        public Command OpenFile { get; }
+
         static Student Student = App.Student;
 
         static public Unit currentUnit = Student.CurrentUnits[0];
@@ -21,6 +23,8 @@ namespace Novus.ViewModels
         public UnitAssesmentViewModel()
         {
             SubmissionPage = new Command(GoToSubmissionPage);
+            OpenFile = new Command(GoToOpenFilePage);
+
         }
         public string GetUnitNumber(string routeCode)
         {
@@ -53,20 +57,6 @@ namespace Novus.ViewModels
             }
         }
 
-        //private ObservableCollection<Assesment> getCurrentAssesment()
-        //{
-        //    ObservableCollection<Assesment> result = new ObservableCollection<Assesment>(); 
-        //    foreach(Assesment assesment in currentUnit.Assesments)
-        //    {
-        //        if (assesment.ReleaseDate != "TBC")
-        //            {
-        //                assesment.Grade = "True";                       
-        //            }
-        //        result.Add(assesment); 
-        //    }
-        //    return result;
-        //}
-
         private ObservableCollection<Assesment> NoAssesment()
         {
             ObservableCollection<Assesment> emptyAssesment = new ObservableCollection<Assesment>();
@@ -90,5 +80,12 @@ namespace Novus.ViewModels
             string TurnitinPage= "https://www.turnitin.com/";
             await Launcher.OpenAsync(TurnitinPage);
         }
+
+        async void GoToOpenFilePage(Object s)
+        {
+            string param = s.ToString();
+            await Shell.Current.GoToAsync($"file?name={param}");
+        }
+
     }
 }

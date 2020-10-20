@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Novus.Views.UnitGrades"
              xmlns:viewmodel="clr-namespace:Novus.ViewModels"
-             xmlns:local="clr-namespace:Novus.Extensions;assembly=Novus">
+             xmlns:local="clr-namespace:Novus.Extensions;assembly=Novus"
+             x:Name="Page">
 
     <ContentPage.BindingContext>
         <viewmodel:UnitGradesViewModel/>
@@ -74,7 +75,13 @@
                                                 Padding="50,0,0,0"  
                                                 TextColor="White" 
                                                 Text="&#x2022; View Rubric" 
-                                                IsVisible="{Binding Graded}"/>
+                                                IsVisible="{Binding Graded}">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer
+                                                        Command="{Binding Path=BindingContext.OpenFile, Source={x:Reference Page}}" 
+                                                        CommandParameter="{Binding Title}"/>
+                                                </Label.GestureRecognizers>
+                                            </Label>
                                         </Grid>
                                     </StackLayout>
                                 </Frame>

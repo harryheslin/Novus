@@ -11,9 +11,16 @@ namespace Novus.ViewModels
     [QueryProperty("Unit", "unit")]
     class UnitGradesViewModel : BaseViewModel
     {
+        public Command OpenFile { get; }
+
         static Student Student = App.Student;
 
         static public Unit currentUnit = Student.CurrentUnits[0];
+
+        public UnitGradesViewModel()
+        {
+            OpenFile = new Command(GoToOpenFilePage);
+        }
 
         public string GetUnitNumber(string routeCode)
         {
@@ -75,6 +82,12 @@ namespace Novus.ViewModels
                 SetProperty(ref gradedAssesment, GetGradedAssesment());
                 OnPropertyChanged();
             }
+        }
+
+        async void GoToOpenFilePage(Object s)
+        {
+            string param = s.ToString();
+            await Shell.Current.GoToAsync($"file?name={param}");
         }
     }
 }

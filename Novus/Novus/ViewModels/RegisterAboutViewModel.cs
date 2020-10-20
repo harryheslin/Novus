@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using MvvmHelpers;
+using Novus.Data;
 using Novus.Models;
 
 namespace Novus.ViewModels
@@ -11,12 +12,11 @@ namespace Novus.ViewModels
     {
         public RegisterAboutViewModel()
         {
-            //CHANGE TO DATASTORE
-            //course = Models.Course.GenerateCourse();
+            course = Datastore.GetCourse();
         }
 
-        List<Course> course;
-        public List<Course> Course
+        ObservableCollection<Course> course;
+        public ObservableCollection<Course> Course
         {
             get => course;
             set

@@ -59,8 +59,7 @@ namespace Novus.Data
             } catch { }
             
 
-            Semester returnValue = new Semester(new ObservableCollection<int> { SemesterOfYear, SemesterYear }, enrolledUnits);
-            returnValue.SemesterID = SemesterID;
+            Semester returnValue = new Semester(SemesterID, new ObservableCollection<int> { SemesterOfYear, SemesterYear }, enrolledUnits);
             returnValue.StudentID = StudentID;
             returnValue.EnrolledClasses = enrolledClasses;
             returnValue.PlannedClasses = plannedClasses;

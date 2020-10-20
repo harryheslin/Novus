@@ -20,22 +20,34 @@ namespace Novus.Views
             InitializeComponent();
         }
 
-        private void ExpandUnit(object sender, EventArgs e)
+        public void ExpandUnit(object sender, EventArgs e)
         {
             var viewModel = BindingContext as RegisterViewModel;
-            viewModel?.SetIsVisible((int)((TappedEventArgs)e).Parameter);
+            viewModel?.SetIsVisibleUnit((int)((TappedEventArgs)e).Parameter);
         }
 
-        private void RemoveUnit(object sender, EventArgs e)
+        public void RemoveUnit(object sender, EventArgs e)
         {
             var viewModel = BindingContext as RegisterViewModel;
             viewModel?.RemoveUnit((int)((TappedEventArgs)e).Parameter);
         }
 
-        private void AddUnit(object sender, EventArgs e)
+        public void AddUnit(object sender, EventArgs e)
         {
             var viewModel = BindingContext as RegisterViewModel;
-            viewModel?.AddUnit((ObservableCollection<int>)((TappedEventArgs)e).Parameter);
+            viewModel?.AddUnit((Unit)((TappedEventArgs)e).Parameter);
+        }
+
+        public void ExpandNewUnit(object sender, EventArgs e)
+        {
+            var viewModel = BindingContext as RegisterViewModel;
+            viewModel?.SetIsVisiableNewUnit((int)((TappedEventArgs)e).Parameter);
+        }
+
+        public void ExpandNewUnitsUnit(object sender, EventArgs e)
+        {
+            var viewModel = BindingContext as RegisterViewModel;
+            viewModel?.SetIsVisibleNewUnitsUnit((string)((TappedEventArgs)e).Parameter);
         }
     }
 }

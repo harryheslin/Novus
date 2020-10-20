@@ -19,8 +19,11 @@
     <None Remove="Images\fileIcon.png" />
     <None Remove="Images\gradesIcon.png" />
     <None Remove="Images\lectureIcon.png" />
+    <None Remove="Images\minus.png" />
     <None Remove="Images\novusIcon.png" />
     <None Remove="Images\onedriveIcon.png" />
+    <None Remove="Images\plus.jpg" />
+    <None Remove="Images\plus.png" />
     <None Remove="Images\resourcesIcon.png" />
     <None Remove="Images\teamsIcon.png" />
     <None Remove="Images\tick.png" />
@@ -36,8 +39,10 @@
     <EmbeddedResource Include="Images\fileIcon.png" />
     <EmbeddedResource Include="Images\gradesIcon.png" />
     <EmbeddedResource Include="Images\lectureIcon.png" />
+    <EmbeddedResource Include="Images\minus.png" />
     <EmbeddedResource Include="Images\novusIcon.png" />
     <EmbeddedResource Include="Images\onedriveIcon.png" />
+    <EmbeddedResource Include="Images\plus.png" />
     <EmbeddedResource Include="Images\resourcesIcon.png" />
     <EmbeddedResource Include="Images\teamsIcon.png" />
     <EmbeddedResource Include="Images\tick.png" />

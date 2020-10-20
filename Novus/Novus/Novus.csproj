@@ -12,15 +12,26 @@
 
   <ItemGroup>
     <None Remove="Files\pdf_mock.pdf" />
+    <None Remove="Images\academic.png" />
     <None Remove="Images\announcementsIcon.png" />
     <None Remove="Images\announcementsIcon2.png" />
     <None Remove="Images\assesmentIcon.png" />
     <None Remove="Images\backArrow.png" />
+    <None Remove="Images\book.png" />
+    <None Remove="Images\cal.JPG" />
+    <None Remove="Images\cal.png" />
     <None Remove="Images\circlePoint.png" />
+    <None Remove="Images\email.JPG" />
+    <None Remove="Images\email.png" />
     <None Remove="Images\fileIcon.png" />
+    <None Remove="Images\folder.png" />
+    <None Remove="Images\grad.png" />
     <None Remove="Images\gradesIcon.png" />
+    <None Remove="Images\home.png" />
     <None Remove="Images\lectureIcon.png" />
+    <None Remove="Images\message.png" />
     <None Remove="Images\minus.png" />
+    <None Remove="Images\myunits.png" />
     <None Remove="Images\novusIcon.png" />
     <None Remove="Images\onedriveIcon.png" />
     <None Remove="Images\plus.jpg" />
@@ -33,15 +44,25 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Files\pdf_mock.pdf" />
+    <EmbeddedResource Include="Images\academic.png" />
     <EmbeddedResource Include="Images\announcementsIcon.png" />
     <EmbeddedResource Include="Images\announcementsIcon2.png" />
     <EmbeddedResource Include="Images\assesmentIcon.png" />
     <EmbeddedResource Include="Images\backArrow.png" />
+    <EmbeddedResource Include="Images\book.png" />
+    <EmbeddedResource Include="Images\cal.JPG" />
+    <EmbeddedResource Include="Images\cal.png" />
     <EmbeddedResource Include="Images\circlePoint.png" />
+    <EmbeddedResource Include="Images\email.JPG" />
+    <EmbeddedResource Include="Images\email.png" />
     <EmbeddedResource Include="Images\fileIcon.png" />
+    <EmbeddedResource Include="Images\folder.png" />
+    <EmbeddedResource Include="Images\grad.png" />
     <EmbeddedResource Include="Images\gradesIcon.png" />
     <EmbeddedResource Include="Images\lectureIcon.png" />
+    <EmbeddedResource Include="Images\message.png" />
     <EmbeddedResource Include="Images\minus.png" />
+    <EmbeddedResource Include="Images\myunits.png" />
     <EmbeddedResource Include="Images\novusIcon.png" />
     <EmbeddedResource Include="Images\onedriveIcon.png" />
     <EmbeddedResource Include="Images\plus.png" />
@@ -58,6 +79,10 @@
     <PackageReference Include="Telerik.UI.for.Xamarin.Trial" Version="2020.2.624.1" />
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.1141" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="Images\home.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -92,6 +117,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\EventAdd.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Homepage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MyUnitsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\newEvent.xaml">

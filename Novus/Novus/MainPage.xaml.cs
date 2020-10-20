@@ -32,6 +32,8 @@ namespace Novus
 
         void RegisterRoutes()
         {
+            routes.Add("homepage", typeof(Homepage));
+            routes.Add("myUnitsPage", typeof(MyUnitsPage));
             routes.Add("unit1", typeof(UnitPage));
             routes.Add("unit2", typeof(UnitPage));
             routes.Add("unit3", typeof(UnitPage));

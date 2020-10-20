@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Novus.Views.MyUnitsPage"
+             xmlns:viewmodel="clr-namespace:Novus.ViewModels"
+             x:Name="Page">
+
+    <ContentPage.BindingContext>
+        <viewmodel:MyUnitsPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content VerticalOptions="FillAndExpand">
+        <StackLayout BackgroundColor="#A3A3A3">
+            <Label Text="My Units" FontSize="40" TextColor="White" BackgroundColor="#525252" Padding="5"/>
+            <Button Command="{Binding UnitPage}"  />
+
+            <ScrollView>
+            <StackLayout BindableLayout.ItemsSource="{Binding CurrentUnits}" BackgroundColor="#A3A3A3">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Frame BackgroundColor="{Binding Colour}"  CornerRadius="15" Opacity="0.7">
+                        </Frame>
+                                <Button Command="{Binding UnitPage}" BackgroundColor="#525252" TextColor="White" Text="{Binding Name}" />
+                            </StackLayout>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

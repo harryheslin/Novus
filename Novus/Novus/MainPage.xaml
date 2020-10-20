@@ -12,7 +12,10 @@
     <Shell.FlyoutHeader>
         <controls:FlyoutHeader />
     </Shell.FlyoutHeader>
-    
+
+    <FlyoutItem Title="Homepage" >
+        <ShellContent  ContentTemplate="{DataTemplate local:Homepage}" Route="homepage" />
+    </FlyoutItem>
     <FlyoutItem Title="{Binding Unit1}" >
         <ShellContent  ContentTemplate="{DataTemplate local:UnitPage}" Route="unit1" />
     </FlyoutItem>

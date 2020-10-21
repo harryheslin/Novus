@@ -12,18 +12,12 @@
     <Shell.FlyoutHeader>
         <controls:FlyoutHeader />
     </Shell.FlyoutHeader>
-    
-    <FlyoutItem Title="{Binding Unit1}" >
-        <ShellContent  ContentTemplate="{DataTemplate local:UnitPage}" Route="unit1" />
+
+    <FlyoutItem Title="Homepage" >
+        <ShellContent  ContentTemplate="{DataTemplate local:Homepage}" Route="homepage" />
     </FlyoutItem>
-    <FlyoutItem Title="{Binding Unit2}" >
-        <ShellContent  ContentTemplate="{DataTemplate local:UnitPage}" Route="unit2" />
-    </FlyoutItem>
-    <FlyoutItem Title="{Binding Unit3}">
-        <ShellContent  ContentTemplate="{DataTemplate local:UnitPage}" Route="unit3" />
-    </FlyoutItem>
-    <FlyoutItem Title="{Binding Unit4}">
-        <ShellContent  ContentTemplate="{DataTemplate local:UnitPage}" Route="unit4" />
+    <FlyoutItem Title="MyUnits" >
+        <ShellContent  ContentTemplate="{DataTemplate local:MyUnitsPage}" Route="myUnitsPage" />
     </FlyoutItem>
     <FlyoutItem Title="Calendar">
         <ShellContent ContentTemplate="{DataTemplate local:CalendarHome}" Route="calendarHome"/>

@@ -11,9 +11,13 @@ using System.Linq;
 
 namespace Novus.ViewModels
 {
+    [QueryProperty("Unit", "unit")]
+    [QueryProperty("RouteCode", "routeCode")]
     class UnitPageViewModel : BaseViewModel
     {
         static Student Student = App.Student;
+
+        static public Unit currentUnit = Student.CurrentUnits[0];
 
         public Command ResourcesPageButton { get; }
         public Command AnnouncementsPageButton { get; }
@@ -34,64 +38,71 @@ namespace Novus.ViewModels
             TrelloButton = new Command(GoToTrello);
         }
 
-
-
-        static string GetColour()
+        public string GetUnitNumber(string routeCode)
         {
-            int unitNumber = Int32.Parse(GetUnit());
-            return Student.CurrentUnits[unitNumber].Colour;
+            int route = Int32.Parse(routeCode);
+            currentUnit = Student.CurrentUnits[route];
+            return currentUnit.Name;
+
         }
 
-        string unit = Shell.Current.CurrentItem.Title.ToString();
-
+        string unit;
         public string Unit
         {
             get => unit;
             set
             {
-                SetProperty(ref unit, value);
-                OnPropertyChanged(nameof(unit));
+                SetProperty(ref unit, GetUnitNumber(Uri.UnescapeDataString(value)));
+                OnPropertyChanged(nameof(Colour));
+                OnPropertyChanged(nameof(RouteCode));
             }
         }
 
-        string colour = GetColour();
+
+        string colour;
         public string Colour
         {
-            get => colour;
+            get => currentUnit.Colour;
             set
             {
-                SetProperty(ref colour, GetColour());
+                SetProperty(ref colour, currentUnit.Colour);
                 OnPropertyChanged();
             }
         }
 
-        static string GetUnit()
+        string routeCode;
+
+        public string RouteCode 
         {
-            string route = Shell.Current.CurrentState.Location.ToString();
-            int routeIndex = Int32.Parse(route.Last().ToString());
-            string result = (routeIndex - 1).ToString();
-            return result;
+            get => routeCode;
+            set
+            {
+                SetProperty(ref routeCode, Uri.UnescapeDataString(value));
+                OnPropertyChanged(nameof(Unit));
+                OnPropertyChanged(nameof(Colour));
+            }
         }
 
-        string RouteCode = GetUnit();
+
+
         async void GoToResourcesPage()
         {
-            await Shell.Current.GoToAsync($"resources?unit={RouteCode}");
+            await Shell.Current.GoToAsync($"/resources?unit={RouteCode}");
         }
 
         async void GoToAnnouncementsPage()
         {
-            await Shell.Current.GoToAsync($"announcements?unit={RouteCode}");
+            await Shell.Current.GoToAsync($"/announcements?unit={RouteCode}");
         }
 
         async void GoToGradesPage()
         {
-            await Shell.Current.GoToAsync($"grades?unit={RouteCode}");
+            await Shell.Current.GoToAsync($"/grades?unit={RouteCode}");
         }
 
         async void GoToAssesmentPage()
         {
-            await Shell.Current.GoToAsync($"assesment?unit={RouteCode}");
+            await Shell.Current.GoToAsync($"/assesment?unit={RouteCode}");
         }
 
         async void GoToOnedrive()

@@ -11,15 +11,24 @@
 
     <ContentPage.Content>
         <StackLayout BackgroundColor="#A3A3A3">
-            <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
-                <Button Text = "Announcements:"  />
-                <Frame BackgroundColor="white">
-                    <Label Text = "This is your Latest Announcement " TextColor="black"/>
+            <StackLayout  HorizontalOptions="FillAndExpand">
+                <Button Text = "Latest Announcement" />
+                <Frame BackgroundColor="{Binding AnnouncementColour}" CornerRadius="10" Margin="5,0,5,0" VerticalOptions="FillAndExpand" HeightRequest="110">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding AnnouncementUnitPage}" CommandParameter="{Binding LatestAnnouncement.Unit}">
+                        </TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
+                    <Grid>
+                        <Label Grid.Column="0" FontSize="Medium" Text = "{Binding LatestAnnouncement.Unit}" TextColor="Black"/>
+                        <Label Grid.Column="2" FontSize="Medium" Text = "{Binding LatestAnnouncementDate}" TextColor="Black"/>
+                        <Label Grid.Row="1" Grid.ColumnSpan="2" FontSize="15" Text = "{Binding LatestAnnouncement.Title}" TextColor="Black"/>
+                    </Grid>
                 </Frame>
             </StackLayout>
 
             <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
-                <Button Text="UP NEXT:"/>
+                <Button Text="Next Event" />
                 <Frame BackgroundColor="white">
                     <Label Text = "This is your next upcoming event" TextColor="black"/>
                 </Frame>

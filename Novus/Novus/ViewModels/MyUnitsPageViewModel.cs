@@ -32,30 +32,25 @@ namespace Novus.ViewModels
                 SetProperty(ref currentUnits, Student.CurrentUnits);
             }
         }
+
         async void GoToCalendarPage()
         {
             await Shell.Current.GoToAsync($"calendarHome");
         }
         async void GoToUnitPage(Object s)
         {
-            //string param = s.ToString();
-            //switch (param)
-            //{
-            //    case "IFB102":
-            //        await Shell.Current.GoToAsync($"unit1");
-            //        break;
-            //    case "IFB103":
-                    await Shell.Current.GoToAsync($"unit1");
-                    //break;
-                //case "IFB104":
-                //    await Shell.Current.GoToAsync($"unit3");
-                //    break;
-                //case "IFB105":
-                //    await Shell.Current.GoToAsync($"unit4");
-                //    break;
-            //}         
-            
+            string param = s.ToString();
+
+            for(int i = 0; i < Student.CurrentUnits.Count; i++)
+            {
+                if(param == Student.CurrentUnits[i].Code)
+                {
+                    string path = "unit?unit=" + i + "&routeCode=" + i; 
+                    await Shell.Current.GoToAsync($"{path}");
+                }
+            }
         }
+
 
     }
 }

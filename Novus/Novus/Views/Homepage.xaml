@@ -29,8 +29,18 @@
 
             <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
                 <Button Text="Next Event" />
-                <Frame BackgroundColor="white">
-                    <Label Text = "This is your next upcoming event" TextColor="black"/>
+                <Frame BackgroundColor="white" CornerRadius="10" Margin="5,0,5,0" VerticalOptions="FillAndExpand" HeightRequest="110">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding CalendarWeekPage}">
+                        </TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
+                    <Grid>
+                        <Label Grid.Column="0" FontSize="Medium" Text = "{Binding LatestEventName}" TextColor="black"/>
+                        <Label Grid.Column="2" FontSize="Medium" Text ="{Binding LatestEventDate}" TextColor="Black"/>
+                        <Label Grid.Row="1" Grid.ColumnSpan="2" FontSize="15" Text="{Binding LatestEventDescription}" TextColor="Black"/>
+                    </Grid>
+                    
                 </Frame>
             </StackLayout>
 

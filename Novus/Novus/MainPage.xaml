@@ -9,26 +9,7 @@
              BackgroundColor="#00467F"
        Title="Novus">
 
-    <Shell.FlyoutHeaderTemplate>
-        <DataTemplate>
-            <Grid HeightRequest="200"
-                  BackgroundColor="White">
-                <Image 
-                    Aspect="AspectFit"
-                       Source="{local:ImageResource Novus.Images.novusIcon.png}"
-                       IsVisible="true"                    
-                       BackgroundColor="White"
-                    Opacity="0.3"/>
-                <Label Text="Novus"
-                       TextColor="Black"
-                       FontAttributes="Bold"
-                       FontSize="Large"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center"/>
-
-            </Grid>
-        </DataTemplate>
-    </Shell.FlyoutHeaderTemplate>
+    
 
     <Shell.FlyoutHeader>
         <controls:FlyoutHeader />

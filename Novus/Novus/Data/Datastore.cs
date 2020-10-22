@@ -13,10 +13,257 @@ namespace Novus.Data
         public static Student GetStudent()
         {
             Student returnValue = new Student("James Robertson", GetSemesters());
-            ObservableCollection<Unit> currentUnits = GetUnits(new string[] { "IFB102", "IFB103", "IFB104", "IFB105" });
+            ObservableCollection<Unit> currentUnits = GetStudentUnits();
             returnValue.CurrentUnits = currentUnits;
 
             return returnValue;
+        }
+
+        public static ObservableCollection<Unit> GetStudentUnits()
+        {
+            ObservableCollection<Unit> currentUnits = new ObservableCollection<Unit>();
+            currentUnits.Add(GetIFB102());
+            currentUnits.Add(GetIFB103());
+            currentUnits.Add(GetIFB104());
+            currentUnits.Add(GetIFB105());
+
+            return currentUnits;
+        }
+
+        public static Unit GetIFB105()
+        {
+            Unit IFB105 = GetUnit("IFB105");
+
+            ObservableCollection<Class> classes = new ObservableCollection<Class>();
+            DateTime startTime = new DateTime(2020, 1, 1, 15, 0, 0);
+            DateTime endTime = new DateTime(2020, 1, 1, 17, 0, 0);
+            classes.Add(new Class(ClassType.Lecture, DayOfWeek.Monday, startTime, endTime, ClassMode.Physical, "Z401"));
+
+            startTime = new DateTime(2020, 1, 1, 15, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 17, 0, 0);
+            classes.Add(new Class(ClassType.Lecture, DayOfWeek.Monday, startTime, endTime, ClassMode.Virtual, "Z401"));
+
+            startTime = new DateTime(2020, 1, 1, 17, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 19, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Monday, startTime, endTime, ClassMode.Physical, "Z409"));
+
+            startTime = new DateTime(2020, 1, 1, 19, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 21, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Monday, startTime, endTime, ClassMode.Physical, "Z409"));
+
+            startTime = new DateTime(2020, 1, 1, 9, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 11, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Tuesday, startTime, endTime, ClassMode.Physical, "D301"));
+
+            startTime = new DateTime(2020, 1, 1, 11, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 13, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Tuesday, startTime, endTime, ClassMode.Physical, "Q216"));
+
+            startTime = new DateTime(2020, 1, 1, 16, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 18, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Tuesday, startTime, endTime, ClassMode.Physical, "D304"));
+
+            startTime = new DateTime(2020, 1, 1, 17, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 19, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Tuesday, startTime, endTime, ClassMode.Physical, "P505"));
+
+            startTime = new DateTime(2020, 1, 1, 9, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 11, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Wednesday, startTime, endTime, ClassMode.Physical, "S636/7"));
+
+            startTime = new DateTime(2020, 1, 1, 9, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 11, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Thursday, startTime, endTime, ClassMode.Physical, "Q224"));
+
+            IFB105.AddClasses(classes);
+
+            return IFB105;
+        }
+
+        public static Unit GetIFB104()
+        {
+            Unit IFB104 = GetUnit("IFB104");
+
+            ObservableCollection<Class> classes = new ObservableCollection<Class>();
+            DateTime startTime = new DateTime(2020, 1, 1, 10, 0, 0);
+            DateTime endTime = new DateTime(2020, 1, 1, 12, 0, 0);
+            classes.Add(new Class(ClassType.Lecture, DayOfWeek.Monday, startTime, endTime, ClassMode.Physical, "Z411"));
+
+            startTime = new DateTime(2020, 1, 1, 1, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 3, 0, 0);
+            classes.Add(new Class(ClassType.Lecture, DayOfWeek.Tuesday, startTime, endTime, ClassMode.Virtual, "Z411"));
+
+            startTime = new DateTime(2020, 1, 1, 17, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 19, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Monday, startTime, endTime, ClassMode.Virtual, "O303"));
+
+            startTime = new DateTime(2020, 1, 1, 9, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 11, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Tuesday, startTime, endTime, ClassMode.Virtual, "Q218"));
+
+            startTime = new DateTime(2020, 1, 1, 13, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 15, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Tuesday, startTime, endTime, ClassMode.Virtual, "Q224"));
+
+            startTime = new DateTime(2020, 1, 1, 17, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 19, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Tuesday, startTime, endTime, ClassMode.Virtual, "S409"));
+
+            startTime = new DateTime(2020, 1, 1, 12, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 14, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Wednesday, startTime, endTime, ClassMode.Virtual, "P505"));
+
+            startTime = new DateTime(2020, 1, 1, 14, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 16, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Wednesday, startTime, endTime, ClassMode.Virtual, "S405"));
+
+            startTime = new DateTime(2020, 1, 1, 9, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 11, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Thursday, startTime, endTime, ClassMode.Virtual, "S409"));
+
+            startTime = new DateTime(2020, 1, 1, 13, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 15, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Thursday, startTime, endTime, ClassMode.Virtual, "S309"));
+
+            startTime = new DateTime(2020, 1, 1, 15, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 17, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Thursday, startTime, endTime, ClassMode.Virtual, "S408"));
+
+            IFB104.AddClasses(classes);
+
+            return IFB104;
+        }
+
+        public static Unit GetIFB103()
+        {
+            Unit IFB103 = GetUnit("IFB103");
+
+            ObservableCollection<Class> classes = new ObservableCollection<Class>();
+            DateTime startTime = new DateTime(2020, 1, 1, 15, 30, 0);
+            DateTime endTime = new DateTime(2020, 1, 1, 17, 0, 0);
+            classes.Add(new Class(ClassType.Lecture, DayOfWeek.Thursday, startTime, endTime, ClassMode.Physical, "Z401"));
+
+            startTime = new DateTime(2020, 1, 1, 17, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 18, 30, 0);
+            classes.Add(new Class(ClassType.Lecture, DayOfWeek.Thursday, startTime, endTime, ClassMode.Physical, "Z411"));
+
+            startTime = new DateTime(2020, 1, 1, 9, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 11, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Monday, startTime, endTime, ClassMode.Physical, "S408"));
+
+            startTime = new DateTime(2020, 1, 1, 13, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 15, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Monday, startTime, endTime, ClassMode.Physical, "P504"));
+
+            startTime = new DateTime(2020, 1, 1, 15, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 17, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Monday, startTime, endTime, ClassMode.Physical, "P504"));
+
+            startTime = new DateTime(2020, 1, 1, 18, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 20, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Monday, startTime, endTime, ClassMode.Physical, "P502"));
+
+            startTime = new DateTime(2020, 1, 1, 9, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 11, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Monday, startTime, endTime, ClassMode.Physical, "S408"));
+
+            startTime = new DateTime(2020, 1, 1, 13, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 15, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Tuesday, startTime, endTime, ClassMode.Physical, "P504"));
+
+            startTime = new DateTime(2020, 1, 1, 15, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 17, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Tuesday, startTime, endTime, ClassMode.Physical, "P504"));
+
+            startTime = new DateTime(2020, 1, 1, 18, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 20, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Tuesday, startTime, endTime, ClassMode.Physical, "P502"));
+
+            startTime = new DateTime(2020, 1, 1, 18, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 20, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Tuesday, startTime, endTime, ClassMode.Physical, "P502"));
+
+            startTime = new DateTime(2020, 1, 1, 13, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 15, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Wednesday, startTime, endTime, ClassMode.Physical, "P504"));
+
+            startTime = new DateTime(2020, 1, 1, 15, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 17, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Wednesday, startTime, endTime, ClassMode.Physical, "P504"));
+
+            startTime = new DateTime(2020, 1, 1, 18, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 20, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Wednesday, startTime, endTime, ClassMode.Physical, "P502"));
+
+            startTime = new DateTime(2020, 1, 1, 18, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 20, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Wednesday, startTime, endTime, ClassMode.Physical, "P502"));
+
+            IFB103.AddClasses(classes);
+
+            return IFB103;
+        }
+
+        public static Unit GetIFB102()
+        {
+            Unit IFB102 = GetUnit("IFB102");
+
+            ObservableCollection<Class> classes = new ObservableCollection<Class>();
+            DateTime startTime = new DateTime(2020, 1, 1, 18, 0, 0);
+            DateTime endTime = new DateTime(2020, 1, 1, 20, 0, 0);
+            classes.Add(new Class(ClassType.Lecture, DayOfWeek.Tuesday, startTime, endTime, ClassMode.Physical, "Z411"));
+
+            startTime = new DateTime(2020, 1, 1, 10, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 12, 0, 0);
+            classes.Add(new Class(ClassType.Lecture, DayOfWeek.Wednesday, startTime, endTime, ClassMode.Physical, "Z401"));
+
+            startTime = new DateTime(2020, 1, 1, 12, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 14, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Wednesday, startTime, endTime, ClassMode.Physical, "S601"));
+
+            startTime = new DateTime(2020, 1, 1, 12, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 14, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Wednesday, startTime, endTime, ClassMode.Physical, "S635"));
+
+            startTime = new DateTime(2020, 1, 1, 14, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 16, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Wednesday, startTime, endTime, ClassMode.Physical, "S502"));
+
+            startTime = new DateTime(2020, 1, 1, 14, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 16, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Wednesday, startTime, endTime, ClassMode.Physical, "S601"));
+
+            startTime = new DateTime(2020, 1, 1, 16, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 18, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Wednesday, startTime, endTime, ClassMode.Physical, "S507"));
+
+            startTime = new DateTime(2020, 1, 1, 16, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 18, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Wednesday, startTime, endTime, ClassMode.Physical, "S513"));
+
+            startTime = new DateTime(2020, 1, 1, 18, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 20, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Wednesday, startTime, endTime, ClassMode.Physical, "S507"));
+
+            startTime = new DateTime(2020, 1, 1, 18, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 20, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Wednesday, startTime, endTime, ClassMode.Physical, "S601"));
+
+            startTime = new DateTime(2020, 1, 1, 8, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 10, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Thursday, startTime, endTime, ClassMode.Physical, "F101"));
+
+            startTime = new DateTime(2020, 1, 1, 11, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 13, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Thursday, startTime, endTime, ClassMode.Physical, "S503"));
+
+            startTime = new DateTime(2020, 1, 1, 15, 0, 0);
+            endTime = new DateTime(2020, 1, 1, 17, 0, 0);
+            classes.Add(new Class(ClassType.Tutorial, DayOfWeek.Thursday, startTime, endTime, ClassMode.Physical, "S502"));
+
+            IFB102.AddClasses(classes);
+
+            return IFB102;
         }
 
         public static ObservableCollection<Semester> GetSemesters()
@@ -32,7 +279,7 @@ namespace Novus.Data
             semesters.Add(semester);
 
             units = new ObservableCollection<Unit>();
-            for(int x = 1; x < 3; x++)
+            for(int x = 1; x < 1; x++)
             {
                 for(int y = 0; y < 2; y++)
                 {

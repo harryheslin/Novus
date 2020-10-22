@@ -82,7 +82,8 @@ namespace Novus.Models
 
         public Student GetStudent()
         {
-            return database.GetAllWithChildren<StudentDB>(recursive: true).First().ConvertToModel();
+            List<StudentDB> students = database.GetAllWithChildren<StudentDB>(recursive: true);
+            return students.First().ConvertToModel();
         }
 
         public void SaveStudent(Student student)
@@ -93,6 +94,11 @@ namespace Novus.Models
         public void UpdateStudent(Student student)
         {
             database.UpdateWithChildren(student.ConvertToDB());
+        }
+
+        public void UpdateClass(Class classs)
+        {
+            database.UpdateWithChildren(classs.ConvertToDB());
         }
     }
 }

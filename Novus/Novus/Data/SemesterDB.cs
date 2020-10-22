@@ -21,12 +21,6 @@ namespace Novus.Data
         [OneToMany(CascadeOperations = CascadeOperation.All)]
         public List<UnitDB> EnrolledUnits { get; set; }
 
-        [OneToMany(CascadeOperations = CascadeOperation.All)]
-        public List<ClassDB> EnrolledClasses { get; set; }
-
-        [OneToMany(CascadeOperations = CascadeOperation.All)]
-        public List<ClassDB> PlannedClasses { get; set; }
-
         public Semester ConvertToModel()
         {
             ObservableCollection<Unit> enrolledUnits = new ObservableCollection<Unit>();
@@ -37,32 +31,10 @@ namespace Novus.Data
                     enrolledUnits.Add(value.ConvertToModel());
                 }
             } catch { }
-
-            ObservableCollection<Class> enrolledClasses = new ObservableCollection<Class>();
-            try
-            {
-                foreach (ClassDB value in EnrolledClasses)
-                {
-                    enrolledClasses.Add(value.ConvertToModel());
-                }
-            } catch { }
-
-            
-
-            ObservableCollection<Class> plannedClasses = new ObservableCollection<Class>();
-            try
-            {
-                foreach (ClassDB value in PlannedClasses)
-                {
-                    plannedClasses.Add(value.ConvertToModel());
-                }
-            } catch { }
             
 
             Semester returnValue = new Semester(SemesterID, new ObservableCollection<int> { SemesterOfYear, SemesterYear }, enrolledUnits);
             returnValue.StudentID = StudentID;
-            returnValue.EnrolledClasses = enrolledClasses;
-            returnValue.PlannedClasses = plannedClasses;
             return returnValue;
         }
     }

@@ -18,7 +18,6 @@ namespace Novus.Data
 
         [ForeignKey(typeof(StudentDB))]
         public int StudentID { get; set; }
-
         public string Code { get; set; }
         public string Name { get; set; }
         public string Information { get; set; }
@@ -83,7 +82,7 @@ namespace Novus.Data
             returnUnit.UnitID = UnitID;
             returnUnit.SemesterID = SemesterID;
             returnUnit.Colour = Colour;
-            returnUnit.Classes = classes;
+            returnUnit.AddClasses(classes);
             returnUnit.StaffAnnouncements = announcements;
             returnUnit.Assesments = assesments;
             returnUnit.UnitResources = resources;

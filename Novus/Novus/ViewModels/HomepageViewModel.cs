@@ -8,12 +8,9 @@ namespace Novus.ViewModels
 {
     class HomepageViewModel : BaseViewModel
     {
-
         ObservableCollection<Unit> currentUnits = App.Student.CurrentUnits;
-       
+
         ObservableCollection<Events> CurrentEvents = App.Student.Events;
-
-
 
         Unit announcementUnit = App.Student.CurrentUnits[0];
         public Command OpenMyUnitsPage { get; }
@@ -30,7 +27,6 @@ namespace Novus.ViewModels
             AnnouncementUnitPage = new Command(GoToAnnouncementUnitPage);
             CalendarWeekPage = new Command(GoToCalendarWeekPage);
             GetLatestAnnouncement();
-
             GetLatestEvents();
         }
 
@@ -54,7 +50,7 @@ namespace Novus.ViewModels
             LatestAnnouncement = latest;
         }
 
-        private void GetLatestEvents()
+        public void GetLatestEvents()
         {
 
             if (CurrentEvents.Count == 0)

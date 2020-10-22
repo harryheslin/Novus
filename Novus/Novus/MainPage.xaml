@@ -15,19 +15,19 @@
         <controls:FlyoutHeader />
     </Shell.FlyoutHeader>
 
-    <FlyoutItem Title="Homepage" >
+    <FlyoutItem Title="Homepage" Icon="home.png" >
         <ShellContent  ContentTemplate="{DataTemplate source:Homepage}" Route="homepage" />
     </FlyoutItem>
-    <FlyoutItem Title="MyUnits">
+    <FlyoutItem Title="My Units" Icon="units.png">
         <ShellContent  ContentTemplate="{DataTemplate source:MyUnitsPage}" Route="myUnitsPage"/>
     </FlyoutItem>
-    <FlyoutItem Title="Calendar">
+    <FlyoutItem Title="Calendar" Icon="calendar.png">
         <ShellContent ContentTemplate="{DataTemplate source:CalendarHome}" Route="calendarHome"/>
     </FlyoutItem>
-    <FlyoutItem Title="Manage Units">
+    <FlyoutItem Title="Manage Units" Icon="folder.png">
         <ShellContent ContentTemplate="{DataTemplate source:Register}" Route="register"/>
     </FlyoutItem>
-    <FlyoutItem Title="Class Sign-On">
+    <FlyoutItem Title="Class Sign-On" Icon="academic.png">
         <ShellContent ContentTemplate="{DataTemplate source:SignOnMain}" Route="signOnMain"/>
     </FlyoutItem>
 </Shell>

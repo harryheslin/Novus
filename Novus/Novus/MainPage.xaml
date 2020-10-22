@@ -1,31 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Novus.Views" 
+             xmlns:source="clr-namespace:Novus.Views" 
+             xmlns:local="clr-namespace:Novus.Extensions;assembly=Novus"
              xmlns:controls="clr-namespace:Novus.Controls"
              xmlns:viewmodel="clr-namespace:Novus.ViewModels"
              x:Class="Novus.MainPage"
              BackgroundColor="#00467F"
-        >
+       Title="Novus">
 
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid HeightRequest="200"
+                  BackgroundColor="White">
+                <Image 
+                    Aspect="AspectFit"
+                       Source="{local:ImageResource Novus.Images.novusIcon.png}"
+                       IsVisible="true"                    
+                       BackgroundColor="White"
+                    Opacity="0.3"/>
+                <Label Text="Novus"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       FontSize="Large"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
 
     <Shell.FlyoutHeader>
         <controls:FlyoutHeader />
     </Shell.FlyoutHeader>
 
     <FlyoutItem Title="Homepage" >
-        <ShellContent  ContentTemplate="{DataTemplate local:Homepage}" Route="homepage" />
+        <ShellContent  ContentTemplate="{DataTemplate source:Homepage}" Route="homepage" />
     </FlyoutItem>
-    <FlyoutItem Title="MyUnits" >
-        <ShellContent  ContentTemplate="{DataTemplate local:MyUnitsPage}" Route="myUnitsPage" />
+    <FlyoutItem Title="MyUnits">
+        <ShellContent  ContentTemplate="{DataTemplate source:MyUnitsPage}" Route="myUnitsPage"/>
     </FlyoutItem>
     <FlyoutItem Title="Calendar">
-        <ShellContent ContentTemplate="{DataTemplate local:CalendarHome}" Route="calendarHome"/>
+        <ShellContent ContentTemplate="{DataTemplate source:CalendarHome}" Route="calendarHome"/>
     </FlyoutItem>
     <FlyoutItem Title="Manage Units">
-        <ShellContent ContentTemplate="{DataTemplate local:Register}" Route="register"/>
+        <ShellContent ContentTemplate="{DataTemplate source:Register}" Route="register"/>
     </FlyoutItem>
     <FlyoutItem Title="Class Sign-On">
-        <ShellContent ContentTemplate="{DataTemplate local:SignOnMain}" Route="signOnMain"/>
+        <ShellContent ContentTemplate="{DataTemplate source:SignOnMain}" Route="signOnMain"/>
     </FlyoutItem>
 </Shell>

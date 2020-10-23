@@ -31,26 +31,38 @@
                        HorizontalOptions="Center"
                        Margin="0,8,0,0"/>
             </Grid>
+            <Label Text="Course Information"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   TextColor="White"
+                   FontSize="50"/>
             <ScrollView>
                 <StackLayout BindableLayout.ItemsSource="{Binding Course}">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
-                                <StackLayout BackgroundColor="White" 
-                                         Margin="10, 10, 10, 10"
-                                         VerticalOptions="Center">
+                                <Frame BackgroundColor="White" 
+                                       Margin="20, 10, 20, 5"
+                                       VerticalOptions="Center"
+                                       CornerRadius="20">
                                     <Label Text="General Information"
-                                         FontSize="Large"
-                                         Margin="5,5,5,5"
-                                         TextColor="#525252"
-                                         HorizontalTextAlignment="Center"
-                                         HorizontalOptions="CenterAndExpand"
-                                         VerticalOptions="CenterAndExpand">
-                                        <Label.GestureRecognizers>
-                                            <TapGestureRecognizer NumberOfTapsRequired="1" 
-                                                                  Tapped="GeneralTapped"/>
-                                        </Label.GestureRecognizers>
+                                           FontSize="30"
+                                           TextColor="#525252"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalOptions="CenterAndExpand">
                                     </Label>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                                  Tapped="GeneralTapped"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+
+                                <Frame BackgroundColor="White" 
+                                       Margin="20, 0, 20, 10"
+                                       VerticalOptions="Center"
+                                       CornerRadius="20"
+                                       IsVisible="{Binding IsVisibleGeneral}">
                                     <StackLayout BindableLayout.ItemsSource="{Binding GeneralInformation}" 
                                                  IsVisible="{Binding IsVisibleGeneral}"
                                                  Padding="0,0,0,10">
@@ -64,127 +76,208 @@
                                             </DataTemplate>
                                         </BindableLayout.ItemTemplate>
                                     </StackLayout>
-                                </StackLayout>
-                                <StackLayout BackgroundColor="White" 
-                                         Margin="10, 10, 10, 10"
-                                         VerticalOptions="Center">
+                                </Frame>
+                                
+                                <Frame BackgroundColor="White" 
+                                       Margin="20, 10, 20, 0"
+                                       VerticalOptions="Center"
+                                       CornerRadius="20">
                                     <Label Text="Majors"
-                                         FontSize="Large"
-                                         Margin="5,5,5,5"
-                                         TextColor="#525252"
-                                         HorizontalTextAlignment="Center"
-                                         HorizontalOptions="CenterAndExpand"
-                                         VerticalOptions="CenterAndExpand">
-                                        <Label.GestureRecognizers>
-                                            <TapGestureRecognizer NumberOfTapsRequired="1" 
-                                                                  Tapped="MajorTapped"/>
-                                        </Label.GestureRecognizers>
+                                           FontSize="30"
+                                           TextColor="#525252"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalOptions="CenterAndExpand">
                                     </Label>
-                                    <StackLayout BindableLayout.ItemsSource="{Binding Majors}" 
-                                                 IsVisible="{Binding IsVisibleMajor}">
-                                        <BindableLayout.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackLayout Padding="0,0,0,10">
-                                                    <Label Text="{Binding Name}"
-                                                           FontSize="Medium"
-                                                           Margin="5,5,5,5"
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                              Tapped="MajorTapped"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+
+                                <StackLayout BindableLayout.ItemsSource="{Binding Majors}" 
+                                             IsVisible="{Binding IsVisibleMajor}">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout>
+                                                <Frame BackgroundColor="White" 
+                                                       Margin="20, 0, 20, 5"
+                                                       VerticalOptions="Center"
+                                                       CornerRadius="20">
+                                                    <StackLayout>
+                                                        <Label Text="{Binding Name}"
+                                                           FontSize="28"
                                                            TextColor="#525252"
                                                            HorizontalTextAlignment="Center"
                                                            HorizontalOptions="CenterAndExpand"
-                                                           VerticalOptions="CenterAndExpand">
-                                                    </Label>
-                                                    <StackLayout BindableLayout.ItemsSource="{Binding Information}">
-                                                        <BindableLayout.ItemTemplate>
-                                                            <DataTemplate>
-                                                                <StackLayout>
+                                                           VerticalOptions="CenterAndExpand" />
+                                                        <StackLayout BindableLayout.ItemsSource="{Binding Information}">
+                                                            <BindableLayout.ItemTemplate>
+                                                                <DataTemplate>
                                                                     <Label Text="{Binding Line, StringFormat='&#x2022; {0}'}" 
-                                                                           TextColor="#525252"
-                                                                           Margin="10,0,0,0"/>
-                                                                </StackLayout>
-                                                            </DataTemplate>
-                                                        </BindableLayout.ItemTemplate>
+                                                                       TextColor="#525252"
+                                                                       Margin="10,0,0,0"/>
+                                                                </DataTemplate>
+                                                            </BindableLayout.ItemTemplate>
+                                                        </StackLayout>
                                                     </StackLayout>
-                                                    <Label Text="Show Units"
-                                                           FontSize="Large"
-                                                           Margin="10,5,10,0"
-                                                           TextColor="White"
+                                                </Frame>
+                                                <Frame BackgroundColor="White" 
+                                                       Margin="20, 0, 20, 5"
+                                                       VerticalOptions="Center"
+                                                       CornerRadius="20">
+                                                    <Label Text="Units"
+                                                           FontSize="26"
                                                            HorizontalTextAlignment="Center"
-                                                           Padding="0, 5, 0, 5"
-                                                           BackgroundColor="#A3A3A3"
-                                                           IsVisible="{Binding IsNotVisible}">
-                                                        <Label.GestureRecognizers>
-                                                            <TapGestureRecognizer NumberOfTapsRequired="1" 
-                                                                                  Tapped="MajorUnitsTapped"
-                                                                                  CommandParameter="{Binding MajorID}"/>
-                                                        </Label.GestureRecognizers>
-                                                    </Label>
-                                                    <Label Text="Hide Units"
-                                                           FontSize="Large"
-                                                           Margin="10,5,10,0"
-                                                           TextColor="White"
-                                                           HorizontalTextAlignment="Center"
-                                                           Padding="0, 5, 0, 5"
-                                                           BackgroundColor="#A3A3A3"
-                                                           IsVisible="{Binding IsVisible}">
-                                                        <Label.GestureRecognizers>
-                                                            <TapGestureRecognizer NumberOfTapsRequired="1" 
-                                                                                  Tapped="MajorUnitsTapped"
-                                                                                  CommandParameter="{Binding MajorID}"/>
-                                                        </Label.GestureRecognizers>
-                                                    </Label>
-                                                    <StackLayout BindableLayout.ItemsSource="{Binding Units}" 
-                                                                 IsVisible="{Binding IsVisible}"
-                                                                 Margin="10,0,10,5"
-                                                                 BackgroundColor="#A3A3A3"
-                                                                 Padding="0, 10, 0, 0">
-                                                        <BindableLayout.ItemTemplate>
-                                                            <DataTemplate>
-                                                                <StackLayout BackgroundColor="White"
-                                                                             Margin="10, 0, 10, 10">
+                                                           TextColor="#525252"/>
+                                                    <Frame.GestureRecognizers>
+                                                        <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                                              Tapped="MajorUnitsTapped"
+                                                                              CommandParameter="{Binding MajorID}"/>
+                                                    </Frame.GestureRecognizers>
+                                                </Frame>
+                                                <StackLayout BindableLayout.ItemsSource="{Binding Units}" 
+                                                             IsVisible="{Binding IsVisible}">
+                                                    <BindableLayout.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <StackLayout>
+                                                                <Frame BackgroundColor="White" 
+                                                                       Margin="20, 0, 20, 5"
+                                                                       VerticalOptions="Center"
+                                                                       CornerRadius="20">
                                                                     <Label Text="{Binding Name}"
                                                                            TextColor="#525252"
-                                                                           FontSize="Large"
+                                                                           FontSize="20"
                                                                            HorizontalTextAlignment="Center"
-                                                                           Margin="0, 5, 0, 5">
-                                                                        <Label.GestureRecognizers>
-                                                                            <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                                           Margin="0, 5, 0, 5"/>
+                                                                    <Frame.GestureRecognizers>
+                                                                        <TapGestureRecognizer NumberOfTapsRequired="1" 
                                                                                   Tapped="MajorUnitTapped"
                                                                                   CommandParameter="{Binding UnitID}"/>
-                                                                        </Label.GestureRecognizers>
-                                                                    </Label>
-                                                                    <StackLayout BindableLayout.ItemsSource="{Binding Information}"
-                                                                                 Padding="0, 0, 0, 10"
-                                                                                 IsVisible="{Binding IsVisible}">
+                                                                    </Frame.GestureRecognizers>
+                                                                </Frame>
+                                                                <Frame BackgroundColor="White" 
+                                                                       Margin="20, 0, 20, 5"
+                                                                       VerticalOptions="Center"
+                                                                       CornerRadius="20"
+                                                                       IsVisible="{Binding IsVisible}">
+                                                                    <StackLayout BindableLayout.ItemsSource="{Binding Information}">
                                                                         <BindableLayout.ItemTemplate>
                                                                             <DataTemplate>
-                                                                                <StackLayout>
-                                                                                    <Label Text="{Binding Line, StringFormat='&#x2022; {0}'}" 
-                                                                                           Margin="5,0,0,0"/>
-                                                                                </StackLayout>
+                                                                                <Label Text="{Binding Line, StringFormat='&#x2022; {0}'}" 
+                                                                                       Margin="5,0,0,0"/>
                                                                             </DataTemplate>
                                                                         </BindableLayout.ItemTemplate>
                                                                     </StackLayout>
-                                                                </StackLayout>
-                                                            </DataTemplate>
-                                                        </BindableLayout.ItemTemplate>
-                                                    </StackLayout>
+                                                                </Frame>
+                                                            </StackLayout>
+                                                        </DataTemplate>
+                                                    </BindableLayout.ItemTemplate>
                                                 </StackLayout>
-                                            </DataTemplate>
-                                        </BindableLayout.ItemTemplate>
-                                    </StackLayout>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
                                 </StackLayout>
-                                <StackLayout BackgroundColor="White" 
-                                         Margin="10, 10, 10, 10"
-                                         VerticalOptions="Center">
-                                    <Label Text="Minors"
-                                         FontSize="Large"
-                                         Margin="5,5,5,5"
-                                         TextColor="#525252"
-                                         HorizontalTextAlignment="Center"
-                                         HorizontalOptions="CenterAndExpand"
-                                         VerticalOptions="CenterAndExpand">
 
+                                <Frame BackgroundColor="White" 
+                                       Margin="20, 15, 20, 0"
+                                       VerticalOptions="Center"
+                                       CornerRadius="20">
+                                    <Label Text="Minors"
+                                           FontSize="30"
+                                           TextColor="#525252"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalOptions="CenterAndExpand">
                                     </Label>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                              Tapped="MinorTapped"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+
+                                <StackLayout BindableLayout.ItemsSource="{Binding Minors}" 
+                                             IsVisible="{Binding IsVisibleMinor}">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout>
+                                                <Frame BackgroundColor="White" 
+                                                       Margin="20, 0, 20, 5"
+                                                       VerticalOptions="Center"
+                                                       CornerRadius="20">
+                                                    <StackLayout>
+                                                        <Label Text="{Binding Name}"
+                                                           FontSize="28"
+                                                           TextColor="#525252"
+                                                           HorizontalTextAlignment="Center"
+                                                           HorizontalOptions="CenterAndExpand"
+                                                           VerticalOptions="CenterAndExpand" />
+                                                        <StackLayout BindableLayout.ItemsSource="{Binding Information}">
+                                                            <BindableLayout.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <Label Text="{Binding Line, StringFormat='&#x2022; {0}'}" 
+                                                                       TextColor="#525252"
+                                                                       Margin="10,0,0,0"/>
+                                                                </DataTemplate>
+                                                            </BindableLayout.ItemTemplate>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </Frame>
+                                                <Frame BackgroundColor="White" 
+                                                       Margin="20, 0, 20, 5"
+                                                       VerticalOptions="Center"
+                                                       CornerRadius="20">
+                                                    <Label Text="Units"
+                                                           FontSize="26"
+                                                           HorizontalTextAlignment="Center"
+                                                           TextColor="#525252"/>
+                                                    <Frame.GestureRecognizers>
+                                                        <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                                              Tapped="MinorUnitsTapped"
+                                                                              CommandParameter="{Binding MinorID}"/>
+                                                    </Frame.GestureRecognizers>
+                                                </Frame>
+                                                <StackLayout BindableLayout.ItemsSource="{Binding Units}" 
+                                                             IsVisible="{Binding IsVisible}">
+                                                    <BindableLayout.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <StackLayout>
+                                                                <Frame BackgroundColor="White" 
+                                                                       Margin="20, 0, 20, 5"
+                                                                       VerticalOptions="Center"
+                                                                       CornerRadius="20">
+                                                                    <Label Text="{Binding Name}"
+                                                                           TextColor="#525252"
+                                                                           FontSize="20"
+                                                                           HorizontalTextAlignment="Center"
+                                                                           Margin="0, 5, 0, 5"/>
+                                                                    <Frame.GestureRecognizers>
+                                                                        <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                                                  Tapped="MinorUnitTapped"
+                                                                                  CommandParameter="{Binding UnitID}"/>
+                                                                    </Frame.GestureRecognizers>
+                                                                </Frame>
+                                                                <Frame BackgroundColor="White" 
+                                                                       Margin="20, 0, 20, 5"
+                                                                       VerticalOptions="Center"
+                                                                       CornerRadius="20"
+                                                                       IsVisible="{Binding IsVisible}">
+                                                                    <StackLayout BindableLayout.ItemsSource="{Binding Information}">
+                                                                        <BindableLayout.ItemTemplate>
+                                                                            <DataTemplate>
+                                                                                <Label Text="{Binding Line, StringFormat='&#x2022; {0}'}" 
+                                                                                       Margin="5,0,0,0"/>
+                                                                            </DataTemplate>
+                                                                        </BindableLayout.ItemTemplate>
+                                                                    </StackLayout>
+                                                                </Frame>
+                                                            </StackLayout>
+                                                        </DataTemplate>
+                                                    </BindableLayout.ItemTemplate>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
                                 </StackLayout>
                             </StackLayout>
                         </DataTemplate>

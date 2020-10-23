@@ -4,14 +4,22 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Xamarin.Forms;
 
 namespace Novus.ViewModels
 {
     class SignOnPlanViewModel : BaseViewModel
     {
+        public Command CalanderButton { get; }
         public SignOnPlanViewModel()
         {
             student = App.Student;
+            CalanderButton = new Command(GoToCalander);
+        }
+
+        async void GoToCalander()
+        {
+            await Shell.Current.GoToAsync("planCalander");
         }
 
         Student student;

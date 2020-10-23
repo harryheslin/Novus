@@ -41,5 +41,23 @@ namespace Novus.Views
             var viewModel = BindingContext as RegisterAboutViewModel;
             viewModel?.SetIsVisibleMajorUnit((int)((TappedEventArgs)e).Parameter);
         }
+
+        private void MinorTapped(object sender, EventArgs e)
+        {
+            var viewModel = BindingContext as RegisterAboutViewModel;
+            viewModel?.SetIsVisibleMinor();
+        }
+
+        private void MinorUnitsTapped(object sender, EventArgs e)
+        {
+            var viewModel = BindingContext as RegisterAboutViewModel;
+            viewModel?.SetIsVisibleMinorUnits((int)((TappedEventArgs)e).Parameter);
+        }
+
+        private void MinorUnitTapped(object sender, EventArgs e)
+        {
+            var viewModel = BindingContext as RegisterAboutViewModel;
+            viewModel?.SetIsVisibleMinorUnit((int)((TappedEventArgs)e).Parameter);
+        }
     }
 }

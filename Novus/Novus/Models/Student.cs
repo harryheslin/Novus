@@ -80,6 +80,8 @@ namespace Novus.Models
                 {
                     classes[i].Planned = false;
                 }
+
+                CheckConflict();
             }
 
             return classes;
@@ -157,14 +159,14 @@ namespace Novus.Models
                         if(checking[i].Registerd && checking[i].Colour != "#EFE379")
                         {
                             checking[i].Colour = "#3EF650";
-                            checking[i].ClashMessage = "";
-                            checking[i].ClashMessageIsVisible = false;
+                            checking[i].ClashMessage = "Registered";
+                            checking[i].ClashMessageIsVisible = true;
                         }
                         else if(checking[i].Planned && checking[i].Colour != "#EFE379")
                         {
-                            checking[i].Colour = "#4854FF";
-                            checking[i].ClashMessage = "";
-                            checking[i].ClashMessageIsVisible = false;
+                            checking[i].Colour = "#5D67FF";
+                            checking[i].ClashMessage = "Planned";
+                            checking[i].ClashMessageIsVisible = true;
                         } 
                         else if (checking[i].Colour != "#EFE379" || !checking[i].Registerd)
                         {

@@ -10,14 +10,12 @@ namespace Novus.ViewModels
     {
         ObservableCollection<Unit> currentUnits = App.Student.CurrentUnits;
 
-        ObservableCollection<Events> CurrentEvents = App.Student.Events;
-
         Unit announcementUnit = App.Student.CurrentUnits[0];
         public Command OpenMyUnitsPage { get; }
         public Command CalendarPage { get; }
         public Command EmailPage { get; }
         public Command AnnouncementUnitPage { get; }
-        public Command CalendarWeekPage { get; }
+        public Command NextEvent { get; }
 
         public HomepageViewModel()
         {
@@ -25,9 +23,8 @@ namespace Novus.ViewModels
             CalendarPage = new Command(GoToCalendarPage);
             EmailPage = new Command(GoToEmailPage);
             AnnouncementUnitPage = new Command(GoToAnnouncementUnitPage);
-            CalendarWeekPage = new Command(GoToCalendarWeekPage);
+            NextEvent = new Command(GoToNextEvent);
             GetLatestAnnouncement();
-            GetLatestEvents();
         }
 
         private void GetLatestAnnouncement()
@@ -48,41 +45,6 @@ namespace Novus.ViewModels
             }
             announcementUnit = latestUnit;
             LatestAnnouncement = latest;
-        }
-
-        public void GetLatestEvents()
-        {
-
-            if (CurrentEvents.Count == 0)
-            {
-                latestEventName = "No Events";
-                latestEventDate = "00/00/0000";
-                latestEventDescription = "No Descrpition";
-            }
-            else
-            {
-                Events latestEvents = CurrentEvents[0];
-                for (int i = 0; i < CurrentEvents.Count; i++)
-                {
-                    if (CurrentEvents[i].StartDate > latestEvents.StartDate)
-                    {
-                        latestEvents = CurrentEvents[i];
-                    }
-                }
-                LastestEvent = latestEvents;
-                latestEventName = LastestEvent.EventName;
-                latestEventDate = LastestEvent.StartDate.ToString("dd/MM/yyyy");
-                if (LastestEvent.EventDescription == null)
-                {
-                    latestEventDescription = "No Descrpition";
-                }
-                else
-                {
-                    latestEventDescription = LastestEvent.EventDescription;
-                }
-
-            }
-
         }
 
         Announcement latestAnnouncement;
@@ -112,53 +74,6 @@ namespace Novus.ViewModels
             }
         }
 
-        Events latestEvent;
-        public Events LastestEvent
-        {
-            get => latestEvent;
-            set
-            {
-                SetProperty(ref latestEvent, value);
-                OnPropertyChanged(nameof(LastestEvent));
-            }
-        }
-
-        string latestEventDate;
-        public string LatestEventDate
-        {
-            get => latestEventDate;
-            set
-            {
-                SetProperty(ref latestEventDate, value);
-                OnPropertyChanged(nameof(LatestEventDate));
-            }
-
-        }
-
-        string latestEventName;
-        public string LatestEventName
-        {
-            get => latestEventName;
-            set
-            {
-                SetProperty(ref latestEventName, value);
-                OnPropertyChanged(nameof(LatestEventName));
-            }
-        }
-
-        string latestEventDescription;
-        public string LatestEventDescription
-        {
-            get => latestEventDescription;
-            set
-            {
-                SetProperty(ref latestEventDescription, value);
-                OnPropertyChanged(nameof(LatestEventDescription));
-            }
-        }
-
-
-
         async void GoToAnnouncementUnitPage(object s)
         {
             string param = s.ToString();
@@ -183,9 +98,9 @@ namespace Novus.ViewModels
             await Shell.Current.GoToAsync($"calendarHome");
         }
 
-        async void GoToCalendarWeekPage()
+        async void GoToNextEvent()
         {
-            await Shell.Current.GoToAsync("calendarWeek");
+            await Shell.Current.GoToAsync("nextEvent");
         }
 
         async void GoToEmailPage()

@@ -32,13 +32,12 @@
                 <Frame BackgroundColor="white" CornerRadius="10" Margin="5,0,5,0" VerticalOptions="FillAndExpand" HeightRequest="110">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer
-                            Command="{Binding CalendarWeekPage}">
+                            Command="{Binding NextEvent}">
                         </TapGestureRecognizer>
                     </Frame.GestureRecognizers>
                     <Grid>
-                        <Label Grid.Column="0" FontSize="Medium" Text = "{Binding LatestEventName}" TextColor="black"/>
-                        <Label Grid.Column="2" FontSize="Medium" Text ="{Binding LatestEventDate}" TextColor="Black"/>
-                        <Label Grid.Row="1" Grid.ColumnSpan="2" FontSize="15" Text="{Binding LatestEventDescription}" TextColor="Black"/>
+                        <Label Grid.Column="0" FontSize="Large" Text="Next Upcoming Event" TextColor="Black"
+                               VerticalOptions="Center"/>
                     </Grid>
                     
                 </Frame>

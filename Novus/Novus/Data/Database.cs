@@ -20,15 +20,6 @@ namespace Novus.Models
         {
             database = new SQLiteConnection(dbPath);
 
-            database.DropTable<AnnouncementDB>();
-            database.DropTable<EventsDB>();
-            database.DropTable<AssesmentDB>();
-            database.DropTable<ClassDB>();
-            database.DropTable<ResourcesDB>();
-            database.DropTable<UnitDB>();
-            database.DropTable<SemesterDB>();
-            database.DropTable<StudentDB>();
-
             database.CreateTable<EventsDB>();
             database.CreateTable<AnnouncementDB>();
             database.CreateTable<AssesmentDB>();

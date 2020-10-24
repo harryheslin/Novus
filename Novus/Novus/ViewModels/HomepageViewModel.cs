@@ -15,6 +15,8 @@ namespace Novus.ViewModels
         public Command CalendarPage { get; }
         public Command EmailPage { get; }
         public Command AnnouncementUnitPage { get; }
+
+        //define a command for going to the next event
         public Command NextEvent { get; }
 
         public HomepageViewModel()
@@ -87,7 +89,6 @@ namespace Novus.ViewModels
                 }
             }
         }
-
         async void GoToMyUnitsPage()
         {
             await Shell.Current.GoToAsync($"myUnitsPage");
@@ -98,6 +99,7 @@ namespace Novus.ViewModels
             await Shell.Current.GoToAsync($"calendarHome");
         }
 
+        //go to the next event page
         async void GoToNextEvent()
         {
             await Shell.Current.GoToAsync("nextEvent");

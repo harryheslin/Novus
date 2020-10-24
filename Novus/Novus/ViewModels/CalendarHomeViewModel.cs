@@ -16,14 +16,19 @@ namespace Novus.ViewModels
             DayViewButton = new Command(GoToDayPage);
         }
 
+        //go to month page
         async void GoToMonthPage()
         {
             await Shell.Current.GoToAsync("calendar");
         }
+        
+        //go to week page
         async void GoToWeekPage()
         {
             await Shell.Current.GoToAsync("calendarWeek");
         }
+
+        //go to day page
         async void GoToDayPage()
         {
             await Shell.Current.GoToAsync("calendarDay");

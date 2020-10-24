@@ -8,9 +8,14 @@ namespace Novus.ViewModels
 {
     class NextEventViewModel : BaseViewModel
     {
+        //set a private ObservableCollection for the current list of events
         ObservableCollection<Events> CurrentEvents = App.Student.Events;
+        
+        //define a command for going to calendar
         public Command ToCalendar { get; }
 
+
+        //Set the propterty changes
         private string latestName;
         public string LatestName
         {
@@ -22,6 +27,7 @@ namespace Novus.ViewModels
             }
         }
 
+        //Set the propterty changes
         private string latestDate;
         public string LatestDate
         {
@@ -33,6 +39,7 @@ namespace Novus.ViewModels
             }
         }
 
+        //Set the propterty changes
         private string latestDescription;
         public string LatestDescription
         {
@@ -44,6 +51,7 @@ namespace Novus.ViewModels
             }
         }
 
+        //Set the propterty changes
         private Color latestColor;
         public Color LatestColor
         {
@@ -55,6 +63,7 @@ namespace Novus.ViewModels
             }
         }
 
+        //Set the propterty changes
         private Color textColour;
         public Color TextColour
         {
@@ -66,14 +75,14 @@ namespace Novus.ViewModels
             }
         }
 
-        public ObservableCollection<Events> CurrentEvents1 { get => CurrentEvents; set => CurrentEvents = value; }
-
+        //constructor for the ViewModels
         public NextEventViewModel()
         {
             ToCalendar = new Command(GoToCalendar);
             GetLatestEvents();
         }
 
+        //gets the latest event and updates the bindings
         private void GetLatestEvents()
         {
             if (CurrentEvents.Count == 0)
@@ -109,10 +118,11 @@ namespace Novus.ViewModels
             }
         }
 
+        //Go to the calendar 
         async void GoToCalendar()
         {
-            Shell.Current.Navigation.PopAsync();
-            await Shell.Current.GoToAsync("calendarWeek");
+            await Shell.Current.Navigation.PopAsync(false);
+            await Shell.Current.GoToAsync("calendar", false);
         }
     }
 }

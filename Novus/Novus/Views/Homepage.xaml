@@ -29,8 +29,17 @@
 
             <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
                 <Button Text="Next Event" />
-                <Frame BackgroundColor="white">
-                    <Label Text = "This is your next upcoming event" TextColor="black"/>
+                <Frame BackgroundColor="white" CornerRadius="10" Margin="5,0,5,0" VerticalOptions="FillAndExpand" HeightRequest="110">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding NextEvent}">
+                        </TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
+                    <Grid>
+                        <Label Grid.Column="0" FontSize="Large" Text="Next Upcoming Event" TextColor="Black"
+                               VerticalOptions="Center"/>
+                    </Grid>
+                    
                 </Frame>
             </StackLayout>
 

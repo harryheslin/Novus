@@ -1,29 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Novus.Views" 
+             xmlns:source="clr-namespace:Novus.Views" 
+             xmlns:local="clr-namespace:Novus.Extensions;assembly=Novus"
              xmlns:controls="clr-namespace:Novus.Controls"
              xmlns:viewmodel="clr-namespace:Novus.ViewModels"
              x:Class="Novus.MainPage"
-             BackgroundColor="#00467F">
+             BackgroundColor="#00467F"
+       Title="Novus">
 
     <Shell.FlyoutHeader>
         <controls:FlyoutHeader />
     </Shell.FlyoutHeader>
 
-    <FlyoutItem Title="Homepage" >
-        <ShellContent  ContentTemplate="{DataTemplate local:Homepage}" Route="homepage" />
+    <FlyoutItem Title="Homepage" Icon="home.png" >
+        <ShellContent  ContentTemplate="{DataTemplate source:Homepage}" Route="homepage" />
     </FlyoutItem>
-    <FlyoutItem Title="MyUnits" >
-        <ShellContent  ContentTemplate="{DataTemplate local:MyUnitsPage}" Route="myUnitsPage" />
+    <FlyoutItem Title="My Units" Icon="units.png">
+        <ShellContent  ContentTemplate="{DataTemplate source:MyUnitsPage}" Route="myUnitsPage"/>
     </FlyoutItem>
-    <FlyoutItem Title="Calendar">
-        <ShellContent ContentTemplate="{DataTemplate local:CalendarHome}" Route="calendarHome"/>
+    <FlyoutItem Title="Calendar" Icon="calendar.png">
+        <ShellContent ContentTemplate="{DataTemplate source:CalendarHome}" Route="calendarHome"/>
     </FlyoutItem>
-    <FlyoutItem Title="Manage Units">
-        <ShellContent ContentTemplate="{DataTemplate local:Register}" Route="register"/>
+    <FlyoutItem Title="Manage Units" Icon="folder.png">
+        <ShellContent ContentTemplate="{DataTemplate source:Register}" Route="register"/>
     </FlyoutItem>
-    <FlyoutItem Title="Class Sign-On">
-        <ShellContent ContentTemplate="{DataTemplate local:SignOnMain}" Route="signOnMain"/>
+    <FlyoutItem Title="Class Sign-On" Icon="academic.png">
+        <ShellContent ContentTemplate="{DataTemplate source:SignOnMain}" Route="signOnMain"/>
     </FlyoutItem>
 </Shell>

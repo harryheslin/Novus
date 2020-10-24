@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Novus.Views.NextEvent"
+             xmlns:viewmodel="clr-namespace:Novus.ViewModels">
+
+    <ContentPage.BindingContext>
+        <viewmodel:NextEventViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#A3A3A3">
+            <Frame CornerRadius="10" Margin="10,10,10,10"
+                   VerticalOptions="FillAndExpand" BackgroundColor="{Binding LatestColor}">
+                <Grid>
+                    <Label Grid.Column="0"
+                        TextColor="{Binding TextColour}"
+                           Text="{Binding LatestName}"
+                           FontSize="Title"/>
+                    <Label Grid.Column="1" FontSize="Subtitle"
+                           HorizontalOptions="End"
+                           TextColor="{Binding TextColour}"
+                        Text="{Binding LatestDate}"/>
+                    <Label Grid.Row="1"
+                           Grid.ColumnSpan="2"
+                           FontSize="Medium"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalOptions="Fill"
+                           Text="{Binding LatestDescription}"
+                           TextColor="{Binding TextColour}"/>
+                </Grid>
+            </Frame>
+            <Button Text="View In Calendar"
+                    BackgroundColor="#525252"
+                    TextColor="White"
+                    Margin="10,10,10,10"
+                    Command="{Binding ToCalendar}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

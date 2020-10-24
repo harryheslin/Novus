@@ -13,7 +13,6 @@ namespace Novus.ViewModels
 
         public Command SettingsButton { get; }
 
-        //private static var page = new Calendar();
         public CalendarViewModel()
         {
             DayViewButton = new Command(GoToDayPage);
@@ -21,12 +20,14 @@ namespace Novus.ViewModels
             EventAddButton = new Command(GoToNew);
         }
 
+        //go to the day page
         async void GoToDayPage()
         {
             await Shell.Current.GoToAsync("calendarDay");
             Shell.Current.Navigation.RemovePage(Shell.Current.Navigation.NavigationStack[Shell.Current.Navigation.NavigationStack.Count - 2]);
         }
 
+        //go to the week page
         async void GoToWeekPage()
         {
             await Shell.Current.GoToAsync("calendarWeek");
@@ -34,6 +35,7 @@ namespace Novus.ViewModels
 
         }
 
+        //go to the new event page
         async void GoToNew()
         {
             await Shell.Current.GoToAsync("eventAdd");

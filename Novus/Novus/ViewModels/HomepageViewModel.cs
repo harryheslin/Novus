@@ -1,15 +1,12 @@
 ﻿using MvvmHelpers;
 using Novus.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Novus.ViewModels
 {
-    class HomepageViewModel : BaseViewModel 
+    class HomepageViewModel : BaseViewModel
     {
         ObservableCollection<Unit> currentUnits = App.Student.CurrentUnits;
 
@@ -19,12 +16,16 @@ namespace Novus.ViewModels
         public Command EmailPage { get; }
         public Command AnnouncementUnitPage { get; }
 
+        //define a command for going to the next event
+        public Command NextEvent { get; }
+
         public HomepageViewModel()
         {
             OpenMyUnitsPage = new Command(GoToMyUnitsPage);
             CalendarPage = new Command(GoToCalendarPage);
             EmailPage = new Command(GoToEmailPage);
             AnnouncementUnitPage = new Command(GoToAnnouncementUnitPage);
+            NextEvent = new Command(GoToNextEvent);
             GetLatestAnnouncement();
         }
 
@@ -88,7 +89,6 @@ namespace Novus.ViewModels
                 }
             }
         }
-
         async void GoToMyUnitsPage()
         {
             await Shell.Current.GoToAsync($"myUnitsPage");
@@ -97,6 +97,12 @@ namespace Novus.ViewModels
         async void GoToCalendarPage()
         {
             await Shell.Current.GoToAsync($"calendarHome");
+        }
+
+        //go to the next event page
+        async void GoToNextEvent()
+        {
+            await Shell.Current.GoToAsync("nextEvent");
         }
 
         async void GoToEmailPage()

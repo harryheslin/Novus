@@ -53,6 +53,7 @@ namespace Novus
             routes.Add("signOnMain", typeof(SignOnMain));
             routes.Add("registerAbout", typeof(RegisterAbout));
             routes.Add("register", typeof(Register));
+            routes.Add("nextEvent", typeof(NextEvent));
 
 
 

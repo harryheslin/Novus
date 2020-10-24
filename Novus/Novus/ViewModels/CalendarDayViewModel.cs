@@ -19,6 +19,7 @@ namespace Novus.ViewModels
             EventAddButton = new Command(GoToNew);            
         }
 
+        //go to month page
         async void GoToMonthPage()
         {
             await Shell.Current.GoToAsync("calendar");
@@ -26,6 +27,7 @@ namespace Novus.ViewModels
 
         }
 
+        //go to week page
         async void GoToWeekPage()
         {
             await Shell.Current.GoToAsync("calendarWeek");
@@ -33,6 +35,7 @@ namespace Novus.ViewModels
 
         }
 
+        //go to the new event page
         async void GoToNew()
         {
             await Shell.Current.GoToAsync("eventAdd");

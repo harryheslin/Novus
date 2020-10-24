@@ -13,12 +13,16 @@ namespace Novus.Models
         public ObservableCollection<Information> GeneralInformation { get; set; }
         public ObservableCollection<Major> Majors { get; set; }
         public ObservableCollection<Minor> Minors { get; set; }
+        public bool IsVisibleGeneral { get; set; }
+        public bool IsVisibleMajor { get; set; }
+        public bool IsVisibleMinor { get; set; }
 
         public Course(ObservableCollection<Information> generalInformation, ObservableCollection<Major> majors, ObservableCollection<Minor> minors)
         {
             this.GeneralInformation = generalInformation;
             this.Majors = majors;
             this.Minors = minors;
+            this.IsVisibleGeneral = false;
         }
 
         public Course()

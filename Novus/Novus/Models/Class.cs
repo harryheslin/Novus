@@ -11,8 +11,7 @@ namespace Novus.Models
     public enum ClassType
     {
         Lecture = 1,
-        Tutorial = 2,
-        Practical = 3
+        Tutorial = 2
     }
     public enum ClassMode
     {
@@ -24,7 +23,6 @@ namespace Novus.Models
     {
         public int ClassID { get; set; }
         public int UnitID { get; set; }
-        public int SemesterID { get; set; }
         public ClassType Type { get; private set; }
         public DayOfWeek DayOfWeek { get; private set; }
         public DateTime StartTime { get; private set; }
@@ -35,8 +33,11 @@ namespace Novus.Models
         public string Room { get; private set; }
         public bool Registerd { get; set; }
         public bool Planned { get; set; }
+        public string Colour { get; set; }
+        public string ClashMessage { get; set; }
+        public bool ClashMessageIsVisible { get; set; }
         public string Tag { get; private set; }
-
+               
         public Class(ClassType type, DayOfWeek dayOfWeek,DateTime startTime, DateTime endTime, ClassMode mode, string room)
         {
             this.Type = type;
@@ -49,8 +50,10 @@ namespace Novus.Models
             this.DisplayMode = GenerateDisplayMode();
             this.Registerd = false;
             this.Planned = false;
-            this.UnitID = UnitID;
-            this.Tag = GenerateTag();
+            this.Colour = "#FFFFFF";
+            this.ClashMessage = "";
+            this.ClashMessageIsVisible = false;
+            GenerateTag();
         }
 
         public Class()
@@ -64,7 +67,6 @@ namespace Novus.Models
             {
                 ClassID = this.ClassID,
                 UnitID = this.UnitID,
-                SemesterID = this.SemesterID,
                 Type = this.Type,
                 DayOfWeek = this.DayOfWeek,
                 StartTime = this.StartTime,
@@ -75,16 +77,17 @@ namespace Novus.Models
                 Room = this.Room,
                 Registerd = this.Registerd,
                 Planned = this.Planned,
-                Tag = this.Tag
+                Colour = this.Colour,
+                ClashMessage = this.ClashMessage,
+                ClashMessageIsVisible = this.ClashMessageIsVisible
             };
 
             return returnValue;
         }
 
-        private string GenerateTag()
+        public void GenerateTag()
         {
-            string returnString = String.Format("{0}|{1}", UnitID.ToString(), ClassID.ToString());
-            return returnString;
+            this.Tag = String.Format("{0}", ClassID.ToString());
         }
 
         private string GenerateDisplayTime()
@@ -95,25 +98,6 @@ namespace Novus.Models
         private string GenerateDisplayMode()
         {
             return Enum.GetName(typeof(ClassMode), Mode);
-        }
-
-        public static ObservableCollection<Class> GenerateClassLecture(int returnArrayLength)
-        {
-            ObservableCollection<Class> returnArray = new ObservableCollection<Class>();
-            for (int i = 0; i < returnArrayLength; i++) {
-                returnArray.Add(new Class(ClassType.Lecture, DayOfWeek.Monday, DateTime.Now, DateTime.Now, ClassMode.Virtual, "Z501"));
-            }
-            return returnArray;
-        }
-
-        public static ObservableCollection<Class> GenerateClassTutorial( int returnArrayLength)
-        {
-            ObservableCollection<Class> returnArray = new ObservableCollection<Class>();
-            for (int i = 0; i < returnArrayLength; i++)
-            {
-                returnArray.Add(new Class(ClassType.Tutorial, DayOfWeek.Monday, DateTime.Now, DateTime.Now, ClassMode.Virtual, "Z501"));
-            }
-            return returnArray;
         }
 
         public static int GetClassIndex(ObservableCollection<Class> classes, Class indexingClass)

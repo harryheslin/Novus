@@ -9,8 +9,6 @@
              BackgroundColor="#00467F"
        Title="Novus">
 
-    
-
     <Shell.FlyoutHeader>
         <controls:FlyoutHeader />
     </Shell.FlyoutHeader>

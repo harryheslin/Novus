@@ -17,11 +17,11 @@ namespace Novus.Models
         public int StudentID { get; set; }
         public bool IsVisible { get; set; }
         public string Code { get; private set; }
-
         public string Name { get; private set; }
         public string FullName { get; set; }
         public ObservableCollection<Information> Information { get; private set; }
-        public ObservableCollection<Class> Classes { get; set; }
+        public ObservableCollection<Class> Lectures { get; set; }
+        public ObservableCollection<Class> Tutorials { get; set; }
         public string Colour { get; set; }
         public ObservableCollection<Announcement> StaffAnnouncements { get; set; }
         public ObservableCollection<Assesment> Assesments { get; set; }
@@ -33,7 +33,8 @@ namespace Novus.Models
             this.Name = Name;
             this.Colour = Colour;
             this.IsVisible = false;
-            this.Classes = new ObservableCollection<Class>();
+            this.Lectures = new ObservableCollection<Class>();
+            this.Tutorials = new ObservableCollection<Class>();
             this.StaffAnnouncements = Announcenment;
             this.Assesments = Assesment;
             this.UnitResources = Resources;
@@ -60,7 +61,12 @@ namespace Novus.Models
         public UnitDB ConvertToDB()
         {
             List<ClassDB> classes = new List<ClassDB>();
-            foreach (Class value in Classes)
+            foreach (Class value in Tutorials)
+            {
+                classes.Add(value.ConvertToDB());
+            }
+
+            foreach(Class value in Lectures)
             {
                 classes.Add(value.ConvertToDB());
             }
@@ -112,28 +118,13 @@ namespace Novus.Models
         {
             foreach(Class value in classes)
             {
-                this.Classes.Add(value);
-            }
-        }
-
-        public void UpdateClassPlanned(bool value, int classID)
-        {
-            foreach(Class classs in Classes)
-            {
-                if(classs.ClassID == classID)
+                if(value.Type == ClassType.Lecture)
                 {
-                    Classes[Classes.IndexOf(classs)].Planned = value;
-                }
-            }
-        }
-
-        public void UpdateClassRegistered(bool value, int classID)
-        {
-            foreach (Class classs in Classes)
-            {
-                if (classs.ClassID == classID)
+                    this.Lectures.Add(value);
+                } 
+                else
                 {
-                    Classes[Classes.IndexOf(classs)].Registerd = value;
+                    this.Tutorials.Add(value);
                 }
             }
         }

@@ -20,15 +20,6 @@ namespace Novus.Models
         {
             database = new SQLiteConnection(dbPath);
 
-            database.DropTable<AnnouncementDB>();
-            database.DropTable<EventsDB>();
-            database.DropTable<AssesmentDB>();
-            database.DropTable<ClassDB>();
-            database.DropTable<ResourcesDB>();
-            database.DropTable<UnitDB>();
-            database.DropTable<SemesterDB>();
-            database.DropTable<StudentDB>();
-
             database.CreateTable<EventsDB>();
             database.CreateTable<AnnouncementDB>();
             database.CreateTable<AssesmentDB>();
@@ -82,7 +73,8 @@ namespace Novus.Models
 
         public Student GetStudent()
         {
-            return database.GetAllWithChildren<StudentDB>(recursive: true).First().ConvertToModel();
+            List<StudentDB> students = database.GetAllWithChildren<StudentDB>(recursive: true);
+            return students.First().ConvertToModel();
         }
 
         public void SaveStudent(Student student)
@@ -93,6 +85,11 @@ namespace Novus.Models
         public void UpdateStudent(Student student)
         {
             database.UpdateWithChildren(student.ConvertToDB());
+        }
+
+        public void UpdateClass(Class classs)
+        {
+            database.UpdateWithChildren(classs.ConvertToDB());
         }
     }
 }

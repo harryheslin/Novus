@@ -40,8 +40,8 @@
                 </telerikInput:RadCalendar.BindingContext>
                 <telerikInput:RadCalendar.MultiDayViewSettings>
                     <telerikInput:MultiDayViewSettings VisibleDays="7"
-                                            DayStartTime="00:00:00"
-                                            DayEndTime="23:59:59"
+                                            DayStartTime="07:00:00"
+                                            DayEndTime="21:00:00"
                                             TimelineInterval="1:00"
                                             IsWeekendVisible="True"
                                             IsCurrentTimeIndicatorVisible="true"/>

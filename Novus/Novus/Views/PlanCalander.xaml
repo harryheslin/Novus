@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Novus.Views.PlanCalander"
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             xmlns:viewmodel="clr-namespace:Novus.ViewModels">
+
+    <ContentPage.BindingContext>
+        <viewmodel:CalendarWeekViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#A3A3A3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Text="IN01" Grid.Column="0"
+                       BackgroundColor="#00467F" 
+                       TextColor="White"
+                       HorizontalOptions="Center"
+                       Padding="10,0,10,0"
+                       Margin="10,10,0,0"
+                       HeightRequest="20"/>
+                <Label Text="Bacholar of Information Systems" Grid.Column="1" 
+                       TextColor="White"
+                       FontSize="Medium"
+                       HorizontalOptions="Center"
+                       Margin="0,8,0,0"/>
+            </Grid>
+            <Label Text="Planned Timetable"
+                   TextColor="White"
+                   FontSize="50"
+                   HorizontalTextAlignment="Center"/>
+            <telerikInput:RadCalendar x:Name="calendar" ViewMode="MultiDay"
+                                      VerticalOptions="FillAndExpand"
+                                      Margin="10,-15,10,20"
+                                      SchedulingUiEnabled="False"
+                                      AppointmentsSource="{Binding Classes}"
+                                      DisplayDate="2020/6/1"
+                                      MinDate="2020/6/1"
+                                      MaxDate="2020/6/5">
+                <telerikInput:RadCalendar.TitleHeight set="0"/>
+                <telerikInput:RadCalendar.MultiDayViewSettings>
+                    <telerikInput:MultiDayViewSettings VisibleDays="2"     
+                                            DayStartTime="07:00:00"
+                                            DayEndTime="21:00:00"
+                                            TimelineInterval="1:00"
+                                            IsWeekendVisible="False"
+                                            IsCurrentTimeIndicatorVisible="true"/>
+                </telerikInput:RadCalendar.MultiDayViewSettings>
+
+                <telerikInput:RadCalendar.TitleCellStyle>
+                    <telerikInput:CalendarCellStyle TextColor="#A3A3A3"
+                                                    BackgroundColor="#A3A3A3"
+                                                    BorderThickness="0"
+                                                    FontSize="0"/>
+                </telerikInput:RadCalendar.TitleCellStyle>
+                <telerikInput:RadCalendar.DayCellStyle>
+                    <telerikInput:CalendarCellStyle TextColor="White" 
+                                                BackgroundColor="White"
+                                                FontSize="0"/>
+                </telerikInput:RadCalendar.DayCellStyle>
+                <telerikInput:RadCalendar.DayNameCellStyle>
+                    <telerikInput:CalendarCellStyle TextColor="Black" 
+                                                BackgroundColor="White"
+                                                HorizontalTextAlignment="Center"
+                                                VerticalTextAlignment="Start"
+                                                FontSize="15"/>
+                </telerikInput:RadCalendar.DayNameCellStyle>
+            </telerikInput:RadCalendar>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

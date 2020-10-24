@@ -4,14 +4,24 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Xamarin.Forms;
 
 namespace Novus.ViewModels
 {
     class SignOnViewModel : BaseViewModel
     {
+
+        public Command CalanderButton { get; }
+
         public SignOnViewModel()
         {
             student = App.Student;
+            CalanderButton = new Command(GoToCalander);
+        }
+
+        async void GoToCalander()
+        {
+            await Shell.Current.GoToAsync("signOnCalander");
         }
 
         Student student;
@@ -28,7 +38,7 @@ namespace Novus.ViewModels
 
         public ObservableCollection<Unit> Units
         {
-            get => student.CurrentUnits;
+            get => Student.CurrentUnits;
         }
 
         public void SetIsVisible(int unitID)
@@ -36,7 +46,14 @@ namespace Novus.ViewModels
             Unit unit = GetUnit(unitID);
             if (unit.UnitID != -1)
             {
-                unit.IsVisible = !unit.IsVisible;
+                if(unit.IsVisible)
+                {
+                    unit.IsVisible = false;
+                } else
+                {
+                    unit.IsVisible = true;
+                }
+
                 SetUnitValue(unit);
             }
         }
@@ -45,26 +62,24 @@ namespace Novus.ViewModels
         {
             try
             {
-                string[] tagSplit = tag.Split('|');
-                 Class classs = GetClass(int.Parse(tagSplit[1]));
+                Class classs = GetClass(int.Parse(tag));
                 if (classs.ClassID != -1)
                 {
-                    Semester semester = GetSemester(classs.UnitID);
-                    if (classs.Registerd)
-                    {
-                        semester.EnrollInClass(classs);
-                    }
-                    else
-                    {
-                        semester.UnEnrollInClass(classs);
-                    }
+                    Student newStudent = student;
+                    newStudent.EnrollInClass(classs, classs.UnitID);
 
-                    SetSemesterValue(semester);
+                    foreach(Unit unit in newStudent.CurrentUnits)
+                    {
+                        if(unit.UnitID == classs.UnitID)
+                        {
+                            SetUnitValue(unit);
+                        }
+                    }
                 }
             } 
             catch
             {
-                return;
+
             }
             
         }
@@ -73,10 +88,15 @@ namespace Novus.ViewModels
         {
             foreach(Unit unit in Units)
             {
-                int classIndex = Class.GetClassIndex(unit.Classes, classID);
+                int classIndex = Class.GetClassIndex(unit.Lectures, classID);
                 if(classIndex != -1)
                 {
-                    return Student.Enrollment[0].EnrolledUnits[Unit.GetUnitIndex(Student.Enrollment[0].EnrolledUnits, unit.UnitID)].Classes[classIndex];
+                    return Student.CurrentUnits[Unit.GetUnitIndex(Student.CurrentUnits, unit.UnitID)].Lectures[classIndex];
+                }
+                classIndex = Class.GetClassIndex(unit.Tutorials, classID);
+                if(classIndex != -1)
+                {
+                    return Student.CurrentUnits[Unit.GetUnitIndex(Student.CurrentUnits, unit.UnitID)].Tutorials[classIndex];
                 }
             }
             return new Class();
@@ -84,105 +104,19 @@ namespace Novus.ViewModels
 
         private void SetUnitValue(Unit newValue)
         {
-            try
-            {
-                int[] index = Semester.GetUnitIndex(Student.Enrollment, newValue);
-                Student.Enrollment[index[0]].EnrolledUnits[index[1]] = newValue;
-            }
-            catch
-            {
-                return;
-            }
-        }
-
-        private Unit GetUnit(Unit indexingUnit)
-        {
-            int[] semesterIndex = Semester.GetUnitIndex(Student.Enrollment, indexingUnit);
-            if (semesterIndex != new int[] { -1, -1 })
-            {
-                return Student.Enrollment[semesterIndex[0]].EnrolledUnits[semesterIndex[1]];
-            }
-            else
-            {
-                return new Unit();
-            }
+                int index = Unit.GetUnitIndex(student.CurrentUnits, newValue.UnitID);
+                Student.CurrentUnits[index] = newValue;
         }
 
         private Unit GetUnit(int indexingUnitID)
         {
-            int[] semesterIndex = Semester.GetUnitIndex(Student.Enrollment, indexingUnitID);
-            if (semesterIndex != new int[] { -1, -1 })
+            int index = Unit.GetUnitIndex(Student.CurrentUnits, indexingUnitID);
+            if (index != -1)
             {
-                return Student.Enrollment[semesterIndex[0]].EnrolledUnits[semesterIndex[1]];
+                return Student.CurrentUnits[index];
             }
-            else
-            {
-                return new Unit();
-            }
-        }
 
-        private void SetSemesterValue(Semester newValue)
-        {
-            try
-            {
-                Student.Enrollment[0] = newValue;
-            }
-            catch
-            {
-                return;
-            }
-        }
-
-        private Semester GetSemester(ObservableCollection<int> semesterNumber)
-        {
-            int semesterIndex = Semester.GetSemesterIndex(Student.Enrollment, semesterNumber);
-            if (semesterIndex != -1)
-            {
-                return Student.Enrollment[semesterIndex];
-            }
-            else
-            {
-                return new Semester();
-            }
-        }
-
-        private Semester GetSemester(Semester semester)
-        {
-            int semesterIndex = Semester.GetSemesterIndex(Student.Enrollment, semester);
-            if (semesterIndex != -1)
-            {
-                return Student.Enrollment[semesterIndex];
-            }
-            else
-            {
-                return new Semester();
-            }
-        }
-
-        private Semester GetSemester(Unit unit)
-        {
-            int[] semesterIndex = Semester.GetUnitIndex(Student.Enrollment, unit);
-            if (semesterIndex != new int[] { -1, -1 })
-            {
-                return Student.Enrollment[semesterIndex[0]];
-            }
-            else
-            {
-                return new Semester();
-            }
-        }
-
-        private Semester GetSemester(int unitID)
-        {
-            int[] semesterIndex = Semester.GetUnitIndex(Student.Enrollment, unitID);
-            if (semesterIndex != new int[] { -1, -1 })
-            {
-                return Student.Enrollment[semesterIndex[0]];
-            }
-            else
-            {
-                return new Semester();
-            }
+            return new Unit();
         }
     }
 }

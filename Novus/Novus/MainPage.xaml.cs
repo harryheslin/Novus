@@ -18,7 +18,7 @@ namespace Novus
         public Dictionary<string, Type> Routes { get { return routes; } }
 
         Student TestStudent = App.Student;
-        public string Unit1 => TestStudent.CurrentUnits[0].Name;
+        public string Unit1 => TestStudent.CurrentUnits[1].Name;
         public string Unit2 => TestStudent.CurrentUnits[1].Name;
         public string Unit3 => TestStudent.CurrentUnits[2].Name;
         public string Unit4 => TestStudent.CurrentUnits[3].Name;
@@ -35,9 +35,6 @@ namespace Novus
             routes.Add("homepage", typeof(Homepage));
             routes.Add("myUnitsPage", typeof(MyUnitsPage));
             routes.Add("unit", typeof(UnitPage));
-            //routes.Add("unit2", typeof(UnitPage));
-            //routes.Add("unit3", typeof(UnitPage));
-            //routes.Add("unit4", typeof(UnitPage));
             routes.Add("calendar", typeof(Calendar));
             routes.Add("resources", typeof(UnitResources));
             routes.Add("assesment", typeof(UnitAssesment));
@@ -53,6 +50,8 @@ namespace Novus
             routes.Add("signOnMain", typeof(SignOnMain));
             routes.Add("registerAbout", typeof(RegisterAbout));
             routes.Add("register", typeof(Register));
+            routes.Add("signOnCalander", typeof(SignOnCalander));
+            routes.Add("planCalander", typeof(PlanCalander));
             routes.Add("nextEvent", typeof(NextEvent));
 
 

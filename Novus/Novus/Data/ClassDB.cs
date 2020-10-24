@@ -14,9 +14,6 @@ namespace Novus.Data
 
         [ForeignKey(typeof(UnitDB))]
         public int UnitID { get; set; }
-
-        [ForeignKey(typeof(SemesterDB))]
-        public int SemesterID { get; set; }
         public ClassType Type { get; set; }
         public DayOfWeek DayOfWeek { get; set; }
         public DateTime StartTime { get; set; }
@@ -27,14 +24,21 @@ namespace Novus.Data
         public string Room { get; set; }
         public bool Registerd { get; set; }
         public bool Planned { get; set; }
-        public string Tag { get; set; }
+        public string Colour { get; set; }
+        public string ClashMessage { get; set; }
+        public bool ClashMessageIsVisible { get; set; }
 
         public Class ConvertToModel()
         {
             Class returnValue = new Class(this.Type, this.DayOfWeek, this.StartTime, this.EndTime, this.Mode, this.Room);
             returnValue.ClassID = this.ClassID;
             returnValue.UnitID = this.UnitID;
-            returnValue.SemesterID = this.SemesterID;
+            returnValue.GenerateTag();
+            returnValue.Registerd = Registerd;
+            returnValue.Planned = Planned;
+            returnValue.Colour = Colour;
+            returnValue.ClashMessage = ClashMessage;
+            returnValue.ClashMessageIsVisible = ClashMessageIsVisible;
             return returnValue;
         }
     }

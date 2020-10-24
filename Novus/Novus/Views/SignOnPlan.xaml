@@ -8,7 +8,7 @@
     <ContentPage.BindingContext>
         <viewmodel:SignOnPlanViewModel/>
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Content>
         <StackLayout BackgroundColor="#A3A3A3">
             <Grid>
@@ -16,43 +16,167 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Text="IN01" 
-                       Grid.Column="0"
-                       Grid.Row="0"
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Text="IN01" Grid.Column="0"
                        BackgroundColor="#00467F" 
                        TextColor="White"
-                       VerticalTextAlignment="Center"
                        HorizontalOptions="Center"
                        Padding="10,0,10,0"
                        Margin="10,10,0,0"
                        HeightRequest="20"/>
-                <Label Text="Bacholar of Information Systems" 
-                       Grid.Column="1" 
-                       Grid.Row="0"
+                <Label Text="Bacholar of Information Systems" Grid.Column="1" 
                        TextColor="White"
                        FontSize="Medium"
                        HorizontalOptions="Center"
-                       VerticalOptions="End"/>
+                       Margin="0,8,0,0"/>
             </Grid>
-            <Grid Margin="0,20,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Image Source="{local:ImageResource Novus.Images.backArrow.png}" 
-                       HeightRequest="50"
-                       Grid.Column="0" 
-                       Grid.Row="0"
-                       HorizontalOptions="End"
-                       Margin="100,0,0,0"/>
-                <Label Text="Plan"
-                       Grid.Column="1" 
-                       Grid.Row="0"
-                       HorizontalOptions="Start"
-                       HorizontalTextAlignment="Start"
-                       TextColor="White"
-                       FontSize="50"/>
-            </Grid>
+            <Label Text="Sign-On"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   TextColor="White"
+                   FontSize="50"/>
+            <ScrollView>
+                <StackLayout BindableLayout.ItemsSource="{Binding Units}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Margin="10, 5, 10, 5">
+                                <Frame CornerRadius="20"
+                                       BackgroundColor="White">
+                                    <Label Text="{Binding FullName}" 
+                                           TextColor="#525252" 
+                                           HorizontalTextAlignment="Center"                                                 
+                                           FontSize="Large" />
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                              Tapped="ExpandUnit" 
+                                                              CommandParameter="{Binding UnitID}" />
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                                <Label Text="Lectures" 
+                                       FontSize="Medium"
+                                       HorizontalTextAlignment="Start"
+                                       TextColor="White"
+                                       IsVisible="{Binding IsVisible}"/>
+                                <StackLayout IsVisible="{Binding IsVisible}">
+                                    <StackLayout BindableLayout.ItemsSource="{Binding Lectures}">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <Frame CornerRadius="20"
+                                                       BackgroundColor="White">
+                                                    <StackLayout>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="Auto"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Text="{Binding DayOfWeek}"
+                                                                   TextColor="#525252" 
+                                                                   HorizontalTextAlignment="Center"                                                 
+                                                                   FontSize="Medium"
+                                                                   Grid.Row="0"
+                                                                   Grid.Column="0"/>
+                                                            <Label Text="{Binding DisplayTime}"
+                                                                   TextColor="#525252" 
+                                                                   HorizontalTextAlignment="Center"                                                 
+                                                                   FontSize="Medium"
+                                                                   Grid.Row="1"
+                                                                   Grid.Column="0"/>
+                                                            <Label Text="{Binding DisplayMode}" 
+                                                                   TextColor="#525252" 
+                                                                   HorizontalTextAlignment="Center"                                                 
+                                                                   FontSize="Medium"
+                                                                   Grid.Row="0"
+                                                                   Grid.Column="1"/>
+                                                            <Label Text="{Binding Room}" 
+                                                                   TextColor="#525252" 
+                                                                   HorizontalTextAlignment="Center"                                                 
+                                                                   FontSize="Medium"
+                                                                   Grid.Row="1"
+                                                                   Grid.Column="1"/>
+                                                            <CheckBox Grid.Row="0"
+                                                                      Grid.Column="2"
+                                                                      IsChecked="{Binding Planned, Mode=TwoWay}"
+                                                                      CheckedChanged="Plan"
+                                                                      AutomationId="{Binding Tag}">
+                                                            </CheckBox>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </Frame>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                </StackLayout>
+                                <Label Text="Tutorials" 
+                                       FontSize="Medium"
+                                       HorizontalTextAlignment="Start"
+                                       TextColor="White" 
+                                       IsVisible="{Binding IsVisible}"/>
+                                <StackLayout IsVisible="{Binding IsVisible}">
+                                    <StackLayout BindableLayout.ItemsSource="{Binding Tutorials}">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <Frame CornerRadius="20"
+                                                       BackgroundColor="White">
+                                                    <StackLayout>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="Auto"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Text="{Binding DayOfWeek}"
+                                                                   TextColor="#525252" 
+                                                                   HorizontalTextAlignment="Center"                                                 
+                                                                   FontSize="Medium"
+                                                                   Grid.Row="0"
+                                                                   Grid.Column="0"/>
+                                                            <Label Text="{Binding DisplayTime}"
+                                                                   TextColor="#525252" 
+                                                                   HorizontalTextAlignment="Center"                                                 
+                                                                   FontSize="Medium"
+                                                                   Grid.Row="1"
+                                                                   Grid.Column="0"/>
+                                                            <Label Text="{Binding DisplayMode}" 
+                                                                   TextColor="#525252" 
+                                                                   HorizontalTextAlignment="Center"                                                 
+                                                                   FontSize="Medium"
+                                                                   Grid.Row="0"
+                                                                   Grid.Column="1"/>
+                                                            <Label Text="{Binding Room}" 
+                                                                   TextColor="#525252" 
+                                                                   HorizontalTextAlignment="Center"                                                 
+                                                                   FontSize="Medium"
+                                                                   Grid.Row="1"
+                                                                   Grid.Column="1"/>
+                                                            <CheckBox Grid.Row="1"
+                                                                      Grid.Column="2"
+                                                                      Margin="-30, -30, 0, 0"
+                                                                      IsChecked="{Binding Planned, Mode=TwoWay}"
+                                                                      CheckedChanged="Plan"
+                                                                      AutomationId="{Binding Tag}"
+                                                                      Color="#525252"/>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </Frame>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+            <Button Text="View Timetable"
+                    BackgroundColor="White"
+                    TextColor="#525252"
+                    Margin="10, 10, 10, 10"
+                    FontSize="30"
+                    Command="{Binding CalanderButton}"
+                    CornerRadius="20"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
